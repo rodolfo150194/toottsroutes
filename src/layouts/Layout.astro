@@ -1,22 +1,52 @@
+---
+import GradientOverlay from "../components/GradientOverlay.astro";
+---
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <meta name="generator" content={Astro.generator}/>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Rootts & Routes Food, S.L.U</title>
+</head>
+<body>
+<div id="background-mask" class="min-h-screen w-full">
+    <!--<GradientOverlay />-->
+    <slot/>
+</div>
+</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+    @import "tailwindcss";
+
+    @plugin "@midudev/tailwind-animations";
+
+    html,
+    body {
+        margin: 0;
+        padding: 5px;
+        width: 100%;
+        height: 100%;
+        font-family: "JetBrains Mono", "jetbrains", "jetbrains Fallback", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    }
+
+    /* Fuente para títulos y headings */
+    h1, h2, h3, h4, h5, h6,
+    .font-heading {
+        font-family: "JetBrains Mono", "jetbrains", "jetbrains Fallback", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+
+    /* Fuente para párrafos y texto general */
+    p, span, a, button, input, textarea {
+        font-family: "JetBrains Mono", "jetbrains", "jetbrains Fallback", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    }
+
 </style>
