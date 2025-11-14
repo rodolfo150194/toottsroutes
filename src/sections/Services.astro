@@ -1,0 +1,496 @@
+---
+// Datos de los servicios
+const servicesData = [
+    {
+        id: 1,
+        number: "01",
+        title: "Contenedores FCL/LCL",
+        description: "Envíos de contenedores completos y compartidos (FCL/LCL) para carga de cualquier tipo. Optimizamos el espacio y los costos según tus necesidades específicas.",
+        icon: "package",
+        color: "blue",
+        position: "right"
+    },
+    {
+        id: 2,
+        number: "02",
+        title: "Paquetería Internacional",
+        description: "Servicios de paquetería internacional desde y hacia varios países. Rápido, seguro y con seguimiento en cada paso del camino.",
+        icon: "card",
+        color: "emerald",
+        position: "left"
+    },
+    {
+        id: 3,
+        number: "03",
+        title: "Gestión Aduanal",
+        description: "Gestión aduanal, documentación y trámites sin complicaciones. Nos encargamos de toda la burocracia para que tú no tengas que hacerlo.",
+        icon: "document",
+        color: "orange",
+        position: "right"
+    },
+    {
+        id: 4,
+        number: "04",
+        title: "Red Global",
+        description: "Red global de aliados en América, Europa y Asia. Conexiones estratégicas en los principales puertos del mundo.",
+        icon: "globe",
+        color: "purple",
+        position: "left"
+    },
+    {
+        id: 5,
+        number: "05",
+        title: "Seguridad y Rastreo",
+        description: "Seguridad y seguimiento en tiempo real desde el origen hasta el destino. Mantente informado en cada etapa del viaje de tu mercancía.",
+        icon: "shield",
+        color: "rose",
+        position: "right"
+    },
+    {
+        id: 6,
+        number: "06",
+        title: "Precios Competitivos",
+        description: "Precios competitivos y opciones de envío urgente o económico. Flexibilidad para ajustarnos a tu presupuesto sin comprometer la calidad.",
+        icon: "dollar",
+        color: "cyan",
+        position: "left"
+    }
+];
+
+// Iconos SVG
+const icons = {
+    package: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+    card: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z',
+    document: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+    globe: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+    shield: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+    dollar: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+};
+
+const svgDecorMap = {
+    1: `
+    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
+      <path fill="#3b82f6" fill-opacity="0.25"
+        d="M37.1,-58.3C50.3,-52.8,63.8,-44.1,70.9,-31.2C78,-18.3,78.7,-1.2,74.1,14.1C69.5,29.4,59.6,42.9,47.1,52.1C34.6,61.3,19.5,66.2,3.7,67.1C-12.1,68,-24.6,64.9,-38.1,58.1C-51.6,51.3,-66.1,40.7,-72.9,26.5C-79.7,12.3,-78.8,-5.5,-71.9,-19.8C-65,-34.1,-57.9,-45.9,-33.3,-62.3C-20.3,-69.1,-6.1,-72.9,6.4,-70.7C18.9,-68.5,35.6,-60.3,37.1,-58.3Z" transform="translate(100 100)"/>
+    </svg>
+  `,
+    2: `
+    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" stroke="#10b981" stroke-width="2" fill="none" opacity="0.3"/>
+      <circle cx="50" cy="50" r="30" stroke="#3b82f6" stroke-width="2" fill="none" opacity="0.3"/>
+      <circle cx="50" cy="50" r="20" stroke="#06b6d4" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  `,
+    3: `
+    <svg class="w-32 h-16 mt-4 opacity-25 pointer-events-none" viewBox="0 0 200 80" preserveAspectRatio="none">
+      <path d="M0,40 Q50,0 100,40 T200,40 L200,80 L0,80 Z" fill="url(#onda3)"/>
+      <defs>
+        <linearGradient id="onda3" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#f97316"/>
+          <stop offset="100%" stop-color="#fb923c"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  `,
+    4: `
+    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
+      <polygon fill="#a78bfa" fill-opacity="0.25" points="100,20 140,80 120,160 80,160 60,80"/>
+    </svg>
+  `,
+    5: `
+    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
+      <path fill="#22d3ee" fill-opacity="0.25"
+        d="M50,0 Q100,50 50,100 Q0,50 50,0 Z" transform="translate(100 100)"/>
+    </svg>
+  `
+    };
+
+
+const colorClasses = {
+    blue: {
+        badge: 'bg-blue-500',
+        gradient: 'from-blue-400 to-blue-600',
+        iconBg: 'from-blue-500 to-blue-700',
+        dot: 'bg-blue-600'
+    },
+    emerald: {
+        badge: 'bg-emerald-500',
+        gradient: 'from-emerald-400 to-emerald-600',
+        iconBg: 'from-emerald-500 to-emerald-700',
+        dot: 'bg-emerald-600'
+    },
+    orange: {
+        badge: 'bg-orange-500',
+        gradient: 'from-orange-400 to-orange-600',
+        iconBg: 'from-orange-500 to-orange-700',
+        dot: 'bg-orange-600'
+    },
+    purple: {
+        badge: 'bg-purple-500',
+        gradient: 'from-purple-400 to-purple-600',
+        iconBg: 'from-purple-500 to-purple-700',
+        dot: 'bg-purple-600'
+    },
+    rose: {
+        badge: 'bg-rose-500',
+        gradient: 'from-rose-400 to-rose-600',
+        iconBg: 'from-rose-500 to-rose-700',
+        dot: 'bg-rose-600'
+    },
+    cyan: {
+        badge: 'bg-cyan-500',
+        gradient: 'from-cyan-400 to-cyan-600',
+        iconBg: 'from-cyan-500 to-cyan-700',
+        dot: 'bg-cyan-600'
+    }
+};
+---
+
+<section class="relative bg-gradient-to-b from-white to-orange-50 overflow-hidden">
+    <div class="absolute top-0 left-0 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+    <div class="absolute top-0 right-0 w-64 h-64 bg-orange-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+
+    <div class="relative container px-4 mx-auto max-w-7xl">
+        <div class="flex items-center justify-center">
+            <div class="text-center max-w-3xl mx-auto mt-20 mb-10">
+                <span class="inline-block mb-4 px-4 py-2 text-sm font-semibold text-blue-900 bg-blue-50 rounded-full">
+                    📦 SERVICIOS / PROPUESTA DE VALOR
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-2 leading-tight">
+                    ¿Por qué elegirnos para tus <span class="text-blue-600">envíos internacionales</span>?
+                </h2>
+            </div>
+        </div>
+
+        <div class="relative">
+            <svg id="timeline-svg" class="absolute left-0 top-0 w-full h-full hidden lg:block pointer-events-none" style="z-index: 1;">
+                <defs>
+                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#f97316;stop-opacity:1" />
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Las líneas se generarán dinámicamente aquí -->
+                <g id="timeline-lines"></g>
+
+            </svg>
+
+            <div class="space-y-0">
+                {servicesData.map((service, index) => {
+                    const colors = colorClasses[service.color];
+                    const iconPath = icons[service.icon];
+                    const isLeft = service.position === 'left';
+                    const rotation = isLeft ? '-rotate-3' : 'rotate-3';
+
+                    return (
+                            <div class="w-full timeline-item min-h-screen flex items-center relative" data-item={service.id}>
+
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
+                                    <div class={`timeline-content ${isLeft ? 'lg:pl-12 lg:order-2' : 'lg:text-right lg:pr-12'}`}>
+                                        <div class={`inline-block ${isLeft ? '' : 'lg:inline'} mb-4`}>
+                                        <span class={`px-4 py-2 ${colors.badge} text-white rounded-full text-sm font-bold`}>
+                                            {service.number}
+                                        </span>
+                                        </div>
+                                        <h3 class="text-3xl md:text-4xl font-black text-gray-900 my-4">
+                                            {service.title}
+                                        </h3>
+                                        <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+                                            {service.description}
+                                            <svg class={`absolute ${isLeft ? '-top-50 -right-50':'-top-50 -left-50'} w-150 h-150 mt-4`} viewBox="0 0 100 100">
+                                                <g fill="none" stroke-width="2" opacity="0.2">
+                                                    <circle cx="50" cy="50" r="40" stroke="#10b981"/>
+                                                    <circle cx="50" cy="50" r="30" stroke="#3b82f6"/>
+                                                    <circle cx="50" cy="50" r="20" stroke="#06b6d4"/>
+                                                </g>
+                                            </svg>
+                                        </p>
+                                    </div>
+
+                                    <div class={`relative timeline-image ${isLeft ? 'lg:order-1' : ''}`}>
+                                        <div class={`absolute inset-0 bg-gradient-to-br ${colors.gradient} rounded-3xl transform ${rotation}`}></div>
+                                        <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden h-96 flex items-center justify-center">
+
+                                            <div class={`w-40 h-40 bg-gradient-to-br ${colors.iconBg} rounded-2xl flex items-center justify-center`}>
+                                                <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={iconPath}/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class={`timeline-dot absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-8 h-8 ${colors.dot} rounded-full border-4 border-white shadow-lg z-10 hidden lg:block`}></div>
+                                    </div>
+                                </div>
+                            </div>
+                    );
+                })}
+            </div>
+        </div>
+
+        <div class="flex items-center justify-center mb-20">
+            <div class="text-center">
+                <a class="relative group inline-block w-full sm:w-auto py-4 px-8 mb-24 text-white font-bold rounded-lg bg-blue-900 hover:from-blue-700 hover:to-blue-600 shadow-lg hover:shadow-xl overflow-hidden mt-10 transition-all duration-300"
+                   href="#">
+                    <div class="absolute top-0 right-full w-full h-full bg-blue-800 transform group-hover:translate-x-full group-hover:scale-102 transition duration-500"></div>
+                    <div class="relative flex items-center justify-center">
+                        <span class="mr-4 text-lg">Solicitar Cotización Gratis</span>
+                        <span>
+                  <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg"
+                       data-config-id="svg-378f37-3">
+                    <path d="M6.83 5.29L2.59 1.05C2.49704 0.956274 2.38644 0.881879 2.26458 0.83111C2.14272 0.780342 2.01202 0.754204 1.88 0.754204C1.74799 0.754204 1.61729 0.780342 1.49543 0.83111C1.37357 0.881879 1.26297 0.956274 1.17 1.05C0.983753 1.23736 0.879211 1.49082 0.879211 1.755C0.879211 2.01919 0.983753 2.27264 1.17 2.46L4.71 6L1.17 9.54C0.983753 9.72736 0.879211 9.98082 0.879211 10.245C0.879211 10.5092 0.983753 10.7626 1.17 10.95C1.26344 11.0427 1.37426 11.116 1.4961 11.1658C1.61794 11.2155 1.7484 11.2408 1.88 11.24C2.01161 11.2408 2.14207 11.2155 2.26391 11.1658C2.38575 11.116 2.49656 11.0427 2.59 10.95L6.83 6.71C6.92373 6.61704 6.99813 6.50644 7.04889 6.38458C7.09966 6.26272 7.1258 6.13201 7.1258 6C7.1258 5.86799 7.09966 5.73728 7.04889 5.61543C6.99813 5.49357 6.92373 5.38297 6.83 5.29Z"
+                          fill="#FFF2EE"></path>
+                  </svg>
+                </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+    }
+
+    .animate-blob {
+        animation: blob 7s infinite;
+    }
+
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+
+    .timeline-item {
+        position: relative;
+        z-index: 2;
+    }
+
+    .timeline-dot {
+        position: relative;
+        z-index: 15;
+    }
+
+    .timeline-image {
+        position: relative;
+        z-index: 10;
+        opacity: 0;
+    }
+
+    .timeline-content {
+        position: relative;
+        z-index: 5;
+        opacity: 0;
+    }
+
+
+</style>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script define:vars={{ servicesData }}>
+// Hacer servicesData disponible globalmente
+window.__servicesData = servicesData;
+</script>
+
+<script is:inline>
+(function() {
+    function initAnimations() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            setTimeout(initAnimations, 100);
+            return;
+            }
+
+        gsap.registerPlugin(ScrollTrigger);
+        const servicesData = window.__servicesData;
+        const svg = document.getElementById('timeline-svg');
+        const linesGroup = document.getElementById('timeline-lines');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const timelineImages = document.querySelectorAll('.timeline-image');
+        const section = document.querySelector('section');
+
+        if (!svg || !section || !linesGroup) return;
+
+        const colorClasses = {
+            blue: { color: '#2563eb' },
+            emerald: { color: '#059669' },
+            orange: { color: '#ea580c' },
+            purple: { color: '#9333ea' },
+            rose: { color: '#e11d48' },
+            cyan: { color: '#0891b2' }
+            };
+
+        let pathsData = [];
+        let scrollTriggers = [];
+
+        function createGradient(id, start, end) {
+            const defs = svg.querySelector('defs');
+            const grad = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+            grad.setAttribute('id', id);
+            grad.setAttribute('x1', '0%');
+            grad.setAttribute('y1', '0%');
+            grad.setAttribute('x2', '100%');
+            grad.setAttribute('y2', '100%');
+
+            const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+            stop1.setAttribute('offset', '0%');
+            stop1.setAttribute('stop-color', start);
+
+            const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+            stop2.setAttribute('offset', '100%');
+            stop2.setAttribute('stop-color', end);
+
+            grad.appendChild(stop1);
+            grad.appendChild(stop2);
+            defs.appendChild(grad);
+            }
+
+        function createSegment(from, to, fromColor, toColor, index) {
+            const fromRect = from.getBoundingClientRect();
+            const toRect = to.getBoundingClientRect();
+            const svgRect = svg.getBoundingClientRect();
+
+            const fromX = fromRect.left + fromRect.width / 2 - svgRect.left;
+            const fromY = fromRect.bottom - svgRect.top + 20;
+
+            const toX = toRect.left + toRect.width / 2 - svgRect.left;
+            const toY = toRect.top - svgRect.top - 20;
+
+            const midY = (fromY + toY) / 2;
+            const isLeft = index % 2 === 0;
+            const sideX = isLeft ? fromX - 120 : fromX + 120;
+            const entrySideX = isLeft ? toX + 120 : toX - 120;
+
+            const d = `M ${fromX} ${fromY} Q ${sideX} ${midY}, ${entrySideX} ${midY} Q ${toX} ${toY}, ${toX} ${toY}`;
+
+            const gradientId = `grad-${index}`;
+            createGradient(gradientId, fromColor, toColor);
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', d);
+            path.setAttribute('stroke', `url(#${gradientId})`);
+            path.setAttribute('stroke-width', '6');
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke-linecap', 'round');
+
+            linesGroup.appendChild(path);
+
+            // Obtener la longitud real del path
+                const pathLength = path.getTotalLength();
+            path.style.strokeDasharray = pathLength;
+            path.style.strokeDashoffset = pathLength;
+
+            return { path, pathLength };
+            }
+
+        function initPaths() {
+            // Limpiar paths anteriores
+                linesGroup.innerHTML = '';
+            svg.querySelectorAll('linearGradient[id^="grad-"]').forEach(g => g.remove());
+            pathsData = [];
+
+            // Limpiar ScrollTriggers anteriores
+                scrollTriggers.forEach(st => st.kill());
+            scrollTriggers = [];
+
+            // Crear nuevos paths
+                for (let i = 0; i < timelineImages.length - 1; i++) {
+                    const fromCard = servicesData[i];
+                    const toCard = servicesData[i + 1];
+                    const fromColor = colorClasses[fromCard.color]?.color || '#2563eb';
+                    const toColor = colorClasses[toCard.color]?.color || '#f97316';
+
+                    const pathData = createSegment(timelineImages[i], timelineImages[i + 1], fromColor, toColor, i);
+                    pathsData.push({ ...pathData, toColor });
+                    }
+
+            // Crear ScrollTriggers para las líneas después de que los paths existan
+                setTimeout(() => {
+            pathsData.forEach((pathData, index) => {
+                const { path, pathLength, toColor } = pathData;
+
+                const st = ScrollTrigger.create({
+                    trigger: timelineItems[index],
+                    start: 'top 75%',
+                    end: 'bottom 25%',
+                    scrub: 2,
+                    onUpdate: (self) => {
+                        const drawLength = pathLength * self.progress;
+                        const offset = pathLength - drawLength;
+                        path.style.strokeDashoffset = offset;
+
+                        }
+                    });
+
+                scrollTriggers.push(st);
+                });
+            }, 100);
+            }
+
+        initPaths();
+
+        // Animar contenido
+            timelineItems.forEach((item, index) => {
+        const content = item.querySelector('.timeline-content');
+        const image = item.querySelector('.timeline-image');
+        const dot = item.querySelector('.timeline-dot');
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 80%',
+                end: 'top 20%',
+                toggleActions: 'play reverse play reverse',
+                scrub: 1
+                }
+            });
+
+        if (content) {
+            const xStart = index % 2 === 0 ? -100 : 100;
+            tl.fromTo(content, { opacity: 0, x: xStart }, { opacity: 1, x: 0, duration: 1, ease: 'power2.out' }, 0);
+            }
+
+        if (image) {
+            const xStart = index % 2 === 0 ? 100 : -100;
+            tl.fromTo(image, { opacity: 0, x: xStart, rotation: 0 }, {
+                opacity: 1, x: 0, rotation: index % 2 === 0 ? 3 : -3, duration: 1, ease: 'power2.out'
+                }, 0);
+            }
+
+        if (dot) {
+            tl.fromTo(dot, { opacity: 0, scale: 0 }, {
+                opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.7)'
+                }, 0.5);
+            }
+        });
+
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                initPaths();
+                ScrollTrigger.refresh();
+                }, 100);
+            });
+        }
+
+        // Iniciar cuando DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAnimations);
+        } else {
+            initAnimations();
+        }
+    })();
+</script>

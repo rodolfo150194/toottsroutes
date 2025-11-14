@@ -8,10 +8,6 @@ import GradientOverlay from "../components/GradientOverlay.astro";
     <meta name="viewport" content="width=device-width"/>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
     <meta name="generator" content={Astro.generator}/>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Rootts & Routes Food, S.L.U</title>
 </head>
 <body>
@@ -27,10 +23,27 @@ import GradientOverlay from "../components/GradientOverlay.astro";
 
     @plugin "@midudev/tailwind-animations";
 
+    /* Fuentes locales JetBrains Mono */
+    @font-face {
+        font-family: "JetBrains Mono";
+        src: url("/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf") format("truetype-variations");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "JetBrains Mono";
+        src: url("/fonts/JetBrains_Mono/JetBrainsMono-Italic-VariableFont_wght.ttf") format("truetype-variations");
+        font-weight: 100 900;
+        font-style: italic;
+        font-display: swap;
+    }
+
     html,
     body {
         margin: 0;
-        padding: 5px;
+        padding: 0;
         width: 100%;
         height: 100%;
         font-family: "JetBrains Mono", "jetbrains", "jetbrains Fallback", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
