@@ -67,61 +67,114 @@ const icons = {
     dollar: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
 };
 
-const svgDecorMap = {
-    1: `
-    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
-      <path fill="#3b82f6" fill-opacity="0.3"
-        d="M37.1,-58.3C50.3,-52.8,63.8,-44.1,70.9,-31.2C78,-18.3,78.7,-1.2,74.1,14.1C69.5,29.4,59.6,42.9,47.1,52.1C34.6,61.3,19.5,66.2,3.7,67.1C-12.1,68,-24.6,64.9,-38.1,58.1C-51.6,51.3,-66.1,40.7,-72.9,26.5C-79.7,12.3,-78.8,-5.5,-71.9,-19.8C-65,-34.1,-57.9,-45.9,-33.3,-62.3C-20.3,-69.1,-6.1,-72.9,6.4,-70.7C18.9,-68.5,35.6,-60.3,37.1,-58.3Z" transform="translate(100 100)"/>
-      <path fill="#60a5fa" fill-opacity="0.2"
-        d="M37.1,-48.3C45.3,-42.8,50.8,-34.1,55.9,-24.2C61,-14.3,65.7,-1.2,63.1,10.1C60.5,21.4,50.6,30.9,40.1,38.1C29.6,45.3,18.5,50.2,6.7,49.1C-5.1,48,-16.6,40.9,-28.1,34.1C-39.6,27.3,-51.1,20.7,-56.9,10.5C-62.7,0.3,-62.8,-13.5,-56.9,-23.8C-51,-34.1,-39.9,-40.9,-28.3,-46.3C-16.3,-51.1,-5.1,-54.9,4.4,-52.7C13.9,-50.5,28.6,-53.3,37.1,-48.3Z" transform="translate(100 100)"/>
-    </svg>
-  `,
-    2: `
-    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="40" stroke="#10b981" stroke-width="2" fill="none" opacity="0.4"/>
-      <circle cx="50" cy="50" r="30" stroke="#34d399" stroke-width="2" fill="none" opacity="0.35"/>
-      <circle cx="50" cy="50" r="20" stroke="#6ee7b7" stroke-width="2" fill="none" opacity="0.3"/>
-      <circle cx="50" cy="50" r="10" stroke="#d1fae5" stroke-width="2" fill="none" opacity="0.25"/>
-    </svg>
-  `,
-    3: `
-    <svg class="w-32 h-16 mt-4 opacity-25 pointer-events-none" viewBox="0 0 200 80" preserveAspectRatio="none">
-      <path d="M0,40 Q50,0 100,40 T200,40 L200,80 L0,80 Z" fill="url(#onda3)"/>
-      <defs>
-        <linearGradient id="onda3" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#ea580c"/>
-          <stop offset="50%" stop-color="#f97316"/>
-          <stop offset="100%" stop-color="#fb923c"/>
-        </linearGradient>
-      </defs>
-    </svg>
-  `,
-    4: `
-    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
-      <polygon fill="#a78bfa" fill-opacity="0.3" points="100,20 140,80 120,160 80,160 60,80"/>
-      <polygon fill="#c4b5fd" fill-opacity="0.2" points="100,40 125,80 110,140 90,140 75,80"/>
-      <polygon fill="#e9d5ff" fill-opacity="0.15" points="100,60 110,80 105,120 95,120 90,80"/>
-    </svg>
-  `,
-    5: `
-    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
-      <path fill="#f43f5e" fill-opacity="0.3"
-        d="M50,-10 Q100,40 50,90 Q0,40 50,-10 Z" transform="translate(100 100)"/>
-      <path fill="#fb7185" fill-opacity="0.2"
-        d="M40,0 Q80,30 40,60 Q0,30 40,0 Z" transform="translate(100 100)"/>
-      <path fill="#fda4af" fill-opacity="0.15"
-        d="M30,10 Q60,25 30,40 Q0,25 30,10 Z" transform="translate(100 100)"/>
-    </svg>
-  `,
-    6: `
-    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="70" stroke="#06b6d4" stroke-width="4" fill="none" opacity="0.35"/>
-      <circle cx="100" cy="100" r="55" stroke="#22d3ee" stroke-width="3" fill="none" opacity="0.25"/>
-      <circle cx="100" cy="100" r="85" fill="#67e8f9" fill-opacity="0.1"/>
-      <text x="100" y="115" font-size="80" font-weight="bold" text-anchor="middle" fill="#0891b2" opacity="0.35">$</text>
-    </svg>
-  `
+// Paletas de colores por categoría
+const colorPalettes = {
+    blue: {
+        dark: '#1e40af',
+        base: '#3b82f6',
+        light: '#60a5fa',
+        lighter: '#93c5fd',
+        lightest: '#dbeafe'
+    },
+    emerald: {
+        dark: '#047857',
+        base: '#10b981',
+        light: '#34d399',
+        lighter: '#6ee7b7',
+        lightest: '#d1fae5'
+    },
+    orange: {
+        dark: '#ea580c',
+        base: '#f97316',
+        light: '#fb923c',
+        lighter: '#fdba74',
+        lightest: '#fed7aa'
+    },
+    purple: {
+        dark: '#7c3aed',
+        base: '#a78bfa',
+        light: '#c4b5fd',
+        lighter: '#e9d5ff',
+        lightest: '#f3e8ff'
+    },
+    rose: {
+        dark: '#e11d48',
+        base: '#f43f5e',
+        light: '#fb7185',
+        lighter: '#fda4af',
+        lightest: '#fecdd3'
+    },
+    cyan: {
+        dark: '#0891b2',
+        base: '#06b6d4',
+        light: '#22d3ee',
+        lighter: '#67e8f9',
+        lightest: '#a5f3fc'
+    }
+};
+
+// Función para generar SVG decorativo dinámico basado en ID y color
+const getSvgDecor = (id, colorName) => {
+    const colors = colorPalettes[colorName];
+
+    const svgTemplates = {
+        1: `
+        <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
+          <path fill="${colors.base}" fill-opacity="0.3"
+            d="M37.1,-58.3C50.3,-52.8,63.8,-44.1,70.9,-31.2C78,-18.3,78.7,-1.2,74.1,14.1C69.5,29.4,59.6,42.9,47.1,52.1C34.6,61.3,19.5,66.2,3.7,67.1C-12.1,68,-24.6,64.9,-38.1,58.1C-51.6,51.3,-66.1,40.7,-72.9,26.5C-79.7,12.3,-78.8,-5.5,-71.9,-19.8C-65,-34.1,-57.9,-45.9,-33.3,-62.3C-20.3,-69.1,-6.1,-72.9,6.4,-70.7C18.9,-68.5,35.6,-60.3,37.1,-58.3Z" transform="translate(100 100)"/>
+          <path fill="${colors.light}" fill-opacity="0.2"
+            d="M37.1,-48.3C45.3,-42.8,50.8,-34.1,55.9,-24.2C61,-14.3,65.7,-1.2,63.1,10.1C60.5,21.4,50.6,30.9,40.1,38.1C29.6,45.3,18.5,50.2,6.7,49.1C-5.1,48,-16.6,40.9,-28.1,34.1C-39.6,27.3,-51.1,20.7,-56.9,10.5C-62.7,0.3,-62.8,-13.5,-56.9,-23.8C-51,-34.1,-39.9,-40.9,-28.3,-46.3C-16.3,-51.1,-5.1,-54.9,4.4,-52.7C13.9,-50.5,28.6,-53.3,37.1,-48.3Z" transform="translate(100 100)"/>
+        </svg>
+      `,
+        2: `
+        <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" stroke="${colors.base}" stroke-width="2" fill="none" opacity="0.4"/>
+          <circle cx="50" cy="50" r="30" stroke="${colors.light}" stroke-width="2" fill="none" opacity="0.35"/>
+          <circle cx="50" cy="50" r="20" stroke="${colors.lighter}" stroke-width="2" fill="none" opacity="0.3"/>
+          <circle cx="50" cy="50" r="10" stroke="${colors.lightest}" stroke-width="2" fill="none" opacity="0.25"/>
+        </svg>
+      `,
+        3: `
+        <svg class="w-32 h-16 mt-4 opacity-25 pointer-events-none" viewBox="0 0 200 80" preserveAspectRatio="none">
+          <path d="M0,40 Q50,0 100,40 T200,40 L200,80 L0,80 Z" fill="url(#onda-${colorName})"/>
+          <defs>
+            <linearGradient id="onda-${colorName}" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="${colors.dark}"/>
+              <stop offset="50%" stop-color="${colors.base}"/>
+              <stop offset="100%" stop-color="${colors.light}"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      `,
+        4: `
+        <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
+          <polygon fill="${colors.base}" fill-opacity="0.3" points="100,20 140,80 120,160 80,160 60,80"/>
+          <polygon fill="${colors.light}" fill-opacity="0.2" points="100,40 125,80 110,140 90,140 75,80"/>
+          <polygon fill="${colors.lighter}" fill-opacity="0.15" points="100,60 110,80 105,120 95,120 90,80"/>
+        </svg>
+      `,
+        5: `
+        <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
+          <path fill="${colors.base}" fill-opacity="0.3"
+            d="M50,-10 Q100,40 50,90 Q0,40 50,-10 Z" transform="translate(100 100)"/>
+          <path fill="${colors.light}" fill-opacity="0.2"
+            d="M40,0 Q80,30 40,60 Q0,30 40,0 Z" transform="translate(100 100)"/>
+          <path fill="${colors.lighter}" fill-opacity="0.15"
+            d="M30,10 Q60,25 30,40 Q0,25 30,10 Z" transform="translate(100 100)"/>
+        </svg>
+      `,
+        6: `
+        <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="70" stroke="${colors.base}" stroke-width="4" fill="none" opacity="0.35"/>
+          <circle cx="100" cy="100" r="55" stroke="${colors.light}" stroke-width="3" fill="none" opacity="0.25"/>
+          <circle cx="100" cy="100" r="85" fill="${colors.lighter}" fill-opacity="0.1"/>
+          <text x="100" y="115" font-size="80" font-weight="bold" text-anchor="middle" fill="${colors.dark}" opacity="0.35">$</text>
+        </svg>
+      `
     };
+
+    return svgTemplates[id];
+};
 
 
 const colorClasses = {
@@ -225,7 +278,7 @@ const colorClasses = {
                                         <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
                                             {service.description}
                                         </p>
-                                        <div class={`relative mt-6 flex ${isLeft ? 'justify-start' : 'lg:justify-end'}`} set:html={svgDecorMap[service.id]} />
+                                        <div class={`relative mt-6 flex ${isLeft ? 'justify-start' : 'lg:justify-end'}`} set:html={getSvgDecor(service.id, service.color)} />
                                     </div>
 
                                     <div class={`relative timeline-image ${isLeft ? 'lg:order-1' : ''}`}>
