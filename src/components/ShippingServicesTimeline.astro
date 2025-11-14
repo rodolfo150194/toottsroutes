@@ -143,8 +143,10 @@ const colorClasses = {
                 <!-- Las líneas se generarán dinámicamente aquí -->
                 <g id="timeline-lines"></g>
 
-                <!-- Punto animado -->
-                <circle id="trail-dot" r="8" filter="url(#glow)" opacity="0"/>
+                <!-- Flecha animada -->
+                <g id="trail-arrow" opacity="0" filter="url(#glow)">
+                    <path d="M 0,-12 L 8,0 L 0,12 L 2,0 Z" fill="#2563eb" stroke="white" stroke-width="1"/>
+                </g>
             </svg>
 
             <div class="space-y-0">
@@ -272,9 +274,10 @@ const colorClasses = {
             const timelineItems = document.querySelectorAll('.timeline-item');
             const timelineImages = document.querySelectorAll('.timeline-image');
             const section = document.querySelector('section');
-            const trailDot = document.getElementById('trail-dot');
+            const trailArrow = document.getElementById('trail-arrow');
+            const arrowPath = trailArrow ? trailArrow.querySelector('path') : null;
 
-            if (!svg || !section || !linesGroup || !trailDot) return;
+            if (!svg || !section || !linesGroup || !trailArrow || !arrowPath) return;
 
             const colorClasses = {
                 blue: { color: '#2563eb' },
@@ -384,12 +387,31 @@ const colorClasses = {
                                 const offset = pathLength - drawLength;
                                 path.style.strokeDashoffset = offset;
 
-                                // Animar el punto con el color del destino
+                                // Animar la flecha con el color del destino
                                 try {
                                     const point = path.getPointAtLength(drawLength);
-                                    gsap.set(trailDot, {
-                                        attr: { cx: point.x, cy: point.y, fill: toColor },
-                                        opacity: self.progress > 0 && self.progress < 1 ? 1 : 0
+
+                                    // Calcular el ángulo de la flecha
+                                    let angle = 0;
+                                    if (drawLength > 0 && drawLength < pathLength) {
+                                        const nextPoint = path.getPointAtLength(Math.min(drawLength + 1, pathLength));
+                                        const dx = nextPoint.x - point.x;
+                                        const dy = nextPoint.y - point.y;
+                                        angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                                    }
+
+                                    // Actualizar color de la flecha
+                                    arrowPath.setAttribute('fill', toColor);
+
+                                    // Solo ocultar cuando se hace scroll hacia atrás
+                                    const shouldShow = self.progress > 0 && self.progress < 1 && self.direction >= 0;
+
+                                    gsap.set(trailArrow, {
+                                        x: point.x,
+                                        y: point.y,
+                                        rotation: angle,
+                                        transformOrigin: 'center center',
+                                        opacity: shouldShow ? 1 : 0
                                     });
                                 } catch (e) {
                                     // Silenciar errores si el path no está listo
