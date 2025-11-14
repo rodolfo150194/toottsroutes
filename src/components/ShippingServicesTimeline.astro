@@ -403,8 +403,8 @@ const colorClasses = {
                                     // Actualizar color de la flecha
                                     arrowPath.setAttribute('fill', toColor);
 
-                                    // Mostrar desde el inicio, solo ocultar cuando se hace scroll hacia atrás
-                                    const shouldShow = self.progress >= 0 && self.progress <= 1 && self.direction >= 0;
+                                    // Mostrar la flecha siempre que haya progreso y no se esté scrolleando hacia atrás
+                                    const shouldShow = self.progress > 0 && self.direction >= 0;
 
                                     gsap.set(trailArrow, {
                                         x: point.x,
