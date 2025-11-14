@@ -144,7 +144,7 @@ const colorClasses = {
                 <g id="timeline-lines"></g>
 
                 <!-- Punto animado -->
-                <circle id="trail-dot" r="8" fill="#f97316" filter="url(#glow)" opacity="0"/>
+                <circle id="trail-dot" r="8" filter="url(#glow)" opacity="0"/>
             </svg>
 
             <div class="space-y-0">
@@ -277,12 +277,12 @@ const colorClasses = {
             if (!svg || !section || !linesGroup || !trailDot) return;
 
             const colorClasses = {
-                blue: { gradient: 'from-blue-400 to-blue-600', start: '#2563eb', end: '#1d4ed8' },
-                emerald: { gradient: 'from-emerald-400 to-emerald-600', start: '#34d399', end: '#10b981' },
-                orange: { gradient: 'from-orange-400 to-orange-600', start: '#fb923c', end: '#f97316' },
-                purple: { gradient: 'from-purple-400 to-purple-600', start: '#a78bfa', end: '#8b5cf6' },
-                rose: { gradient: 'from-rose-400 to-rose-600', start: '#f472b6', end: '#ec4899' },
-                cyan: { gradient: 'from-cyan-400 to-cyan-600', start: '#22d3ee', end: '#06b6d4' }
+                blue: { color: '#2563eb' },
+                emerald: { color: '#059669' },
+                orange: { color: '#ea580c' },
+                purple: { color: '#9333ea' },
+                rose: { color: '#e11d48' },
+                cyan: { color: '#0891b2' }
             };
 
             let pathsData = [];
@@ -362,34 +362,34 @@ const colorClasses = {
                 for (let i = 0; i < timelineImages.length - 1; i++) {
                     const fromCard = servicesData[i];
                     const toCard = servicesData[i + 1];
-                    const fromColor = colorClasses[fromCard.color]?.start || '#2563eb';
-                    const toColor = colorClasses[toCard.color]?.start || '#f97316';
+                    const fromColor = colorClasses[fromCard.color]?.color || '#2563eb';
+                    const toColor = colorClasses[toCard.color]?.color || '#f97316';
 
                     const pathData = createSegment(timelineImages[i], timelineImages[i + 1], fromColor, toColor, i);
-                    pathsData.push(pathData);
+                    pathsData.push({ ...pathData, toColor });
                 }
 
                 // Crear ScrollTriggers para las líneas después de que los paths existan
                 setTimeout(() => {
                     pathsData.forEach((pathData, index) => {
-                        const { path, pathLength } = pathData;
+                        const { path, pathLength, toColor } = pathData;
 
                         const st = ScrollTrigger.create({
                             trigger: timelineItems[index],
-                            start: 'top 80%',
-                            end: 'bottom 60%',
-                            scrub: 1,
+                            start: 'top 75%',
+                            end: 'bottom 25%',
+                            scrub: 2,
                             onUpdate: (self) => {
                                 const drawLength = pathLength * self.progress;
                                 const offset = pathLength - drawLength;
                                 path.style.strokeDashoffset = offset;
 
-                                // Animar el punto
+                                // Animar el punto con el color del destino
                                 try {
                                     const point = path.getPointAtLength(drawLength);
                                     gsap.set(trailDot, {
-                                        attr: { cx: point.x, cy: point.y },
-                                        opacity: self.progress > 0 ? 1 : 0
+                                        attr: { cx: point.x, cy: point.y, fill: toColor },
+                                        opacity: self.progress > 0 && self.progress < 1 ? 1 : 0
                                     });
                                 } catch (e) {
                                     // Silenciar errores si el path no está listo
