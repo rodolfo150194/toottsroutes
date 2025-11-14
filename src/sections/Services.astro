@@ -102,6 +102,12 @@ const svgDecorMap = {
       <path fill="#22d3ee" fill-opacity="0.25"
         d="M50,0 Q100,50 50,100 Q0,50 50,0 Z" transform="translate(100 100)"/>
     </svg>
+  `,
+    6: `
+    <svg class="w-28 h-28 opacity-20 pointer-events-none" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="70" stroke="#06b6d4" stroke-width="4" fill="none" opacity="0.25"/>
+      <text x="100" y="115" font-size="80" font-weight="bold" text-anchor="middle" fill="#06b6d4" opacity="0.3">$</text>
+    </svg>
   `
     };
 
@@ -206,14 +212,8 @@ const colorClasses = {
                                         </h3>
                                         <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
                                             {service.description}
-                                            <svg class={`absolute ${isLeft ? '-top-50 -right-50':'-top-50 -left-50'} w-150 h-150 mt-4`} viewBox="0 0 100 100">
-                                                <g fill="none" stroke-width="2" opacity="0.2">
-                                                    <circle cx="50" cy="50" r="40" stroke="#10b981"/>
-                                                    <circle cx="50" cy="50" r="30" stroke="#3b82f6"/>
-                                                    <circle cx="50" cy="50" r="20" stroke="#06b6d4"/>
-                                                </g>
-                                            </svg>
                                         </p>
+                                        <div class={`relative mt-6 flex ${isLeft ? 'justify-start' : 'lg:justify-end'}`} set:html={svgDecorMap[service.id]} />
                                     </div>
 
                                     <div class={`relative timeline-image ${isLeft ? 'lg:order-1' : ''}`}>
