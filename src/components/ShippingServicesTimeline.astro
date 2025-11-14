@@ -142,11 +142,6 @@ const colorClasses = {
 
                 <!-- Las líneas se generarán dinámicamente aquí -->
                 <g id="timeline-lines"></g>
-
-                <!-- Flecha animada -->
-                <g id="trail-arrow" opacity="0" filter="url(#glow)">
-                    <path d="M -4,-20 L 16,0 L -4,20 L 0,0 Z" fill="#2563eb" stroke="white" stroke-width="2"/>
-                </g>
             </svg>
 
             <div class="space-y-0">
@@ -274,10 +269,8 @@ const colorClasses = {
             const timelineItems = document.querySelectorAll('.timeline-item');
             const timelineImages = document.querySelectorAll('.timeline-image');
             const section = document.querySelector('section');
-            const trailArrow = document.getElementById('trail-arrow');
-            const arrowPath = trailArrow ? trailArrow.querySelector('path') : null;
 
-            if (!svg || !section || !linesGroup || !trailArrow || !arrowPath) return;
+            if (!svg || !section || !linesGroup) return;
 
             const colorClasses = {
                 blue: { color: '#2563eb' },
@@ -386,36 +379,6 @@ const colorClasses = {
                                 const drawLength = pathLength * self.progress;
                                 const offset = pathLength - drawLength;
                                 path.style.strokeDashoffset = offset;
-
-                                // Animar la flecha con el color del destino
-                                try {
-                                    const point = path.getPointAtLength(drawLength);
-
-                                    // Calcular el ángulo de la flecha
-                                    let angle = 0;
-                                    if (drawLength > 0 && drawLength < pathLength) {
-                                        const nextPoint = path.getPointAtLength(Math.min(drawLength + 1, pathLength));
-                                        const dx = nextPoint.x - point.x;
-                                        const dy = nextPoint.y - point.y;
-                                        angle = Math.atan2(dy, dx) * (180 / Math.PI);
-                                    }
-
-                                    // Actualizar color de la flecha
-                                    arrowPath.setAttribute('fill', toColor);
-
-                                    // Mostrar la flecha siempre que haya progreso y no se esté scrolleando hacia atrás
-                                    const shouldShow = self.progress > 0 && self.direction >= 0;
-
-                                    gsap.set(trailArrow, {
-                                        x: point.x,
-                                        y: point.y,
-                                        rotation: angle,
-                                        transformOrigin: 'center center',
-                                        opacity: shouldShow ? 1 : 0
-                                    });
-                                } catch (e) {
-                                    // Silenciar errores si el path no está listo
-                                }
                             }
                         });
 
