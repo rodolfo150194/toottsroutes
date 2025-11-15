@@ -1,0 +1,302 @@
+---
+// Sección de red global
+---
+
+<section class="global-network relative py-24 bg-gradient-to-br from-[#0a1628] via-[#162847] to-[#0a1628] overflow-hidden">
+    <!-- Animated grid background -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: linear-gradient(#ff6b35 1px, transparent 1px), linear-gradient(90deg, #ff6b35 1px, transparent 1px); background-size: 40px 40px;"></div>
+    </div>
+
+    <!-- Glowing orbs -->
+    <div class="absolute top-20 left-20 w-64 h-64 bg-[#ff6b35]/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 right-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+
+    <div class="container-custom relative z-10 px-6 md:px-12">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <div class="inline-block mb-4">
+                <span class="text-[#ff6b35] font-mono text-sm font-bold tracking-wider uppercase border border-[#ff6b35] px-4 py-2 rounded-full">
+                    Global Reach
+                </span>
+            </div>
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                Connecting the
+                <span class="block text-[#ff6b35]">World</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                Our extensive network spans across continents, ensuring your cargo reaches any destination efficiently.
+            </p>
+        </div>
+
+        <!-- Stats with map visualization -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <!-- Left: Stats -->
+            <div class="space-y-6">
+                <!-- Stat card 1 -->
+                <div class="stat-card bg-white/5 backdrop-blur border border-[#ff6b35]/30 rounded-xl p-6 hover:bg-white/10 transition-all group">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 bg-[#ff6b35] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-4xl font-bold text-white mb-2 stat-number" data-target="150">0</div>
+                            <div class="text-lg text-gray-300 font-semibold">Countries Worldwide</div>
+                            <div class="text-sm text-gray-400 mt-1">Comprehensive global coverage</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat card 2 -->
+                <div class="stat-card bg-white/5 backdrop-blur border border-[#ff6b35]/30 rounded-xl p-6 hover:bg-white/10 transition-all group">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 bg-[#ff6b35] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-4xl font-bold text-white mb-2 stat-number" data-target="300">0</div>
+                            <div class="text-lg text-gray-300 font-semibold">Distribution Centers</div>
+                            <div class="text-sm text-gray-400 mt-1">Strategic locations worldwide</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat card 3 -->
+                <div class="stat-card bg-white/5 backdrop-blur border border-[#ff6b35]/30 rounded-xl p-6 hover:bg-white/10 transition-all group">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 bg-[#ff6b35] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-4xl font-bold text-white mb-2">
+                                <span class="stat-number" data-target="500">0</span>K+
+                            </div>
+                            <div class="text-lg text-gray-300 font-semibold">Annual Shipments</div>
+                            <div class="text-sm text-gray-400 mt-1">Trusted by thousands</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stat card 4 -->
+                <div class="stat-card bg-white/5 backdrop-blur border border-[#ff6b35]/30 rounded-xl p-6 hover:bg-white/10 transition-all group">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 bg-[#ff6b35] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-4xl font-bold text-white mb-2">99.8%</div>
+                            <div class="text-lg text-gray-300 font-semibold">On-Time Delivery</div>
+                            <div class="text-sm text-gray-400 mt-1">Industry-leading reliability</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Stylized world map -->
+            <div class="relative">
+                <div class="map-container relative bg-white/5 backdrop-blur border border-[#ff6b35]/30 rounded-2xl p-8 aspect-square">
+                    <!-- Simplified world map illustration -->
+                    <svg viewBox="0 0 400 300" class="w-full h-full">
+                        <!-- Background continents (simplified shapes) -->
+                        <g class="continents" fill="rgba(255, 255, 255, 0.1)" stroke="rgba(255, 107, 53, 0.3)" stroke-width="2">
+                            <!-- North America -->
+                            <path d="M 50 80 L 90 60 L 110 70 L 100 100 L 70 120 L 50 110 Z" class="continent-path"/>
+                            <!-- South America -->
+                            <path d="M 80 140 L 95 135 L 100 160 L 90 180 L 75 175 Z" class="continent-path"/>
+                            <!-- Europe -->
+                            <path d="M 180 65 L 210 60 L 215 80 L 200 90 L 175 85 Z" class="continent-path"/>
+                            <!-- Africa -->
+                            <path d="M 190 110 L 220 105 L 230 140 L 210 160 L 185 155 Z" class="continent-path"/>
+                            <!-- Asia -->
+                            <path d="M 240 70 L 300 65 L 320 80 L 310 110 L 280 115 L 250 95 Z" class="continent-path"/>
+                            <!-- Australia -->
+                            <path d="M 290 160 L 320 155 L 325 175 L 305 180 Z" class="continent-path"/>
+                        </g>
+
+                        <!-- Connection lines between major hubs -->
+                        <g class="connections" stroke="#ff6b35" stroke-width="1.5" fill="none" opacity="0.5">
+                            <line x1="75" y1="95" x2="195" y2="75" class="connection-line" style="animation-delay: 0s;"/>
+                            <line x1="195" y1="75" x2="275" y2="90" class="connection-line" style="animation-delay: 0.5s;"/>
+                            <line x1="275" y1="90" x2="310" y2="165" class="connection-line" style="animation-delay: 1s;"/>
+                            <line x1="195" y1="75" x2="205" y2="130" class="connection-line" style="animation-delay: 1.5s;"/>
+                            <line x1="75" y1="95" x2="87" y2="157" class="connection-line" style="animation-delay: 2s;"/>
+                        </g>
+
+                        <!-- Major hubs (pulsing dots) -->
+                        <g class="hubs">
+                            <circle cx="75" cy="95" r="5" fill="#ff6b35" class="hub-dot" style="animation-delay: 0s;">
+                                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="195" cy="75" r="5" fill="#ff6b35" class="hub-dot" style="animation-delay: 0.4s;">
+                                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="275" cy="90" r="5" fill="#ff6b35" class="hub-dot" style="animation-delay: 0.8s;">
+                                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="310" cy="165" r="5" fill="#ff6b35" class="hub-dot" style="animation-delay: 1.2s;">
+                                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="205" cy="130" r="5" fill="#ff6b35" class="hub-dot" style="animation-delay: 1.6s;">
+                                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="87" cy="157" r="5" fill="#ff6b35" class="hub-dot" style="animation-delay: 2s;">
+                                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+                            </circle>
+                        </g>
+                    </svg>
+
+                    <!-- Floating labels -->
+                    <div class="absolute top-4 right-4 bg-[#ff6b35] text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+                        LIVE
+                    </div>
+                </div>
+
+                <!-- Region labels -->
+                <div class="grid grid-cols-3 gap-4 mt-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-[#ff6b35]">Americas</div>
+                        <div class="text-sm text-gray-400">35 countries</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-[#ff6b35]">EMEA</div>
+                        <div class="text-sm text-gray-400">80 countries</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-[#ff6b35]">APAC</div>
+                        <div class="text-sm text-gray-400">35 countries</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom trust indicators -->
+        <div class="mt-16 grid md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            <div class="text-center border border-[#ff6b35]/30 rounded-xl p-6 bg-white/5 backdrop-blur">
+                <div class="text-3xl mb-2">🏆</div>
+                <div class="text-lg font-bold text-white">ISO 9001</div>
+                <div class="text-sm text-gray-400">Certified</div>
+            </div>
+            <div class="text-center border border-[#ff6b35]/30 rounded-xl p-6 bg-white/5 backdrop-blur">
+                <div class="text-3xl mb-2">🔒</div>
+                <div class="text-lg font-bold text-white">Secure</div>
+                <div class="text-sm text-gray-400">Insurance covered</div>
+            </div>
+            <div class="text-center border border-[#ff6b35]/30 rounded-xl p-6 bg-white/5 backdrop-blur">
+                <div class="text-3xl mb-2">⚡</div>
+                <div class="text-lg font-bold text-white">Fast</div>
+                <div class="text-sm text-gray-400">Express options</div>
+            </div>
+            <div class="text-center border border-[#ff6b35]/30 rounded-xl p-6 bg-white/5 backdrop-blur">
+                <div class="text-3xl mb-2">📞</div>
+                <div class="text-lg font-bold text-white">24/7 Support</div>
+                <div class="text-sm text-gray-400">Always available</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .container-custom {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .stat-card {
+        transform-origin: left center;
+        animation: slideInLeft 0.6s ease-out backwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .continent-path {
+        transition: all 0.3s ease;
+    }
+
+    .continent-path:hover {
+        fill: rgba(255, 107, 53, 0.2);
+    }
+
+    .connection-line {
+        stroke-dasharray: 200;
+        stroke-dashoffset: 200;
+        animation: drawLine 3s ease-in-out infinite;
+    }
+
+    @keyframes drawLine {
+        0% {
+            stroke-dashoffset: 200;
+            opacity: 0;
+        }
+        50% {
+            stroke-dashoffset: 0;
+            opacity: 0.7;
+        }
+        100% {
+            stroke-dashoffset: -200;
+            opacity: 0;
+        }
+    }
+
+    .hub-dot {
+        filter: drop-shadow(0 0 8px rgba(255, 107, 53, 0.8));
+    }
+</style>
+
+<script>
+    // Counter animation
+    function animateCounter(element: HTMLElement) {
+        const target = parseInt(element.getAttribute('data-target') || '0');
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                element.textContent = target.toString();
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current).toString();
+            }
+        }, 16);
+    }
+
+    // Animate counters when visible
+    document.addEventListener('DOMContentLoaded', () => {
+        const statNumbers = document.querySelectorAll('.stat-number');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target as HTMLElement);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(stat => observer.observe(stat));
+    });
+</script>
