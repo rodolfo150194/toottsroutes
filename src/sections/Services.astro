@@ -67,65 +67,6 @@ const icons = {
     shield: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
     dollar: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
 };
-
-const svgDecorMap = {
-    1: `
-    <svg class="w-100 " viewBox="0 0 100 100">
-    
-      <g fill="none" stroke-width="2" opacity="0.2">
-        <circle cx="50" cy="50" r="40" stroke="#10b981"/>
-        <circle cx="50" cy="50" r="30" stroke="#3b82f6"/>
-        <circle cx="50" cy="50" r="20" stroke="#06b6d4"/>
-      </g>
-    </svg>
-  `,
-    2: `
-    <svg class="w-100" viewBox="0 0 100 60">
-  <defs>
-    <pattern id="dots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.2" fill="#06b6d4" opacity="0.4"/>
-    </pattern>
-  </defs>
-  <rect width="100" height="60" fill="url(#dots)"/>
-</svg>
-  `,
-    3: `
-  <svg class=" w-100 opacity-20 pointer-events-none" viewBox="0 0 100 100">
-    <circle cx="30" cy="30" r="20" fill="blue" opacity="0.2"/>
-    <circle cx="60" cy="40" r="18" fill="red" opacity="0.25"/>
-    <circle cx="45" cy="65" r="16" fill="white" opacity="0.3"/>
-  </svg>
-  `,
-    4: `
-  <svg class="w-100 mt-4 opacity-25 pointer-events-none" viewBox="0 0 100 60">
-    <defs>
-      <pattern id="hollow" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-        <circle cx="5" cy="5" r="2" stroke="black" stroke-width="1" fill="none" opacity="0.5"/>
-      </pattern>
-    </defs>
-    <rect width="100" height="60" fill="url(#hollow)"/>
-  </svg>
-  `,
-    5: `
-  <svg class="w-100 opacity-20 pointer-events-none" viewBox="0 0 100 100">
-    <rect x="10" y="10" width="80" height="80" fill="red" opacity="0.2"/>
-    <rect x="25" y="25" width="50" height="50" fill="yellow" opacity="0.3"/>
-    <rect x="40" y="40" width="20" height="20" fill="blue" opacity="0.4"/>
-  </svg>
-  `,
-    6: `
-  <svg class="w-100 opacity-20 pointer-events-none" viewBox="0 0 100 100">
-    <rect x="5"  y="10" width="20" height="20" fill="#" opacity="0.3"/>
-    <rect x="60" y="5"  width="15" height="15" fill="#" opacity="0.4"/>
-    <rect x="30" y="25" width="25" height="25" fill="#" opacity="0.25"/>
-    <rect x="70" y="50" width="20" height="20" fill="#" opacity="0.35"/>
-    <rect x="10" y="70" width="18" height="18" fill="#" opacity="0.3"/>
-  </svg>
-
-  `,
-    };
-
-
 const colorClasses = {
     blue: {
         badge: 'bg-blue-500',
@@ -163,6 +104,111 @@ const colorClasses = {
         iconBg: 'from-cyan-500 to-cyan-700',
         dot: 'bg-cyan-600'
     }
+};
+const colorPalettes = {
+    blue: {
+        dark: '#1e40af',
+        base: '#3b82f6',
+        light: '#60a5fa',
+        lighter: '#93c5fd',
+        lightest: '#dbeafe'
+    },
+    emerald: {
+        dark: '#047857',
+        base: '#10b981',
+        light: '#34d399',
+        lighter: '#6ee7b7',
+        lightest: '#d1fae5'
+    },
+    orange: {
+        dark: '#ea580c',
+        base: '#f97316',
+        light: '#fb923c',
+        lighter: '#fdba74',
+        lightest: '#fed7aa'
+    },
+    purple: {
+        dark: '#7c3aed',
+        base: '#a78bfa',
+        light: '#c4b5fd',
+        lighter: '#e9d5ff',
+        lightest: '#f3e8ff'
+    },
+    rose: {
+        dark: '#e11d48',
+        base: '#f43f5e',
+        light: '#fb7185',
+        lighter: '#fda4af',
+        lightest: '#fecdd3'
+    },
+    cyan: {
+        dark: '#0891b2',
+        base: '#06b6d4',
+        light: '#22d3ee',
+        lighter: '#67e8f9',
+        lightest: '#a5f3fc'
+    }
+};
+
+const svgDecorMap = (id, colorName) => {
+    const colors = colorPalettes[colorName];
+    const svgTemplates = {
+        1: `
+        <svg class="w-100 " viewBox="0 0 100 100">
+        
+          <g fill="none" stroke-width="2" opacity="0.6">
+            <circle cx="50" cy="50" r="40" stroke="${colors.lighter}"/>
+            <circle cx="50" cy="50" r="30" stroke="${colors.base}"/>
+            <circle cx="50" cy="50" r="20" stroke="${colors.dark}"/>
+          </g>
+        </svg>
+      `,
+        2: `
+        <svg class="w-100" viewBox="0 0 100 60">
+      <defs>
+        <pattern id="dots" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.2" fill="${colors.base}" opacity="0.6"/>
+        </pattern>
+      </defs>
+      <rect width="100" height="60" fill="url(#dots)"/>
+    </svg>
+      `,
+        3: `
+      <svg class=" w-100 opacity-20 pointer-events-none" viewBox="0 0 100 100">
+        <circle cx="30" cy="30" r="20" fill="${colors.base}" opacity="0.2"/>
+        <circle cx="60" cy="40" r="18" fill="${colors.lighter}" opacity="0.25"/>
+        <circle cx="45" cy="65" r="16" fill="${colors.dark}" opacity="0.3"/>
+      </svg>
+      `,
+        4: `
+      <svg class="w-100 mt-4 opacity-25 pointer-events-none" viewBox="0 0 100 60">
+        <defs>
+          <pattern id="hollow" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+            <circle cx="5" cy="5" r="2" stroke="black" stroke-width="1" fill="none" opacity="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100" height="60" fill="url(#hollow)"/>
+      </svg>
+      `,
+        5: `
+      <svg class="w-100 opacity-20 pointer-events-none" viewBox="0 0 100 100">
+        <rect x="10" y="10" width="80" height="80" fill="red" opacity="0.2"/>
+        <rect x="25" y="25" width="50" height="50" fill="yellow" opacity="0.3"/>
+        <rect x="40" y="40" width="20" height="20" fill="blue" opacity="0.4"/>
+      </svg>
+      `,
+        6: `
+      <svg class="w-100 opacity-20 pointer-events-none" viewBox="0 0 100 100">
+        <rect x="5"  y="10" width="20" height="20" fill="#" opacity="0.3"/>
+        <rect x="60" y="5"  width="15" height="15" fill="#" opacity="0.4"/>
+        <rect x="30" y="25" width="25" height="25" fill="#" opacity="0.25"/>
+        <rect x="70" y="50" width="20" height="20" fill="#" opacity="0.35"/>
+        <rect x="10" y="70" width="18" height="18" fill="#" opacity="0.3"/>
+      </svg>
+    
+      `,
+    };
+    return svgTemplates[id];
 };
 ---
 
@@ -233,7 +279,7 @@ const colorClasses = {
                                             <!--        <circle cx="50" cy="50" r="20" stroke="#06b6d4"/>-->
                                             <!--    </g>-->
                                             <!--</svg>-->
-                                            <div class={`absolute ${isLeft ? '-top-50 -right-50' : '-top-50 -left-50'}`} set:html={svgDecorMap[service.id]} />
+                                            <div class={`absolute ${isLeft ? '-top-50 -right-50' : '-top-50 -left-50'}`} set:html={svgDecorMap(service.id,service.color)} />
                                         </p>
                                     </div>
 
