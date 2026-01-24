@@ -1,68 +1,196 @@
-<nav class="relative py-4 mb-12 md:mb-20 bg-transparent" data-config-target=".navbar-menu" data-config-class="hidden">
-    <div class="container px-4 mx-auto">
-        <div class="flex items-center">
-            <a class="inline-block text-lg font-bold" href="#">
-                <img class="h-20" src="/logo.png" alt="" >
-            </a>
-            <div class="lg:hidden ml-auto">
-                <button x-on:click="mobileNavOpen = !mobileNavOpen" class="flex w-12 h-12 items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-md transition duration-200">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-config-id="svg-378f37-1">
-                        <path d="M3 12H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M3 6H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path d="M3 18H21" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-            </div>
-            <ul class="hidden lg:flex ml-14 lg:w-auto lg:space-x-12">
-                <li class="group relative">
-                    <a class="inline-block text-md text-gray-900 hover:text-blue-900 font-medium" href="#">Featured</a>
-                    <div class="hidden group-hover:block absolute top-full left-0 min-w-max max-w-xs p-4 z-30">
-                        <div class="-mb-2 ml-8 w-4 h-4 rounded-sm bg-white border-l border-t border-gray-200 transform rotate-45"></div>
-                        <div class="w-full max-w-xs bg-white border border-gray-100 rounded-3xl pt-4 pb-4 px-4">
-                            <div class="pb-3 mb-3 border-b border-gray-100">
-                                <a class="block py-3 px-4 text-sm text-gray-900 hover:bg-blue-50 rounded-lg" href="#" >Featured</a>
-                                <a class="block py-3 px-4 text-sm text-gray-900 hover:bg-blue-50 rounded-lg" href="#" data-config-id="txt-378f37-5">Solutions</a>
-                            </div>
-                            <div class="pb-3 mb-3 border-b border-gray-100">
-                                <a class="flex mb-2 items-center py-3 px-4 text-sm text-gray-900 hover:bg-blue-50 rounded-lg" href="#">
-                                    <img src="/icon-download.svg" alt="">
-                                    <span class="ml-3" data-config-id="txt-378f37-21">Download</span>
-                                </a>
-                                <a class="flex mb-2 items-center py-3 px-4 text-sm text-gray-900 hover:bg-blue-50 rounded-lg" href="#">
-                                    <img src="/icon-slack.svg" alt="">
-                                    <span class="ml-3">Community</span>
-                                </a>
-                                <a class="flex mb-2 items-center py-3 px-4 text-sm text-gray-900 hover:bg-blue-50 rounded-lg" href="#">
-                                    <img src="/icon-help.svg">
-                                    <span class="ml-3">Help</span>
-                                </a>
-                            </div>
-                            <div class="flex items-center pb-3 mb-3 border-b border-gray-100">
-                            <div class="flex items-center">
-                                <div class="flex w-10 h-10 items-center justify-center bg-blue-50 rounded-full">
-                                    <img src="/icon-email-me.svg" alt="">
-                                </div>
-                                <div class="ml-3">
-                                    <span class="block text-xs text-gray-500">Drop us a line</span>
-                                    <a class="text-sm font-semibold text-black hover:text-blue-900" href="#">hello@shuffle.dev</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </li>
-                <li><a class="inline-block text-md text-gray-900 hover:text-blue-900 font-medium" href="#">Solutions</a></li>
-                <li><a class="inline-block text-md text-gray-900 hover:text-blue-900 font-medium" href="#">Products</a></li>
-                <li><a class="inline-block text-md text-gray-900 hover:text-blue-900 font-medium" href="#">Articles</a></li>
-            </ul>
-            <div class="hidden lg:block ml-auto">
-                <div class="flex items-center">
-                    <a class="relative group inline-block py-3 px-4 text-md font-semibold text-blue-900 hover:text-white border border-gray-200 rounded-md overflow-hidden transition duration-300" href="#">
-                        <div class="absolute top-0 right-full w-full h-full bg-blue-900 transform group-hover:translate-x-full group-hover:scale-102 transition duration-500"></div>
-                        <span class="relative">Contacto</span>
-                    </a>
-                </div>
-            </div>
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<header class="w-full relative z-50">
+  <!-- Top Bar - Dark maritime theme -->
+  <div class="bg-azul-marino-950 text-azul-marino-100 text-[11px] py-2 px-4 md:px-8 border-b border-azul-marino-800/50">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-5">
+        <a href="#" class="opacity-60 hover:opacity-100 hover:text-verde-global-400 transition-all duration-300">
+          <Icon name="tabler:brand-x" class="w-3.5 h-3.5" />
+        </a>
+        <a href="#" class="opacity-60 hover:opacity-100 hover:text-verde-global-400 transition-all duration-300">
+          <Icon name="tabler:brand-linkedin" class="w-3.5 h-3.5" />
+        </a>
+        <a href="#" class="opacity-60 hover:opacity-100 hover:text-verde-global-400 transition-all duration-300">
+          <Icon name="tabler:brand-instagram" class="w-3.5 h-3.5" />
+        </a>
+      </div>
+      <div class="flex items-center gap-6 tracking-wide">
+        <div class="flex items-center gap-2 opacity-80">
+          <Icon name="tabler:mail" class="w-3.5 h-3.5 text-verde-global-400" />
+          <span>info@roottsyroutes.com</span>
         </div>
+        <div class="hidden md:block w-px h-3 bg-azul-marino-700"></div>
+        <div class="hidden md:flex items-center gap-2 opacity-80">
+          <Icon name="tabler:clock" class="w-3.5 h-3.5 text-verde-global-400" />
+          <span>Lun - Vie: 9:00 - 18:00</span>
+        </div>
+      </div>
     </div>
-</nav>
+  </div>
+
+  <!-- Main Navigation - Glassmorphism on dark -->
+  <nav class="bg-azul-marino-900/95 backdrop-blur-md border-b border-azul-oceano-600/20 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex justify-between items-center">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="relative">
+          <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-verde-global-500 to-verde-global-600 rounded-lg flex items-center justify-center shadow-lg shadow-verde-global-500/20 group-hover:shadow-verde-global-500/40 transition-shadow duration-300">
+            <Icon name="tabler:route" class="w-5 h-5 md:w-6 md:h-6 text-white" />
+          </div>
+          <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-azul-oceano-500 rounded-full border-2 border-azul-marino-900"></div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-white font-bold text-sm md:text-base tracking-tight leading-none">ROOTTS & ROUTES</span>
+          <span class="text-azul-oceano-400 text-[9px] md:text-[10px] tracking-[0.2em] uppercase">Foods S.L.U</span>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center gap-1">
+        <a href="/" class="nav-link active">Inicio</a>
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#rastreo" class="nav-link">Rastreo</a>
+        <a href="#nosotros" class="nav-link">Nosotros</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </div>
+
+      <!-- Actions -->
+      <div class="hidden lg:flex items-center gap-4">
+        <button class="p-2.5 text-azul-marino-300 hover:text-verde-global-400 hover:bg-azul-marino-800/50 rounded-lg transition-all duration-200">
+          <Icon name="tabler:search" class="w-5 h-5" />
+        </button>
+
+        <div class="w-px h-6 bg-azul-marino-700"></div>
+
+        <a href="#cotizar" class="group relative inline-flex items-center gap-2 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 text-[12px] font-bold py-2.5 px-5 rounded-lg transition-all duration-300 shadow-lg shadow-verde-global-500/25 hover:shadow-verde-global-400/40">
+          <span class="tracking-wide">COTIZAR</span>
+          <Icon name="tabler:arrow-right" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="lg:hidden p-2 text-azul-marino-200 hover:text-white hover:bg-azul-marino-800/50 rounded-lg transition-colors">
+        <Icon name="tabler:menu-2" class="w-6 h-6" />
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-azul-marino-950/98 backdrop-blur-xl z-[60] transform translate-x-full transition-transform duration-500 ease-out lg:hidden flex flex-col">
+    <div class="flex justify-between items-center p-4 border-b border-azul-marino-800/50">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-verde-global-500 rounded-lg flex items-center justify-center">
+          <Icon name="tabler:route" class="w-4 h-4 text-white" />
+        </div>
+        <span class="text-white font-bold text-sm">ROOTTS & ROUTES</span>
+      </div>
+      <button id="close-menu-btn" class="p-2 text-azul-marino-300 hover:text-white hover:bg-azul-marino-800/50 rounded-lg transition-colors">
+        <Icon name="tabler:x" class="w-6 h-6" />
+      </button>
+    </div>
+
+    <nav class="flex flex-col p-6 gap-2">
+      <a href="/" class="mobile-nav-link">
+        <Icon name="tabler:home" class="w-5 h-5" />
+        <span>Inicio</span>
+      </a>
+      <a href="#servicios" class="mobile-nav-link">
+        <Icon name="tabler:packages" class="w-5 h-5" />
+        <span>Servicios</span>
+      </a>
+      <a href="#rastreo" class="mobile-nav-link">
+        <Icon name="tabler:map-pin" class="w-5 h-5" />
+        <span>Rastreo</span>
+      </a>
+      <a href="#nosotros" class="mobile-nav-link">
+        <Icon name="tabler:users" class="w-5 h-5" />
+        <span>Nosotros</span>
+      </a>
+      <a href="#contacto" class="mobile-nav-link">
+        <Icon name="tabler:mail" class="w-5 h-5" />
+        <span>Contacto</span>
+      </a>
+    </nav>
+
+    <div class="mt-auto p-6 border-t border-azul-marino-800/50">
+      <a href="#cotizar" class="flex items-center justify-center gap-2 w-full bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-3.5 px-6 rounded-lg transition-colors">
+        <span>SOLICITAR COTIZACION</span>
+        <Icon name="tabler:arrow-right" class="w-5 h-5" />
+      </a>
+
+      <div class="flex items-center justify-center gap-6 mt-6">
+        <a href="tel:+34555540069" class="flex items-center gap-2 text-azul-marino-300 text-sm">
+          <Icon name="tabler:phone" class="w-4 h-4 text-verde-global-400" />
+          <span>+34 555 540 069</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  @reference "tailwindcss";
+
+  .nav-link {
+    @apply relative px-4 py-2 text-[13px] font-medium tracking-wide transition-colors duration-200;
+    color: var(--color-azul-marino-200);
+  }
+
+  .nav-link:hover {
+    color: white;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-4 right-4 h-0.5 scale-x-0 origin-left transition-transform duration-300;
+    background-color: var(--color-verde-global-500);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply scale-x-100;
+  }
+
+  .nav-link.active {
+    color: white;
+  }
+
+  .mobile-nav-link {
+    @apply flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-200;
+    color: var(--color-azul-marino-200);
+  }
+
+  .mobile-nav-link:hover {
+    color: white;
+    background-color: rgba(11, 42, 60, 0.5);
+  }
+</style>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const closeMenuBtn = document.getElementById('close-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('translate-x-full');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
