@@ -42,6 +42,16 @@ pnpm preview      # Preview production build locally
 - Avoid `any` and `unknown`
 - Prefer type inference
 
+### Imports
+- **Always use @ aliases** for imports instead of relative paths
+- Available aliases:
+  - `@/*` -> `src/*`
+  - `@components/*` -> `src/components/*`
+  - `@sections/*` -> `src/sections/*`
+  - `@layouts/*` -> `src/layouts/*`
+  - `@styles/*` -> `src/styles/*`
+- Example: `import Header from '@sections/Header.astro'` (not `../sections/Header.astro`)
+
 ### Components
 - Server Components by default
 - Client Components (`client:*` directives) only for interactivity
