@@ -2,7 +2,7 @@
 # For deployment on Hostinger with Dokploy
 
 [phases.setup]
-nixPkgs = ["nodejs_24", "pnpm"]
+nixPkgs = ["nodejs_20", "pnpm"]
 
 [phases.install]
 cmds = ["pnpm install --frozen-lockfile"]
