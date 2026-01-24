@@ -8,13 +8,13 @@ import { Icon } from 'astro-icon/components';
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
       <div class="flex items-center gap-5">
         <a href="#" class="opacity-60 hover:opacity-100 hover:text-verde-global-400 transition-all duration-300">
-          <Icon name="tabler:brand-x" class="w-3.5 h-3.5" />
+          <Icon name="tabler:brand-x" class="w-5 h-5" />
         </a>
         <a href="#" class="opacity-60 hover:opacity-100 hover:text-verde-global-400 transition-all duration-300">
-          <Icon name="tabler:brand-linkedin" class="w-3.5 h-3.5" />
+          <Icon name="tabler:brand-linkedin" class="w-5 h-5" />
         </a>
         <a href="#" class="opacity-60 hover:opacity-100 hover:text-verde-global-400 transition-all duration-300">
-          <Icon name="tabler:brand-instagram" class="w-3.5 h-3.5" />
+          <Icon name="tabler:brand-instagram" class="w-5 h-5" />
         </a>
       </div>
       <div class="flex items-center gap-6 tracking-wide">
@@ -32,20 +32,20 @@ import { Icon } from 'astro-icon/components';
   </div>
 
   <!-- Main Navigation - Glassmorphism on dark -->
-  <nav class="bg-azul-marino-900/95 backdrop-blur-md border-b border-azul-oceano-600/20 sticky top-0 z-50">
+  <nav class="bg-azul-marino-800/95 backdrop-blur-md border-b border-azul-oceano-600/20 sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex justify-between items-center">
 
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 group">
-        <div class="relative">
-          <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-verde-global-500 to-verde-global-600 rounded-lg flex items-center justify-center shadow-lg shadow-verde-global-500/20 group-hover:shadow-verde-global-500/40 transition-shadow duration-300">
-            <Icon name="tabler:route" class="w-5 h-5 md:w-6 md:h-6 text-white" />
-          </div>
-          <div class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-azul-oceano-500 rounded-full border-2 border-azul-marino-900"></div>
-        </div>
-        <div class="flex flex-col">
-          <span class="text-white font-bold text-sm md:text-base tracking-tight leading-none">ROOTTS & ROUTES</span>
-          <span class="text-azul-oceano-400 text-[9px] md:text-[10px] tracking-[0.2em] uppercase">Foods S.L.U</span>
+        <img
+          src="/logo/logo-company.png"
+          alt="Rootts & Routes Foods S.L.U"
+          class="h-12 md:h-16 w-auto object-contain"
+        />
+        <div class="hidden sm:flex flex-col leading-tight">
+          <span class="text-white font-bold text-sm md:text-base tracking-tight">ROOTS & ROUTES</span>
+          <span class="text-verde-global-400 text-[10px] md:text-xs font-semibold tracking-widest">FOODS</span>
+          <span class="text-azul-oceano-400 text-[9px] md:text-[10px] tracking-[0.15em]">S.L.U</span>
         </div>
       </a>
 
@@ -60,7 +60,7 @@ import { Icon } from 'astro-icon/components';
 
       <!-- Actions -->
       <div class="hidden lg:flex items-center gap-4">
-        <button class="p-2.5 text-azul-marino-300 hover:text-verde-global-400 hover:bg-azul-marino-800/50 rounded-lg transition-all duration-200">
+        <button class="p-2.5 text-azul-marino-300 hover:text-verde-global-00 hover:bg-azul-marino-900/80 rounded-lg transition-all duration-200">
           <Icon name="tabler:search" class="w-5 h-5" />
         </button>
 
@@ -83,10 +83,16 @@ import { Icon } from 'astro-icon/components';
   <div id="mobile-menu" class="fixed inset-0 bg-azul-marino-950/98 backdrop-blur-xl z-[60] transform translate-x-full transition-transform duration-500 ease-out lg:hidden flex flex-col">
     <div class="flex justify-between items-center p-4 border-b border-azul-marino-800/50">
       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 bg-verde-global-500 rounded-lg flex items-center justify-center">
-          <Icon name="tabler:route" class="w-4 h-4 text-white" />
+        <img
+          src="/logo/logo-company.png"
+          alt="Roots & Routes Foods S.L.U"
+          class="h-10 w-auto object-contain"
+        />
+        <div class="flex flex-col leading-tight">
+          <span class="text-white font-bold text-xs tracking-tight">ROOTS & ROUTES</span>
+          <span class="text-verde-global-400 text-[8px] font-semibold tracking-widest">FOODS</span>
+          <span class="text-azul-oceano-400 text-[7px] tracking-[0.15em]">S.L.U</span>
         </div>
-        <span class="text-white font-bold text-sm">ROOTTS & ROUTES</span>
       </div>
       <button id="close-menu-btn" class="p-2 text-azul-marino-300 hover:text-white hover:bg-azul-marino-800/50 rounded-lg transition-colors">
         <Icon name="tabler:x" class="w-6 h-6" />

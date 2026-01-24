@@ -52,4 +52,43 @@
   --color-verde-claro-800: #334c1c;
   --color-verde-claro-900: #22330f;
   --color-verde-claro-950: #111a08;
+  
 }
+ /* Fuentes locales JetBrains Mono */
+    @font-face {
+        font-family: "JetBrains Mono";
+        src: url("/fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf") format("truetype-variations");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "JetBrains Mono";
+        src: url("/fonts/JetBrains_Mono/JetBrainsMono-Italic-VariableFont_wght.ttf") format("truetype-variations");
+        font-weight: 100 900;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: "JetBrains Mono", "jetbrains", "jetbrains Fallback", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    }
+
+    /* Fuente para títulos y headings */
+    h1, h2, h3, h4, h5, h6,
+    .font-heading {
+        font-family: "JetBrains Mono", "jetbrains", "jetbrains Fallback", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+
+    /* Fuente para párrafos y texto general */
+    p, span, a, button, input, textarea {
+        font-family: "JetBrains Mono", "jetbrains", "jetbrains Fallback", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    }
