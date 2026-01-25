@@ -1,5 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+const pathname = Astro.url.pathname;
+
+const isActive = (path: string) => {
+  if (path === '/') {
+    return pathname === '/';
+  }
+  return pathname.startsWith(path);
+};
 ---
 
 <header id="main-header" class="w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -51,11 +60,11 @@ import { Icon } from 'astro-icon/components';
 
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center gap-1">
-        <a href="/" class="nav-link active">Inicio</a>
+        <a href="/" class:list={["nav-link", { active: isActive('/') }]}>Inicio</a>
 
         <!-- Servicios Dropdown -->
         <div class="relative group" id="servicios-dropdown">
-          <button class="nav-link flex items-center gap-1">
+          <button class:list={["nav-link flex items-center gap-1", { active: isActive('/servicios') }]}>
             <span>Servicios</span>
             <Icon name="tabler:chevron-down" class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
           </button>
@@ -102,9 +111,8 @@ import { Icon } from 'astro-icon/components';
           </div>
         </div>
 
-        <a href="/rastreo" class="nav-link">Rastreo</a>
-        <a href="#nosotros" class="nav-link">Nosotros</a>
-        <a href="/contacto" class="nav-link">Contacto</a>
+        <a href="/rastreo" class:list={["nav-link", { active: isActive('/rastreo') }]}>Rastreo</a>
+        <a href="/contacto" class:list={["nav-link", { active: isActive('/contacto') }]}>Contacto</a>
       </div>
 
       <!-- Actions -->
@@ -149,14 +157,14 @@ import { Icon } from 'astro-icon/components';
     </div>
 
     <nav class="flex flex-col p-6 gap-2 overflow-y-auto">
-      <a href="/" class="mobile-nav-link">
+      <a href="/" class:list={["mobile-nav-link", { active: isActive('/') }]}>
         <Icon name="tabler:home" class="w-5 h-5" />
         <span>Inicio</span>
       </a>
 
       <!-- Mobile Servicios Accordion -->
       <div class="mobile-accordion">
-        <button id="mobile-servicios-btn" class="mobile-nav-link w-full justify-between">
+        <button id="mobile-servicios-btn" class:list={["mobile-nav-link w-full justify-between", { active: isActive('/servicios') }]}>
           <div class="flex items-center gap-4">
             <Icon name="tabler:packages" class="w-5 h-5" />
             <span>Servicios</span>
@@ -187,7 +195,7 @@ import { Icon } from 'astro-icon/components';
         </div>
       </div>
 
-      <a href="/rastreo" class="mobile-nav-link">
+      <a href="/rastreo" class:list={["mobile-nav-link", { active: isActive('/rastreo') }]}>
         <Icon name="tabler:map-pin" class="w-5 h-5" />
         <span>Rastreo</span>
       </a>
@@ -195,7 +203,7 @@ import { Icon } from 'astro-icon/components';
         <Icon name="tabler:users" class="w-5 h-5" />
         <span>Nosotros</span>
       </a>
-      <a href="/contacto" class="mobile-nav-link">
+      <a href="/contacto" class:list={["mobile-nav-link", { active: isActive('/contacto') }]}>
         <Icon name="tabler:mail" class="w-5 h-5" />
         <span>Contacto</span>
       </a>
@@ -297,6 +305,12 @@ import { Icon } from 'astro-icon/components';
   .mobile-nav-link:hover {
     color: white;
     background-color: rgba(11, 42, 60, 0.5);
+  }
+
+  .mobile-nav-link.active {
+    color: white;
+    background-color: rgba(111, 182, 63, 0.15);
+    border-left: 3px solid var(--color-verde-global-500);
   }
 
   .mobile-sub-link {

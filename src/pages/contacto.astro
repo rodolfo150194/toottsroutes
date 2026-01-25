@@ -5,34 +5,63 @@ import Footer from "@sections/Footer.astro";
 import PageCTA from "@components/PageCTA.astro";
 import { Icon } from "astro-icon/components";
 
+const offices = [
+  {
+    id: "madrid",
+    name: "Sede Central - Madrid",
+    country: "Espana",
+    flag: "ES",
+    address: "Calle Gran Via 45, Planta 8",
+    city: "28013 Madrid",
+    phone: "+34 555 540 069",
+    email: "madrid@roottsroutes.com",
+    hours: "Lun - Vie: 8:00 - 20:00",
+    description: "Oficina central y sede administrativa",
+    coordinates: { lat: 40.4200, lng: -3.7025 },
+  },
+  {
+    id: "panama",
+    name: "Hub Caribe - Panama",
+    country: "Panama",
+    flag: "PA",
+    address: "Torre Global Bank, Piso 15",
+    city: "Ciudad de Panama",
+    phone: "+507 830 5500",
+    email: "panama@roottsroutes.com",
+    hours: "Lun - Vie: 7:00 - 18:00",
+    description: "Centro de operaciones para envios a Cuba y Caribe",
+    coordinates: { lat: 9.0820, lng: -79.5199 },
+  },
+];
+
 const contactInfo = [
   {
     icon: "tabler:phone",
-    title: "Telefono",
+    title: "Telefono Principal",
     value: "+34 555 540 069",
     href: "tel:+34555540069",
-    description: "Lun - Vie: 8:00 - 20:00",
+    description: "Madrid: Lun - Vie 8:00 - 20:00",
   },
   {
     icon: "tabler:mail",
-    title: "Email",
+    title: "Email General",
     value: "info@roottsroutes.com",
     href: "mailto:info@roottsroutes.com",
-    description: "Respuesta en 24h",
+    description: "Respuesta en menos de 24h",
   },
   {
-    icon: "tabler:map-pin",
-    title: "Oficina Central",
-    value: "Madrid, Espana",
-    href: "#mapa",
-    description: "Calle Logistica 123, 28001",
+    icon: "tabler:world",
+    title: "Cobertura",
+    value: "Espana - Panama - Cuba",
+    href: "#oficinas",
+    description: "Ruta especializada Caribe",
   },
   {
     icon: "tabler:clock",
-    title: "Horario",
-    value: "24/7 Emergencias",
+    title: "Soporte 24/7",
+    value: "Emergencias",
     href: "tel:+34555540069",
-    description: "Soporte continuo",
+    description: "Linea directa para urgencias",
   },
 ];
 ---
@@ -56,7 +85,7 @@ const contactInfo = [
       </h1>
 
       <p class="text-azul-marino-200 text-lg max-w-2xl mx-auto leading-relaxed">
-        Nuestro equipo de expertos esta listo para resolver tus dudas y ofrecerte la mejor solucion logistica.
+        Con sedes en Madrid y Panama, estamos preparados para gestionar tus envios hacia Cuba y todo el Caribe.
       </p>
     </div>
   </section>
@@ -81,9 +110,8 @@ const contactInfo = [
       </div>
     </div>
   </section>
-
-  <!-- Contact Form -->
-  <section class="relative py-20 md:py-28 bg-gray-50">
+ <!-- Contact Form -->
+  <section class="relative py-16haz md:py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         <!-- Form -->
@@ -144,20 +172,35 @@ const contactInfo = [
               </div>
             </div>
 
-            <div>
-              <label for="servicio" class="block text-azul-marino-700 text-sm font-medium mb-2">Servicio de interes</label>
-              <select
-                id="servicio"
-                name="servicio"
-                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
-              >
-                <option value="">Seleccionar servicio</option>
-                <option value="maritimo">Transporte Maritimo</option>
-                <option value="aereo">Transporte Aereo</option>
-                <option value="terrestre">Transporte Terrestre</option>
-                <option value="almacenamiento">Almacenamiento</option>
-                <option value="otro">Otro</option>
-              </select>
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label for="oficina" class="block text-azul-marino-700 text-sm font-medium mb-2">Oficina de contacto</label>
+                <select
+                  id="oficina"
+                  name="oficina"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                >
+                  <option value="">Seleccionar oficina</option>
+                  <option value="madrid">Madrid - Espana</option>
+                  <option value="panama">Panama - Hub Caribe</option>
+                </select>
+              </div>
+              <div>
+                <label for="servicio" class="block text-azul-marino-700 text-sm font-medium mb-2">Servicio de interes</label>
+                <select
+                  id="servicio"
+                  name="servicio"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                >
+                  <option value="">Seleccionar servicio</option>
+                  <option value="paqueteria-cuba">Paqueteria a Cuba</option>
+                  <option value="maritimo">Transporte Maritimo</option>
+                  <option value="aereo">Transporte Aereo</option>
+                  <option value="terrestre">Transporte Terrestre</option>
+                  <option value="almacenamiento">Almacenamiento</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
             </div>
 
             <div>
@@ -211,30 +254,187 @@ const contactInfo = [
 
             <div class="flex items-start gap-4">
               <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Icon name="tabler:world" class="w-6 h-6 text-verde-global-600" />
+                <Icon name="tabler:plane-departure" class="w-6 h-6 text-verde-global-600" />
               </div>
               <div>
-                <h3 class="text-azul-marino-950 font-bold mb-1">Cobertura Global</h3>
-                <p class="text-azul-marino-500 text-sm leading-relaxed">Presencia en mas de 40 paises con hubs estrategicos en 4 continentes.</p>
+                <h3 class="text-azul-marino-950 font-bold mb-1">Especialistas en Cuba</h3>
+                <p class="text-azul-marino-500 text-sm leading-relaxed">Anos de experiencia en envios a Cuba desde Panama con entrega garantizada.</p>
               </div>
             </div>
 
             <div class="flex items-start gap-4">
               <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Icon name="tabler:temperature-snow" class="w-6 h-6 text-verde-global-600" />
+                <Icon name="tabler:certificate" class="w-6 h-6 text-verde-global-600" />
               </div>
               <div>
-                <h3 class="text-azul-marino-950 font-bold mb-1">Cadena de Frio</h3>
-                <p class="text-azul-marino-500 text-sm leading-relaxed">Especializados en alimentos con control de temperatura certificado.</p>
+                <h3 class="text-azul-marino-950 font-bold mb-1">Gestion Aduanera</h3>
+                <p class="text-azul-marino-500 text-sm leading-relaxed">Nos encargamos de toda la documentacion y tramites aduaneros.</p>
               </div>
             </div>
           </div>
 
-          <!-- Map placeholder -->
-          <div id="mapa" class="bg-azul-marino-100 rounded-2xl h-64 flex items-center justify-center">
-            <div class="text-center">
-              <Icon name="tabler:map-pin" class="w-12 h-12 text-azul-marino-400 mx-auto mb-2" />
-              <p class="text-azul-marino-500 text-sm">Madrid, Espana</p>
+          <!-- Quick Contact -->
+          <div class="bg-azul-marino-950 rounded-2xl p-6">
+            <h3 class="text-white font-bold mb-4">Contacto directo</h3>
+            <div class="space-y-3">
+              <a href="tel:+34555540069" class="flex items-center gap-3 text-azul-marino-200 hover:text-verde-global-400 transition-colors">
+                <Icon name="tabler:phone" class="w-5 h-5" />
+                <span>Madrid: +34 555 540 069</span>
+              </a>
+              <a href="tel:+5078305500" class="flex items-center gap-3 text-azul-marino-200 hover:text-verde-global-400 transition-colors">
+                <Icon name="tabler:phone" class="w-5 h-5" />
+                <span>Panama: +507 830 5500</span>
+              </a>
+              <a href="https://wa.me/5078305500" target="_blank" rel="noopener" class="flex items-center gap-3 text-azul-marino-200 hover:text-verde-global-400 transition-colors">
+                <Icon name="tabler:brand-whatsapp" class="w-5 h-5" />
+                <span>WhatsApp Panama</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Offices Section -->
+  <section id="oficinas" class="relative py-16 md:py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Nuestras Oficinas
+        </h2>
+        <p class="text-azul-marino-500 max-w-2xl mx-auto">
+          Dos ubicaciones estrategicas para conectar Europa con el Caribe
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        {offices.map((office) => (
+          <div class="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-xl shadow-azul-marino-950/5">
+            <!-- Map -->
+            <div
+              id={`map-${office.id}`}
+              class="h-64 bg-azul-marino-100"
+              data-lat={office.coordinates.lat}
+              data-lng={office.coordinates.lng}
+              data-name={office.name}
+            >
+            </div>
+
+            <!-- Info -->
+            <div class="p-6 md:p-8">
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-2xl">{office.flag === "ES" ? "🇪🇸" : "🇵🇦"}</span>
+                    <h3 class="text-azul-marino-950 font-bold text-xl">{office.name}</h3>
+                  </div>
+                  <p class="text-verde-global-600 text-sm font-medium">{office.description}</p>
+                </div>
+              </div>
+
+              <div class="space-y-3 mb-6">
+                <div class="flex items-start gap-3">
+                  <Icon name="tabler:map-pin" class="w-5 h-5 text-azul-marino-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p class="text-azul-marino-950">{office.address}</p>
+                    <p class="text-azul-marino-500 text-sm">{office.city}</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <Icon name="tabler:phone" class="w-5 h-5 text-azul-marino-400 flex-shrink-0" />
+                  <a href={`tel:${office.phone.replace(/\s/g, '')}`} class="text-azul-marino-950 hover:text-verde-global-600 transition-colors">
+                    {office.phone}
+                  </a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <Icon name="tabler:mail" class="w-5 h-5 text-azul-marino-400 flex-shrink-0" />
+                  <a href={`mailto:${office.email}`} class="text-azul-marino-950 hover:text-verde-global-600 transition-colors">
+                    {office.email}
+                  </a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <Icon name="tabler:clock" class="w-5 h-5 text-azul-marino-400 flex-shrink-0" />
+                  <p class="text-azul-marino-500">{office.hours}</p>
+                </div>
+              </div>
+
+              <a
+                href={`https://www.google.com/maps?q=${office.coordinates.lat},${office.coordinates.lng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-verde-global-600 hover:text-verde-global-500 font-medium text-sm transition-colors"
+              >
+                <span>Ver en Google Maps</span>
+                <Icon name="tabler:external-link" class="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Route Info -->
+  <section class="py-16 md:py-20 bg-azul-marino-950">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="bg-azul-marino-900/50 border border-azul-marino-800 rounded-3xl p-8 md:p-12">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-verde-global-500/10 border border-verde-global-500/20 rounded-full px-4 py-2 mb-4">
+              <Icon name="tabler:route" class="w-4 h-4 text-verde-global-400" />
+              <span class="text-verde-global-400 text-xs font-medium">Ruta Especializada</span>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Panama - Cuba
+            </h3>
+            <p class="text-azul-marino-200 leading-relaxed mb-6">
+              Nuestra sede en Panama esta estrategicamente ubicada para gestionar todos los envios hacia Cuba.
+              Ofrecemos servicios de paqueteria, consolidacion de carga y envios comerciales con los mejores tiempos de transito.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-azul-marino-200">
+                <Icon name="tabler:circle-check" class="w-5 h-5 text-verde-global-400 flex-shrink-0" />
+                <span>Envios de paqueteria desde 1 kg</span>
+              </li>
+              <li class="flex items-center gap-3 text-azul-marino-200">
+                <Icon name="tabler:circle-check" class="w-5 h-5 text-verde-global-400 flex-shrink-0" />
+                <span>Consolidacion de carga familiar</span>
+              </li>
+              <li class="flex items-center gap-3 text-azul-marino-200">
+                <Icon name="tabler:circle-check" class="w-5 h-5 text-verde-global-400 flex-shrink-0" />
+                <span>Gestion aduanera incluida</span>
+              </li>
+              <li class="flex items-center gap-3 text-azul-marino-200">
+                <Icon name="tabler:circle-check" class="w-5 h-5 text-verde-global-400 flex-shrink-0" />
+                <span>Entrega puerta a puerta en Cuba</span>
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center justify-center">
+            <div class="relative">
+              <div class="flex items-center gap-4">
+                <div class="text-center">
+                  <div class="w-20 h-20 bg-azul-marino-800 rounded-2xl flex items-center justify-center mb-2">
+                    <span class="text-4xl">🇵🇦</span>
+                  </div>
+                  <p class="text-white font-bold">Panama</p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-16 h-0.5 bg-verde-global-500"></div>
+                  <Icon name="tabler:plane" class="w-8 h-8 text-verde-global-400" />
+                  <div class="w-16 h-0.5 bg-verde-global-500"></div>
+                </div>
+                <div class="text-center">
+                  <div class="w-20 h-20 bg-azul-marino-800 rounded-2xl flex items-center justify-center mb-2">
+                    <span class="text-4xl">🇨🇺</span>
+                  </div>
+                  <p class="text-white font-bold">Cuba</p>
+                </div>
+              </div>
+              <p class="text-center text-azul-marino-400 text-sm mt-4">Tiempo de transito: 5-7 dias</p>
             </div>
           </div>
         </div>
@@ -242,14 +442,61 @@ const contactInfo = [
     </div>
   </section>
 
+ 
+
   <PageCTA
-    title="Necesitas una cotizacion urgente?"
-    description="Llamanos directamente y te atendemos al momento."
-    primaryText="Llamar Ahora"
-    primaryHref="tel:+34555540069"
+    title="Necesitas enviar a Cuba?"
+    description="Contacta con nuestra oficina en Panama para una cotizacion inmediata."
+    primaryText="Llamar Panama"
+    primaryHref="tel:+5078305500"
     secondaryText="WhatsApp"
-    secondaryHref="https://wa.me/34555540069"
+    secondaryHref="https://wa.me/5078305500"
   />
 
   <Footer />
 </Layout>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mapContainers = document.querySelectorAll('[id^="map-"]');
+
+    mapContainers.forEach(container => {
+      const lat = parseFloat(container.dataset.lat);
+      const lng = parseFloat(container.dataset.lng);
+      const name = container.dataset.name;
+
+      const map = L.map(container.id).setView([lat, lng], 15);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      const customIcon = L.divIcon({
+        className: 'custom-marker',
+        html: `<div style="background-color: #6FB63F; width: 32px; height: 32px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"></div>`,
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -32]
+      });
+
+      L.marker([lat, lng], { icon: customIcon })
+        .addTo(map)
+        .bindPopup(`<strong>${name}</strong><br>Rootts & Routes Foods S.L.U`)
+        .openPopup();
+    });
+  });
+</script>
+
+<style>
+  .leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    font-family: inherit;
+  }
+
+  .leaflet-popup-content {
+    margin: 12px 16px;
+  }
+</style>
