@@ -1,0 +1,81 @@
+---
+interface Props {
+  fillColor?: string;
+  borderColor?: string;
+  notchHeight?: number;
+  notchStart?: number;
+  notchPeak?: number;
+  notchOffset?: number;
+  borderSize?: number;
+  className?: string;
+}
+
+const {
+  fillColor = "#f9fafb",
+  borderColor = "#6FB63F",
+  notchHeight = 50,
+  notchStart = 280,
+  notchPeak = 300,
+  notchOffset = 5,
+  borderSize = 6,
+  className = "",
+} = Astro.props;
+
+function resolveColor(color: string): string {
+  if (color.startsWith("#") || color.startsWith("rgb") || color.startsWith("var(")) {
+    return color;
+  }
+  const match = color.match(/^bg-(.+)$/);
+  if (match) {
+    return `var(--color-${match[1]})`;
+  }
+  return color;
+}
+
+const resolvedFill = resolveColor(fillColor);
+const resolvedBorder = resolveColor(borderColor);
+
+const height = notchHeight + borderSize;
+
+const mainClip = `polygon(
+  0 0,
+  0 ${notchHeight}px,
+  ${notchStart}px ${notchHeight}px,
+  ${notchPeak}px ${notchOffset}px,
+  calc(100% - ${notchPeak}px) ${notchOffset}px,
+  calc(100% - ${notchStart}px) ${notchHeight}px,
+  100% ${notchHeight}px,
+  100% 0
+)`;
+
+const borderClip = `polygon(
+  0 0,
+  0 ${notchHeight + borderSize}px,
+  ${notchStart - borderSize}px ${notchHeight + borderSize}px,
+  ${notchPeak}px ${notchOffset}px,
+  calc(100% - ${notchPeak}px) ${notchOffset}px,
+  calc(100% - ${notchStart - borderSize}px) ${notchHeight + borderSize}px,
+  100% ${notchHeight + borderSize}px,
+  100% 0
+)`;
+---
+
+<div
+  class:list={[
+    "absolute left-0 w-full pointer-events-none top-0 z-10",
+    className,
+  ]}
+  style={`height: ${height}px; margin-top: -1px;`}
+>
+  <div
+    class="absolute inset-0"
+    style={`clip-path: ${borderClip}; background-color: ${resolvedBorder};`}
+  >
+  </div>
+
+  <div
+    class="absolute inset-0"
+    style={`clip-path: ${mainClip}; background-color: ${resolvedFill};`}
+  >
+  </div>
+</div>

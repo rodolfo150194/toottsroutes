@@ -1,35 +1,91 @@
 ---
 import { Icon } from "astro-icon/components";
+import ShapeDividerTop from "@components/ShapeDividerTop.astro";
 
-const steps = [
+const containerSteps = [
   {
     number: "01",
     title: "Solicita Cotizacion",
-    description: "Completa el formulario con los detalles de tu carga y destino. Respuesta en menos de 2 horas.",
-    icon: "tabler:file-text",
+    description: "Envianos los detalles de tu contenedor: dimensiones, peso y destino. Respuesta en 24-48 horas.",
+    icon: "tabler:file-invoice",
   },
   {
     number: "02",
-    title: "Recogemos tu Carga",
-    description: "Coordinamos la recoleccion en origen con vehiculos especializados y cadena de frio.",
-    icon: "tabler:package-export",
+    title: "Gestion Documental",
+    description: "Preparamos toda la documentacion aduanera, permisos de importacion y certificados necesarios.",
+    icon: "tabler:file-certificate",
   },
   {
     number: "03",
-    title: "Transporte Seguro",
-    description: "Monitoreamos tu envio 24/7 con GPS y sensores de temperatura en tiempo real.",
-    icon: "tabler:route",
+    title: "Transporte Maritimo",
+    description: "Coordinamos el embarque desde origen con seguimiento satelital durante toda la travesia.",
+    icon: "tabler:ship",
   },
   {
     number: "04",
-    title: "Entrega Garantizada",
-    description: "Recibe tu carga en destino con documentacion completa y confirmacion digital.",
-    icon: "tabler:circle-check",
+    title: "Despacho y Entrega",
+    description: "Gestionamos el desaduanaje y entregamos tu contenedor en el destino final acordado.",
+    icon: "tabler:package-import",
+  },
+];
+
+const parcelSteps = [
+  {
+    number: "01",
+    title: "Trae tu Paquete",
+    description: "Visitanos en nuestra oficina de Panama. Pesamos tu paquete y calculamos el costo al instante.",
+    icon: "tabler:scale",
+  },
+  {
+    number: "02",
+    title: "Registro y Pago",
+    description: "Completamos el formulario de envio con datos del destinatario y procesas el pago.",
+    icon: "tabler:receipt",
+  },
+  {
+    number: "03",
+    title: "Consolidacion",
+    description: "Agrupamos los paquetes para envio aereo optimizado hacia Cuba con frecuencia semanal.",
+    icon: "tabler:packages",
+  },
+  {
+    number: "04",
+    title: "Entrega en Cuba",
+    description: "Tu familiar recibe el paquete en la direccion indicada con confirmacion de entrega.",
+    icon: "tabler:home-check",
+  },
+];
+
+const tabs = [
+  {
+    id: "contenedores",
+    label: "Contenedores",
+    icon: "tabler:container",
+    subtitle: "Importacion Internacional",
+    steps: containerSteps,
+  },
+  {
+    id: "paqueteria",
+    label: "Paqueteria",
+    icon: "tabler:package",
+    subtitle: "Panama - Cuba",
+    steps: parcelSteps,
   },
 ];
 ---
 
-<section id="proceso" class="relative py-24 md:py-32 bg-azul-marino-950 overflow-hidden">
+<section id="proceso" class="relative pt-24 pb-24 md:pt-32 md:pb-32 bg-azul-marino-950 overflow-x-clip">
+  <!-- Shape Divider Top -->
+  <ShapeDividerTop
+    fillColor="transparent"
+    borderColor="bg-verde-global-500"
+    notchHeight={50}
+    notchStart={280}
+    notchPeak={300}
+    notchOffset={5}
+    borderSize={6}
+  />
+
   <!-- Background Elements -->
   <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 80px 80px;"></div>
 
@@ -38,7 +94,7 @@ const steps = [
 
   <div class="relative max-w-7xl mx-auto px-4 md:px-8">
     <!-- Header -->
-    <div class="text-center mb-16 md:mb-20">
+    <div class="text-center mb-12 md:mb-16">
       <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 backdrop-blur-sm border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6">
         <Icon name="tabler:arrows-right-left" class="w-4 h-4 text-verde-global-400" />
         <span class="text-azul-marino-100 text-xs tracking-wide font-medium">Proceso Simple</span>
@@ -49,55 +105,167 @@ const steps = [
       </h2>
 
       <p class="text-azul-marino-300 text-lg max-w-2xl mx-auto leading-relaxed">
-        En cuatro pasos llevamos tu carga desde el origen hasta su destino final con total transparencia y seguridad.
+        Dos servicios, un mismo compromiso: llevar tu carga con total transparencia y seguridad.
       </p>
     </div>
 
-    <!-- Steps Container -->
-    <div class="relative">
-      <!-- Connection Line (Desktop) -->
-      <div class="hidden lg:block absolute top-24 left-[calc(12.5%+24px)] right-[calc(12.5%+24px)] h-0.5 bg-gradient-to-r from-verde-global-500/50 via-azul-oceano-500/50 to-verde-global-500/50 process-line"></div>
-
-      <!-- Steps Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
-        {steps.map((step, index) => (
-          <div
-            class="process-step group relative"
-            data-index={index}
-            style={`--delay: ${index * 150}ms`}
+    <!-- Tab Navigation -->
+    <div class="flex justify-center mb-12">
+      <div class="inline-flex p-1.5 bg-azul-marino-900/80 backdrop-blur-sm border border-azul-oceano-600/30 rounded-2xl gap-2">
+        {tabs.map((tab, index) => (
+          <button
+            data-tab={tab.id}
+            class:list={[
+              "tab-button group relative flex items-center gap-3 px-6 py-4 rounded-xl font-medium transition-all duration-300",
+              index === 0 ? "tab-active" : ""
+            ]}
           >
-            <!-- Step Card -->
-            <div class="relative bg-azul-marino-900/60 backdrop-blur-sm border border-azul-oceano-600/20 rounded-2xl p-6 md:p-8 hover:border-verde-global-500/40 transition-all duration-500 h-full">
-              <!-- Number Badge -->
-              <div class="absolute -top-4 left-6 bg-verde-global-500 text-azul-marino-950 text-sm font-bold px-3 py-1 rounded-full shadow-lg shadow-verde-global-500/30">
-                {step.number}
-              </div>
-
-              <!-- Icon -->
-              <div class="w-14 h-14 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-xl flex items-center justify-center mb-6 mt-2 group-hover:bg-verde-global-500/20 group-hover:border-verde-global-500/40 transition-all duration-300">
-                <Icon name={step.icon} class="w-7 h-7 text-verde-global-400 group-hover:text-verde-global-300 transition-colors" />
-              </div>
-
-              <!-- Content -->
-              <h3 class="text-xl font-bold text-white mb-3 group-hover:text-verde-global-400 transition-colors">
-                {step.title}
-              </h3>
-
-              <p class="text-azul-marino-300 text-sm leading-relaxed">
-                {step.description}
-              </p>
-
-              <!-- Arrow (Desktop) -->
-              {index < steps.length - 1 && (
-                <div class="hidden lg:flex absolute -right-3 top-24 w-6 h-6 bg-azul-marino-950 border border-azul-oceano-600/30 rounded-full items-center justify-center z-10">
-                  <Icon name="tabler:chevron-right" class="w-4 h-4 text-verde-global-500" />
-                </div>
-              )}
+            <div class="tab-icon-wrapper relative">
+              <div class="absolute inset-0 bg-verde-global-500/20 rounded-lg scale-0 group-[.tab-active]:scale-100 transition-transform duration-300"></div>
+              <Icon name={tab.icon} class="relative w-6 h-6 text-azul-marino-400 group-[.tab-active]:text-verde-global-400 transition-colors duration-300" />
             </div>
-          </div>
+            <div class="text-left">
+              <div class="text-sm md:text-base text-azul-marino-300 group-[.tab-active]:text-white transition-colors duration-300">
+                {tab.label}
+              </div>
+              <div class="text-[10px] md:text-xs text-azul-marino-500 group-[.tab-active]:text-verde-global-500 transition-colors duration-300 uppercase tracking-wider">
+                {tab.subtitle}
+              </div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-r from-verde-global-500/10 to-azul-oceano-500/10 rounded-xl opacity-0 group-[.tab-active]:opacity-100 transition-opacity duration-300 -z-10"></div>
+            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-verde-global-500 rounded-full scale-x-0 group-[.tab-active]:scale-x-100 transition-transform duration-300"></div>
+          </button>
         ))}
       </div>
     </div>
+
+    <!-- Tab Panels -->
+    {tabs.map((tab, tabIndex) => (
+      <div
+        data-panel={tab.id}
+        class:list={[
+          "tab-panel transition-all duration-500",
+          tabIndex === 0 ? "tab-panel-active" : "hidden opacity-0"
+        ]}
+      >
+        <!-- Steps Container -->
+        <div class="relative pt-8 lg:pt-12">
+          <!-- Steps Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6 md:gap-y-14 lg:gap-x-16">
+            {tab.steps.map((step, index) => {
+              const isEven = index % 2 === 0;
+              return (
+                <div
+                  class="process-step group relative"
+                  data-index={index}
+                  style={`--delay: ${index * 150}ms`}
+                >
+                  <!-- Connector SVG (Desktop) -->
+                  {index < tab.steps.length - 1 && (
+                    <div class="hidden lg:block absolute -right-16 w-16 h-full z-20 pointer-events-none">
+                      <svg
+                        viewBox="0 0 64 200"
+                        class="absolute w-full h-full connector-svg"
+                        style={`--connector-delay: ${index * 300 + 400}ms`}
+                        preserveAspectRatio="none"
+                      >
+                        <defs>
+                          <linearGradient id={`grad-${tab.id}-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#6FB63F" />
+                            <stop offset="100%" stop-color="#0E5F7C" />
+                          </linearGradient>
+                          <filter id={`glow-${tab.id}-${index}`}>
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feMerge>
+                              <feMergeNode in="coloredBlur"/>
+                              <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                          </filter>
+                        </defs>
+
+                        {isEven ? (
+                          <Fragment>
+                            <circle cx="0" cy="40" r="6" fill="#6FB63F" class="connector-dot-start" filter={`url(#glow-${tab.id}-${index})`} />
+                            <path
+                              d="M0 40 L20 40 Q32 40 32 52 L32 148 Q32 160 44 160 L64 160"
+                              fill="none"
+                              stroke={`url(#grad-${tab.id}-${index})`}
+                              stroke-width="3"
+                              stroke-linecap="round"
+                              class="connector-path"
+                              filter={`url(#glow-${tab.id}-${index})`}
+                            />
+                            <circle cx="64" cy="160" r="6" fill="#0E5F7C" class="connector-dot-end" filter={`url(#glow-${tab.id}-${index})`} />
+                            <circle cx="32" cy="100" r="4" fill="#6FB63F" opacity="0.6" class="connector-dot-mid" />
+                          </Fragment>
+                        ) : (
+                          <Fragment>
+                            <circle cx="0" cy="160" r="6" fill="#6FB63F" class="connector-dot-start" filter={`url(#glow-${tab.id}-${index})`} />
+                            <path
+                              d="M0 160 L20 160 Q32 160 32 148 L32 52 Q32 40 44 40 L64 40"
+                              fill="none"
+                              stroke={`url(#grad-${tab.id}-${index})`}
+                              stroke-width="3"
+                              stroke-linecap="round"
+                              class="connector-path"
+                              filter={`url(#glow-${tab.id}-${index})`}
+                            />
+                            <circle cx="64" cy="40" r="6" fill="#0E5F7C" class="connector-dot-end" filter={`url(#glow-${tab.id}-${index})`} />
+                            <circle cx="32" cy="100" r="4" fill="#6FB63F" opacity="0.6" class="connector-dot-mid" />
+                          </Fragment>
+                        )}
+                      </svg>
+                    </div>
+                  )}
+
+                  <!-- Mobile Connector -->
+                  {index < tab.steps.length - 1 && (
+                    <div class="lg:hidden absolute -bottom-10 left-1/2 -translate-x-1/2 h-8 flex flex-col items-center justify-center gap-1">
+                      <div class="w-0.5 h-2 bg-verde-global-500/60 rounded-full"></div>
+                      <div class="w-0.5 h-1.5 bg-verde-global-500/40 rounded-full"></div>
+                      <div class="w-0.5 h-1 bg-verde-global-500/30 rounded-full"></div>
+                      <Icon name="tabler:chevron-down" class="w-4 h-4 text-verde-global-500" />
+                    </div>
+                  )}
+
+                  <!-- Step Card -->
+                  <div class="relative bg-azul-marino-900/60 backdrop-blur-sm border border-azul-oceano-600/20 rounded-2xl p-6 md:p-8 hover:border-verde-global-500/40 transition-all duration-500 h-full hover:scale-[1.02]">
+                    <!-- Number Badge -->
+                    <div class="absolute -top-4 left-6 bg-verde-global-500 text-azul-marino-950 text-sm font-bold px-3 py-1.5 rounded-full shadow-lg shadow-verde-global-500/30 z-10">
+                      {step.number}
+                    </div>
+
+                    <!-- Connection anchor points (visual indicators) -->
+                    {index < tab.steps.length - 1 && (
+                      <div class={`hidden lg:block absolute -right-1 w-2 h-2 bg-verde-global-500 rounded-full shadow-lg shadow-verde-global-500/50 ${isEven ? 'top-10' : 'bottom-10'}`}></div>
+                    )}
+                    {index > 0 && (
+                      <div class={`hidden lg:block absolute -left-1 w-2 h-2 bg-azul-oceano-500 rounded-full shadow-lg shadow-azul-oceano-500/50 ${(index - 1) % 2 === 0 ? 'bottom-10' : 'top-10'}`}></div>
+                    )}
+
+                    <!-- Icon -->
+                    <div class="w-14 h-14 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-xl flex items-center justify-center mb-6 mt-2 group-hover:bg-verde-global-500/20 group-hover:border-verde-global-500/40 transition-all duration-300 group-hover:scale-110">
+                      <Icon name={step.icon} class="w-7 h-7 text-verde-global-400 group-hover:text-verde-global-300 transition-colors" />
+                    </div>
+
+                    <!-- Content -->
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-verde-global-400 transition-colors">
+                      {step.title}
+                    </h3>
+
+                    <p class="text-azul-marino-300 text-sm leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    ))}
+
+  
 
     <!-- Bottom CTA -->
     <div class="text-center mt-16">
@@ -110,51 +278,191 @@ const steps = [
       </a>
     </div>
   </div>
+
 </section>
 
 <style>
   @reference "tailwindcss";
 
-  .process-line {
-    background-size: 200% 100%;
-    animation: shimmer 3s ease-in-out infinite;
+  .tab-panel {
+    transform: translateY(0);
   }
 
-  @keyframes shimmer {
-    0%, 100% { background-position: 200% 0; }
-    50% { background-position: -200% 0; }
+  .tab-panel.hidden {
+    display: none;
+  }
+
+  .tab-panel-active {
+    animation: fadeSlideIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .connector-path {
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: drawPath 1.2s ease-out forwards;
+    animation-delay: var(--connector-delay, 0ms);
+  }
+
+  .connector-dot-start {
+    opacity: 0;
+    transform-origin: center;
+    animation: pulseIn 0.4s ease-out forwards;
+    animation-delay: var(--connector-delay, 0ms);
+  }
+
+  .connector-dot-end {
+    opacity: 0;
+    transform-origin: center;
+    animation: pulseIn 0.4s ease-out forwards;
+    animation-delay: calc(var(--connector-delay, 0ms) + 1s);
+  }
+
+  .connector-dot-mid {
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+    animation-delay: calc(var(--connector-delay, 0ms) + 0.6s);
+  }
+
+  @keyframes drawPath {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes pulseIn {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 0.6;
+    }
+  }
+
+  .connector-svg {
+    overflow: visible;
+  }
+
+  .service-info-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .service-info-card.highlight {
+    border-color: var(--color-verde-global-500);
+    transform: scale(1.02);
+  }
+
+  .process-step {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabPanels = document.querySelectorAll(".tab-panel");
+    const infoCards = document.querySelectorAll(".service-info-card");
+
+    function switchTab(tabId) {
+      tabButtons.forEach(btn => {
+        btn.classList.toggle("tab-active", btn.dataset.tab === tabId);
+      });
+
+      tabPanels.forEach(panel => {
+        const isActive = panel.dataset.panel === tabId;
+        panel.classList.toggle("hidden", !isActive);
+        panel.classList.toggle("opacity-0", !isActive);
+        panel.classList.toggle("tab-panel-active", isActive);
+      });
+
+      infoCards.forEach(card => {
+        card.classList.toggle("highlight", card.dataset.info === tabId);
+      });
+
+      if (typeof gsap !== "undefined") {
+        const activePanel = document.querySelector(`[data-panel="${tabId}"]`);
+        const steps = activePanel.querySelectorAll(".process-step");
+
+        gsap.fromTo(steps,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power2.out"
+          }
+        );
+      }
+    }
+
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        switchTab(button.dataset.tab);
+      });
+    });
+
+    infoCards.forEach(card => {
+      card.addEventListener("click", () => {
+        switchTab(card.dataset.info);
+      });
+    });
+
     if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
 
-      const steps = document.querySelectorAll(".process-step");
+      const activePanel = document.querySelector(".tab-panel-active");
+      if (activePanel) {
+        const steps = activePanel.querySelectorAll(".process-step");
 
-      steps.forEach((step, index) => {
-        gsap.from(step, {
-          scrollTrigger: {
-            trigger: step,
-            start: "top 85%",
-          },
-          y: 40,
-          opacity: 0,
-          duration: 0.6,
-          delay: index * 0.15,
-          ease: "power2.out",
+        steps.forEach((step, index) => {
+          gsap.from(step, {
+            scrollTrigger: {
+              trigger: step,
+              start: "top 85%",
+            },
+            y: 40,
+            opacity: 0,
+            scale: 0.95,
+            duration: 0.6,
+            delay: index * 0.12,
+            ease: "power2.out",
+          });
         });
-      });
+      }
 
-      gsap.from(".process-line", {
+      gsap.from(".service-info-card", {
         scrollTrigger: {
-          trigger: ".process-line",
-          start: "top 80%",
+          trigger: ".service-info-card",
+          start: "top 90%",
         },
-        scaleX: 0,
-        transformOrigin: "left center",
-        duration: 1,
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.15,
         ease: "power2.out",
       });
     }

@@ -1,43 +1,53 @@
 ---
 import { Icon } from "astro-icon/components";
 import SplitText from "@components/SplitText.astro";
+import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
 ---
 
 <section
   id="hero"
-  class="relative w-full h-[100svh] bg-azul-marino-950 z-20 flex flex-col"
+  class="relative w-full h-[100svh] z-20 flex flex-col"
 >
-  <!-- Grid Pattern Overlay -->
-  <div
-    class="absolute inset-0 z-0 opacity-[0.02]"
-    style="background-image: linear-gradient(rgba(111,182,63,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.3) 1px, transparent 1px); background-size: 60px 60px;"
+  <!-- Background with Shape Divider -->
+  <ShapeDividerBottom
+    fillColor="transparent"
+    borderColor="bg-verde-global-500"
+    notchHeight={50}
+    notchStart={280}
+    notchPeak={300}
+    notchOffset={5}
+    borderSize={6}
+    className="z-[1]"
   >
-  </div>
-
-  <!-- Background Image with Layered Effects -->
-  <div
-    id="hero-bg"
-    class="absolute top-0 left-0 w-full h-[calc(100%+50px)] z-0 will-change-transform hero-bg-clip pointer-events-none"
-    style="filter: drop-shadow(0 0 2px rgba(111, 182, 63, 0.8));"
-  >
-    <img
-      src="/images/contenedores-avion-paquetes.jpg"
-      alt="Contenedores maritimos internacionales"
-      class="w-full h-[120%] object-cover -mt-[10%]"
-    />
-    <!-- Multi-layer gradient for depth -->
     <div
-      class="absolute inset-0 bg-gradient-to-r from-azul-marino-950/95 via-azul-marino-950/70 to-azul-marino-950/20"
+      id="hero-bg"
+      class="absolute inset-0 will-change-transform"
+    >
+      <img
+        src="/images/contenedores-avion-paquetes.jpg"
+        alt="Contenedores maritimos internacionales"
+        class="w-full h-[120%] object-cover -mt-[10%]"
+      />
+      <!-- Multi-layer gradient for depth -->
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-azul-marino-950/95 via-azul-marino-950/70 to-azul-marino-950/20"
+      >
+      </div>
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-azul-marino-950/80 via-transparent to-azul-marino-950/20"
+      >
+      </div>
+      <!-- Subtle color tint -->
+      <div class="absolute inset-0 bg-azul-oceano-900/10 mix-blend-multiply">
+      </div>
+    </div>
+    <!-- Grid Pattern Overlay -->
+    <div
+      class="absolute inset-0 opacity-[0.02]"
+      style="background-image: linear-gradient(rgba(111,182,63,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.3) 1px, transparent 1px); background-size: 60px 60px;"
     >
     </div>
-    <div
-      class="absolute inset-0 bg-gradient-to-t from-azul-marino-950/80 via-transparent to-azul-marino-950/20"
-    >
-    </div>
-    <!-- Subtle color tint -->
-    <div class="absolute inset-0 bg-azul-oceano-900/10 mix-blend-multiply">
-    </div>
-  </div>
+  </ShapeDividerBottom>
 
   <!-- Decorative Elements -->
   <div
@@ -378,14 +388,14 @@ import SplitText from "@components/SplitText.astro";
   </div>
 
   <!-- Scroll Indicator -->
-  <div class="relative z-30 pb-6 flex justify-center">
+  <div class="relative z-30 pb-16 flex justify-center">
     <a
       href="#servicios"
       class="pointer-events-auto cursor-pointer flex flex-col items-center gap-1 group no-underline"
     >
       <span
         class="text-[8px] md:text-xs font-bold uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        >Descubrir más</span
+        >Descubrir mas</span
       >
       <Icon
         name="tabler:chevron-down"
@@ -393,6 +403,7 @@ import SplitText from "@components/SplitText.astro";
       />
     </a>
   </div>
+
 </section>
 
 <style>
@@ -402,20 +413,6 @@ import SplitText from "@components/SplitText.astro";
     stroke-dasharray: 300;
     stroke-dashoffset: 300;
     animation: drawRoute 8s ease-in-out infinite;
-  }
-
-  .hero-bg-clip {
-    clip-path: polygon(
-      0 0,
-      100% 0,
-      100% calc(100% - 50px),
-      calc(50% + 250px) calc(100% - 50px),
-      calc(50% + 220px) 100%,
-      calc(50% - 220px) 100%,
-      calc(50% - 250px) calc(100% - 50px),
-      0 calc(100% - 50px)
-    );
-    filter: drop-shadow(0 0 2px rgba(111, 182, 63, 0.5));
   }
 
   @keyframes drawRoute {
