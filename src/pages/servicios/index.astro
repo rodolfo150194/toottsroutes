@@ -1,0 +1,131 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@sections/Header.astro";
+import Footer from "@sections/Footer.astro";
+import PageCTA from "@components/PageCTA.astro";
+import { Icon } from "astro-icon/components";
+
+const services = [
+  {
+    title: "Transporte Maritimo",
+    description: "Contenedores FCL y LCL con cobertura global. Especialistas en carga refrigerada para alimentos con monitoreo 24/7.",
+    image: "/images/barco.jpg",
+    icon: "tabler:ship",
+    href: "/servicios/maritimo",
+    features: ["Contenedores refrigerados", "120+ puertos", "Tracking GPS"],
+  },
+  {
+    title: "Transporte Aereo",
+    description: "Envios express en 24-48h para cargas urgentes. Sin minimo de peso, desde paqueteria hasta cargas completas.",
+    image: "/images/carga.jpg",
+    icon: "tabler:plane",
+    href: "/servicios/aereo",
+    features: ["Entrega 48h", "85+ aeropuertos", "Carga perecedera"],
+  },
+  {
+    title: "Transporte Terrestre",
+    description: "Distribucion puerta a puerta en Peninsula y Europa. Flota propia con vehiculos refrigerados.",
+    image: "/images/envio-paquetes.jpg",
+    icon: "tabler:truck",
+    href: "/servicios/terrestre",
+    features: ["Puerta a puerta", "Flota propia", "Cadena de frio"],
+  },
+  {
+    title: "Almacenamiento",
+    description: "Bodegas con temperatura controlada desde -25C. Certificaciones IFS, BRC y APPCC para seguridad alimentaria.",
+    image: "/images/almacen.jpg",
+    icon: "tabler:building-warehouse",
+    href: "/servicios/almacenamiento",
+    features: ["-25C a +15C", "29K m2", "Gestion WMS"],
+  },
+];
+---
+
+<Layout>
+  <Header />
+
+  <!-- Hero -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-azul-marino-950 overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-verde-global-500/10 rounded-full blur-[120px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 md:px-8 text-center">
+      <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6">
+        <Icon name="tabler:packages" class="w-4 h-4 text-verde-global-400" />
+        <span class="text-azul-marino-100 text-xs tracking-wide">Soluciones Logisticas</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        Nuestros <span class="text-verde-global-500">Servicios</span>
+      </h1>
+
+      <p class="text-azul-marino-200 text-lg max-w-2xl mx-auto leading-relaxed">
+        Soluciones integrales de transporte y almacenamiento especializadas en el sector alimentario.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="relative py-20 md:py-28 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        {services.map((service) => (
+          <a
+            href={service.href}
+            class="group bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-lg shadow-azul-marino-950/5 hover:shadow-2xl hover:border-verde-global-500/30 transition-all duration-500"
+          >
+            <!-- Image -->
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src={service.image}
+                alt={service.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-azul-marino-950/60 to-transparent"></div>
+
+              <!-- Icon Badge -->
+              <div class="absolute bottom-4 left-4 w-14 h-14 bg-verde-global-500 rounded-2xl flex items-center justify-center shadow-lg shadow-verde-global-500/30 group-hover:scale-110 transition-transform">
+                <Icon name={service.icon} class="w-7 h-7 text-white" />
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6 md:p-8">
+              <h2 class="text-2xl font-bold text-azul-marino-950 mb-3 group-hover:text-verde-global-600 transition-colors">
+                {service.title}
+              </h2>
+
+              <p class="text-azul-marino-500 leading-relaxed mb-6">
+                {service.description}
+              </p>
+
+              <!-- Features -->
+              <div class="flex flex-wrap gap-2 mb-6">
+                {service.features.map((feature) => (
+                  <span class="bg-azul-marino-50 text-azul-marino-600 text-sm px-3 py-1 rounded-full">
+                    {feature}
+                  </span>
+                ))}
+              </div>
+
+              <!-- CTA -->
+              <div class="flex items-center gap-2 text-verde-global-600 font-bold group-hover:text-verde-global-500 transition-colors">
+                <span>Ver detalles</span>
+                <Icon name="tabler:arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PageCTA
+    title="No sabes que servicio necesitas?"
+    description="Cuentanos tu caso y te recomendamos la mejor solucion para tu negocio."
+    primaryText="Contactar Asesor"
+    primaryHref="/contacto"
+  />
+
+  <Footer />
+</Layout>

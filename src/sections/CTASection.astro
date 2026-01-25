@@ -1,0 +1,167 @@
+---
+import { Icon } from "astro-icon/components";
+
+const benefits = [
+  { icon: "tabler:clock-24", text: "Atencion 24/7" },
+  { icon: "tabler:shield-check", text: "Carga Asegurada" },
+  { icon: "tabler:map-pin", text: "Rastreo GPS" },
+];
+---
+
+<section id="cotizar" class="relative py-24 md:py-32 overflow-hidden">
+  <!-- Background Gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-azul-marino-950 via-azul-marino-900 to-azul-oceano-900"></div>
+
+  <!-- Decorative Elements -->
+  <div class="absolute inset-0 opacity-[0.02]" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+  <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-verde-global-500/15 rounded-full blur-[150px]"></div>
+  <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-azul-oceano-500/20 rounded-full blur-[120px]"></div>
+
+  <!-- Animated Routes SVG -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+    <svg class="absolute w-full h-full" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="ctaRouteGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#6FB63F;stop-opacity:0"></stop>
+          <stop offset="50%" style="stop-color:#6FB63F;stop-opacity:0.8"></stop>
+          <stop offset="100%" style="stop-color:#6FB63F;stop-opacity:0"></stop>
+        </linearGradient>
+      </defs>
+      <path
+        d="M-100,300 Q200,100 400,300 T800,300 T1300,300"
+        stroke="url(#ctaRouteGreen)"
+        stroke-width="2"
+        fill="none"
+        class="cta-route"
+      ></path>
+      <path
+        d="M-100,400 Q300,200 500,350 T900,250 T1300,350"
+        stroke="url(#ctaRouteGreen)"
+        stroke-width="1.5"
+        fill="none"
+        class="cta-route"
+        style="animation-delay: 1s"
+      ></path>
+    </svg>
+  </div>
+
+  <div class="relative max-w-5xl mx-auto px-4 md:px-8">
+    <div class="text-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-verde-global-500/20 backdrop-blur-sm border border-verde-global-500/30 rounded-full px-5 py-2.5 mb-8 cta-element">
+        <div class="w-2 h-2 bg-verde-global-400 rounded-full animate-pulse"></div>
+        <span class="text-verde-global-300 text-sm font-medium tracking-wide">Cotizacion sin compromiso</span>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight cta-element">
+        Conecta tus productos<br />
+        <span class="text-verde-global-400">con el mundo</span>
+      </h2>
+
+      <!-- Description -->
+      <p class="text-azul-marino-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed cta-element">
+        Mas de 15 anos moviendo alimentos con precision. Solicita tu cotizacion personalizada y recibe respuesta en menos de 2 horas.
+      </p>
+
+      <!-- Benefits Row -->
+      <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-12 cta-element">
+        {benefits.map((benefit) => (
+          <div class="flex items-center gap-2 text-azul-marino-200">
+            <Icon name={benefit.icon} class="w-5 h-5 text-verde-global-400" />
+            <span class="text-sm font-medium">{benefit.text}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16 cta-element">
+        <a
+          href="#formulario"
+          class="group inline-flex items-center justify-center gap-3 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-5 px-10 rounded-xl transition-all duration-300 shadow-2xl shadow-verde-global-500/30 hover:shadow-verde-global-400/50 hover:-translate-y-1"
+        >
+          <span class="text-lg">Solicitar Cotizacion</span>
+          <Icon name="tabler:arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+        </a>
+
+        <a
+          href="tel:+34555540069"
+          class="group inline-flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/40 text-white font-bold py-5 px-10 rounded-xl transition-all duration-300"
+        >
+          <Icon name="tabler:phone" class="w-6 h-6 text-verde-global-400" />
+          <span class="text-lg">Llamar Ahora</span>
+        </a>
+      </div>
+
+      <!-- Trust Indicators -->
+      <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 pt-10 border-t border-white/10 cta-element">
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-white mb-1">40+</div>
+          <div class="text-azul-marino-400 text-xs uppercase tracking-wider">Paises</div>
+        </div>
+
+        <div class="w-px h-12 bg-white/10 hidden md:block"></div>
+
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-white mb-1">2.5K</div>
+          <div class="text-azul-marino-400 text-xs uppercase tracking-wider">Contenedores/Mes</div>
+        </div>
+
+        <div class="w-px h-12 bg-white/10 hidden md:block"></div>
+
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-white mb-1">99%</div>
+          <div class="text-azul-marino-400 text-xs uppercase tracking-wider">Entregas a Tiempo</div>
+        </div>
+
+        <div class="w-px h-12 bg-white/10 hidden md:block"></div>
+
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-bold text-white mb-1">15+</div>
+          <div class="text-azul-marino-400 text-xs uppercase tracking-wider">Anos Experiencia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "tailwindcss";
+
+  .cta-route {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawCTARoute 6s ease-in-out infinite;
+  }
+
+  @keyframes drawCTARoute {
+    0% { stroke-dashoffset: 400; }
+    50% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -400; }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const elements = document.querySelectorAll(".cta-element");
+
+      elements.forEach((el, index) => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          delay: index * 0.1,
+          ease: "power2.out",
+        });
+      });
+    }
+  });
+</script>

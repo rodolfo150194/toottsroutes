@@ -1,0 +1,225 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@sections/Header.astro";
+import Footer from "@sections/Footer.astro";
+import PageCTA from "@components/PageCTA.astro";
+import { Icon } from "astro-icon/components";
+
+const features = [
+  {
+    icon: "tabler:temperature-snow",
+    title: "Camaras Frigorificas",
+    description: "Almacenamiento refrigerado desde -25C hasta +15C para productos congelados y frescos.",
+  },
+  {
+    icon: "tabler:thermometer",
+    title: "Control de Temperatura",
+    description: "Monitoreo 24/7 con sensores IoT y alertas automaticas ante variaciones.",
+  },
+  {
+    icon: "tabler:certificate",
+    title: "Certificaciones",
+    description: "Instalaciones certificadas IFS, BRC y APPCC para seguridad alimentaria.",
+  },
+  {
+    icon: "tabler:clipboard-data",
+    title: "Gestion de Stock",
+    description: "Sistema WMS para control de inventario en tiempo real con trazabilidad completa.",
+  },
+  {
+    icon: "tabler:package-export",
+    title: "Cross-Docking",
+    description: "Consolidacion y desconsolidacion de cargas para optimizar la distribucion.",
+  },
+  {
+    icon: "tabler:shield-lock",
+    title: "Seguridad 24/7",
+    description: "Vigilancia continua, control de accesos y sistemas contra incendios.",
+  },
+];
+
+const warehouses = [
+  {
+    location: "Madrid",
+    size: "15.000 m2",
+    temps: ["-25C", "+4C", "+15C"],
+    features: ["Cross-docking", "Picking", "Etiquetado"],
+  },
+  {
+    location: "Barcelona",
+    size: "8.000 m2",
+    temps: ["-25C", "+4C"],
+    features: ["Puerto cercano", "Aduana", "FCL/LCL"],
+  },
+  {
+    location: "Valencia",
+    size: "6.000 m2",
+    temps: ["+4C", "+15C"],
+    features: ["Frescos", "Distribucion", "Picking"],
+  },
+];
+
+const stats = [
+  { value: "29K", label: "m2 totales" },
+  { value: "-25C", label: "Temperatura min." },
+  { value: "24/7", label: "Monitoreo" },
+  { value: "3", label: "Ubicaciones" },
+];
+---
+
+<Layout>
+  <Header />
+
+  <!-- Hero -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-azul-marino-950 overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-verde-claro-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-azul-oceano-500/15 rounded-full blur-[100px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6">
+            <Icon name="tabler:building-warehouse" class="w-4 h-4 text-verde-claro-400" />
+            <span class="text-azul-marino-100 text-xs tracking-wide">Almacenamiento</span>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Cadena de frio <span class="text-verde-claro-400">garantizada</span>
+          </h1>
+
+          <p class="text-azul-marino-200 text-lg mb-8 leading-relaxed max-w-xl">
+            Bodegas con temperatura controlada para almacenamiento de alimentos. Desde congelados a -25C hasta productos frescos, con trazabilidad total.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="/contacto" class="inline-flex items-center gap-2 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-4 px-6 rounded-xl transition-colors">
+              <span>Consultar Disponibilidad</span>
+              <Icon name="tabler:arrow-right" class="w-5 h-5" />
+            </a>
+            <a href="tel:+34555540069" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium py-4 px-6 rounded-xl transition-colors">
+              <Icon name="tabler:phone" class="w-5 h-5" />
+              <span>Llamar</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <img
+            src="/images/almacen.jpg"
+            alt="Almacen con temperatura controlada"
+            class="rounded-2xl shadow-2xl shadow-black/30"
+          />
+          <div class="absolute -bottom-6 -left-6 bg-azul-marino-900/90 backdrop-blur-sm border border-azul-oceano-600/30 rounded-xl p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-verde-claro-500/20 rounded-lg flex items-center justify-center">
+                <Icon name="tabler:temperature-snow" class="w-6 h-6 text-verde-claro-400" />
+              </div>
+              <div>
+                <div class="text-white font-bold">-25C a +15C</div>
+                <div class="text-azul-marino-400 text-sm">rango de temperatura</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="relative py-12 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-1">{stat.value}</div>
+            <div class="text-azul-marino-500 text-sm">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="relative py-20 md:py-28 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Instalaciones especializadas
+        </h2>
+        <p class="text-azul-marino-600 max-w-2xl mx-auto">
+          Infraestructura disenada para el almacenamiento seguro de productos alimentarios.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature) => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-verde-claro-500/30 transition-all duration-300 group">
+            <div class="w-14 h-14 bg-azul-marino-50 group-hover:bg-verde-claro-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
+              <Icon name={feature.icon} class="w-7 h-7 text-azul-marino-600 group-hover:text-verde-claro-600 transition-colors" />
+            </div>
+            <h3 class="text-azul-marino-950 font-bold text-lg mb-2">{feature.title}</h3>
+            <p class="text-azul-marino-500 text-sm leading-relaxed">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Warehouses -->
+  <section class="relative py-20 md:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Nuestras instalaciones
+        </h2>
+        <p class="text-azul-marino-600 max-w-2xl mx-auto">
+          Ubicaciones estrategicas para optimizar tu cadena de suministro.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {warehouses.map((warehouse) => (
+          <div class="bg-azul-marino-950 rounded-2xl p-6 text-white">
+            <div class="flex items-center gap-2 mb-4">
+              <Icon name="tabler:map-pin" class="w-5 h-5 text-verde-global-400" />
+              <span class="font-bold text-xl">{warehouse.location}</span>
+            </div>
+
+            <div class="flex items-center gap-2 mb-4">
+              <Icon name="tabler:ruler-2" class="w-4 h-4 text-azul-marino-400" />
+              <span class="text-azul-marino-300">{warehouse.size}</span>
+            </div>
+
+            <div class="mb-4">
+              <div class="text-azul-marino-400 text-xs mb-2">Temperaturas disponibles</div>
+              <div class="flex flex-wrap gap-2">
+                {warehouse.temps.map((temp) => (
+                  <span class="bg-azul-oceano-500/20 text-azul-oceano-300 text-sm px-3 py-1 rounded-full">{temp}</span>
+                ))}
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-azul-marino-800">
+              <div class="text-azul-marino-400 text-xs mb-2">Servicios</div>
+              <div class="flex flex-wrap gap-2">
+                {warehouse.features.map((feat) => (
+                  <span class="bg-verde-global-500/10 text-verde-global-400 text-xs px-2 py-1 rounded">{feat}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Necesitas almacenamiento?"
+    description="Consulta disponibilidad en nuestras instalaciones con temperatura controlada."
+    primaryText="Consultar Disponibilidad"
+    primaryHref="/contacto"
+  />
+
+  <Footer />
+</Layout>

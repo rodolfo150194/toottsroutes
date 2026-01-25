@@ -1,0 +1,296 @@
+---
+import { Icon } from "astro-icon/components";
+
+const services = [
+  {
+    title: "Transporte Maritimo",
+    description: "Contenedores refrigerados y secos para cargas de gran volumen.",
+    image: "/images/barco.jpg",
+    icon: "tabler:ship",
+  },
+  {
+    title: "Almacenamiento",
+    description: "Bodegas con control de temperatura y cadena de frio.",
+    image: "/images/almacen.jpg",
+    icon: "tabler:building-warehouse",
+  },
+  {
+    title: "Transporte Aereo",
+    description: "Entregas express en 48h para envios urgentes.",
+    image: "/images/carga.jpg",
+    icon: "tabler:plane",
+  },
+  {
+    title: "Transporte Terrestre",
+    description: "Distribucion puerta a puerta en toda la peninsula.",
+    image: "/images/envio-paquetes.jpg",
+    icon: "tabler:truck",
+  },
+];
+---
+
+<section id="servicios" class="relative py-20 md:py-32 bg-gray-50">
+ 
+  <div class="relative max-w-7xl mx-auto px-4 md:px-8">
+    <div class="absolute -top-15 left-0 opacity-50 hidden lg:block">
+        <svg width="250" height="250" fill="none" viewBox="0 0 200 200">
+            <defs>
+                <pattern
+                    id="dot-pattern"
+                    x="0"
+                    y="0"
+                    width="25"
+                    height="25"
+                    patternUnits="userSpaceOnUse"
+                >
+                    <circle
+                        cx="2"
+                        cy="2"
+                        r="2"
+                        class="text-verde-global-500"
+                        fill="currentColor"></circle>
+                </pattern>
+            </defs>
+            <rect width="200" height="200" fill="url(#dot-pattern)"></rect>
+        </svg>
+    </div>
+    <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+
+      <!-- Left Content -->
+      <div class="lg:col-span-4 lg:sticky lg:top-32">
+        <!-- Label -->
+        <span class="inline-block text-azul-marino-500 font-bold tracking-[0.2em] uppercase mb-4">
+          Servicios de Envio
+        </span>
+
+        <!-- Heading -->
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-azul-marino-950 leading-tight mb-6">
+          Lo Que Ofrecemos
+        </h2>
+
+        <!-- Description -->
+        <p class="text-azul-marino-600 leading-relaxed mb-8 max-w-sm">
+          Soluciones logisticas integrales para el transporte de alimentos con los mas altos estandares de calidad y seguridad.
+        </p>
+
+        <!-- Navigation -->
+        <div class="flex items-center gap-4">
+          <button
+            id="services-prev"
+            class="w-12 h-12 rounded-full border-2 border-azul-marino-200 hover:border-verde-global-500 hover:bg-verde-global-500 text-azul-marino-400 hover:text-white flex items-center justify-center transition-all duration-300 group"
+            aria-label="Anterior"
+          >
+            <Icon name="tabler:arrow-left" class="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
+          </button>
+
+          <div class="flex items-center gap-1 text-sm font-medium">
+            <span id="services-current" class="text-verde-global-500 text-lg font-bold">01</span>
+            <span class="text-azul-marino-300">/</span>
+            <span class="text-azul-marino-400">0{services.length}</span>
+          </div>
+
+          <button
+            id="services-next"
+            class="w-12 h-12 rounded-full border-2 border-azul-marino-200 hover:border-verde-global-500 hover:bg-verde-global-500 text-azul-marino-400 hover:text-white flex items-center justify-center transition-all duration-300 group"
+            aria-label="Siguiente"
+          >
+            <Icon name="tabler:arrow-right" class="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Content - Cards Slider -->
+      <div class="lg:col-span-8 overflow-hidden">
+       
+        <div
+          id="services-slider"
+          class="flex transition-transform duration-500 ease-out"
+          style="gap: 24px;"
+        >
+        
+          {services.map((service, index) => (
+            <article
+              class="service-card flex-shrink-0 w-[280px] sm:w-[300px] bg-white rounded-2xl shadow-lg shadow-azul-marino-950/5 hover:shadow-xl hover:shadow-azul-marino-950/10 transition-all duration-500 group"
+              data-index={index}
+            >
+              <!-- Image Container -->
+              <div class="relative">
+                <div class="h-48 sm:h-52 overflow-hidden rounded-t-2xl">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-azul-marino-950/30 to-transparent"></div>
+                </div>
+
+                <!-- Icon Badge -->
+                <div class="absolute -bottom-7 left-6 w-14 h-14 bg-verde-global-500 rounded-2xl flex items-center justify-center shadow-lg shadow-verde-global-500/30 group-hover:scale-110 transition-transform duration-300 z-10">
+                  <Icon name={service.icon} class="w-7 h-7 text-white" />
+                </div>
+              </div>
+
+              <!-- Content -->
+              <div class="p-6 pt-12">
+                <h3 class="text-lg font-bold text-azul-marino-950 mb-2 group-hover:text-verde-global-600 transition-colors">
+                  {service.title}
+                </h3>
+                <p class="text-azul-marino-500 text-sm leading-relaxed mb-4">
+                  {service.description}
+                </p>
+                <a
+                  href="#"
+                  class="inline-flex items-center gap-2 text-verde-global-500 hover:text-verde-global-600 text-sm font-semibold transition-colors"
+                >
+                  <span>Leer Mas</span>
+                  <Icon name="tabler:arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              </div>
+            </article>
+          ))}
+
+          <!-- Coming Soon Card -->
+          <article class="service-card flex-shrink-0 w-[280px] sm:w-[300px] rounded-2xl shadow-lg relative overflow-hidden group flex flex-col items-center justify-center text-center p-8">
+             <div class="absolute inset-0 bg-gradient-to-br from-azul-marino-900 via-azul-marino-800 to-azul-marino-950 z-0"></div>
+             
+             <!-- Decorative -->
+             <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 50% 50%, white 1px, transparent 1px); background-size: 20px 20px;"></div>
+             <div class="w-32 h-32 bg-verde-global-500/20 rounded-full blur-[50px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+             
+             <div class="relative z-10 flex flex-col items-center">
+               <div class="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mb-6 ring-1 ring-white/20 group-hover:scale-110 transition-transform duration-300">
+                 <Icon name="tabler:plus" class="w-8 h-8 text-verde-global-400" />
+               </div>
+               
+               <h3 class="text-2xl font-bold text-white mb-2">Pronto más</h3>
+               <p class="text-azul-marino-200 mb-6 font-medium">Servicios especializados</p>
+               
+               <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-verde-global-500/10 border border-verde-global-500/20 text-verde-global-400 text-xs font-bold uppercase tracking-wider">
+                 <span>En desarrollo</span>
+               </div>
+             </div>
+          </article>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="flex justify-center lg:justify-start gap-2 mt-8">
+          {services.map((_, index) => (
+            <button
+              class="service-dot w-2.5 h-2.5 rounded-full bg-azul-marino-200 transition-all duration-300 hover:bg-azul-marino-300"
+              data-index={index}
+              aria-label={`Ir a servicio ${index + 1}`}
+            ></button>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-dot.active {
+    width: 1.5rem;
+    background-color: var(--color-verde-global-500);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slider = document.getElementById("services-slider") as HTMLElement;
+    const prevBtn = document.getElementById("services-prev");
+    const nextBtn = document.getElementById("services-next");
+    const currentDisplay = document.getElementById("services-current");
+    const dots = document.querySelectorAll(".service-dot");
+    const cards = document.querySelectorAll(".service-card");
+
+    if (!slider || !prevBtn || !nextBtn || !currentDisplay) return;
+
+    let currentIndex = 0;
+    const totalCards = cards.length;
+    const gap = 24;
+
+    const getCardWidth = (): number => {
+      const card = cards[0] as HTMLElement;
+      return card ? card.offsetWidth : 300;
+    };
+
+    const getVisibleCards = (): number => {
+      const containerWidth = slider.parentElement?.offsetWidth || 0;
+      const cardWidth = getCardWidth();
+      return Math.floor(containerWidth / (cardWidth + gap)) || 1;
+    };
+
+    const getMaxIndex = (): number => {
+      const visibleCards = getVisibleCards();
+      return Math.max(0, totalCards - visibleCards);
+    };
+
+    const updateSlider = () => {
+      const cardWidth = getCardWidth();
+      const translateX = currentIndex * (cardWidth + gap);
+      slider.style.transform = `translateX(-${translateX}px)`;
+
+      currentDisplay.textContent = (currentIndex + 1).toString().padStart(2, "0");
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentIndex);
+      });
+    };
+
+    const goToSlide = (index: number) => {
+      const maxIndex = getMaxIndex();
+      currentIndex = Math.max(0, Math.min(index, maxIndex));
+      updateSlider();
+    };
+
+    prevBtn.addEventListener("click", () => {
+      goToSlide(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener("click", () => {
+      goToSlide(currentIndex + 1);
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        goToSlide(index);
+      });
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    slider.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
+        }
+      }
+    }, { passive: true });
+
+    // Recalculate on resize
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        goToSlide(currentIndex);
+      }, 100);
+    });
+
+    updateSlider();
+  });
+</script>
+
+

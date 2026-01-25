@@ -2,9 +2,9 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<header class="w-full relative z-50">
+<header id="main-header" class="w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <!-- Top Bar - Dark maritime theme -->
-  <div class="bg-azul-marino-950 text-azul-marino-100 text-[11px] py-2 px-4 md:px-8 border-b border-azul-marino-800/50">
+  <div id="top-bar" class="bg-azul-marino-950 text-azul-marino-100 text-[11px] py-2 px-4 md:px-8 border-b border-azul-marino-800/50 transition-all duration-300 overflow-hidden">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
       <div class="flex items-center gap-5">
         <a href="#" class="opacity-60 hover:opacity-100 hover:text-verde-global-400 transition-all duration-300">
@@ -32,7 +32,7 @@ import { Icon } from 'astro-icon/components';
   </div>
 
   <!-- Main Navigation - Glassmorphism on dark -->
-  <nav class="bg-azul-marino-800/95 backdrop-blur-md border-b border-azul-oceano-600/20 sticky top-0 z-50">
+  <nav class="bg-azul-marino-800/95 backdrop-blur-md border-b border-azul-oceano-600/20">
     <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 md:h-20 flex justify-between items-center">
 
       <!-- Logo -->
@@ -52,15 +52,64 @@ import { Icon } from 'astro-icon/components';
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center gap-1">
         <a href="/" class="nav-link active">Inicio</a>
-        <a href="#servicios" class="nav-link">Servicios</a>
-        <a href="#rastreo" class="nav-link">Rastreo</a>
+
+        <!-- Servicios Dropdown -->
+        <div class="relative group" id="servicios-dropdown">
+          <button class="nav-link flex items-center gap-1">
+            <span>Servicios</span>
+            <Icon name="tabler:chevron-down" class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
+          </button>
+
+          <div class="dropdown-menu absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="bg-azul-marino-900/98 backdrop-blur-xl border border-azul-marino-700/50 rounded-xl shadow-2xl shadow-azul-marino-950/50 py-2 min-w-[220px]">
+              <a href="/servicios" class="dropdown-item">
+                <Icon name="tabler:list" class="w-5 h-5 text-verde-global-400" />
+                <div>
+                  <span class="block font-medium">Todos los Servicios</span>
+                  <span class="text-[11px] text-azul-marino-400">Ver catalogo completo</span>
+                </div>
+              </a>
+              <div class="h-px bg-azul-marino-700/50 my-2 mx-3"></div>
+              <a href="/servicios/maritimo" class="dropdown-item">
+                <Icon name="tabler:ship" class="w-5 h-5 text-azul-oceano-400" />
+                <div>
+                  <span class="block font-medium">Transporte Maritimo</span>
+                  <span class="text-[11px] text-azul-marino-400">Contenedores internacionales</span>
+                </div>
+              </a>
+              <a href="/servicios/aereo" class="dropdown-item">
+                <Icon name="tabler:plane" class="w-5 h-5 text-azul-oceano-400" />
+                <div>
+                  <span class="block font-medium">Transporte Aereo</span>
+                  <span class="text-[11px] text-azul-marino-400">Envios express por peso</span>
+                </div>
+              </a>
+              <a href="/servicios/terrestre" class="dropdown-item">
+                <Icon name="tabler:truck" class="w-5 h-5 text-azul-oceano-400" />
+                <div>
+                  <span class="block font-medium">Transporte Terrestre</span>
+                  <span class="text-[11px] text-azul-marino-400">Distribucion local y regional</span>
+                </div>
+              </a>
+              <a href="/servicios/almacenamiento" class="dropdown-item">
+                <Icon name="tabler:building-warehouse" class="w-5 h-5 text-azul-oceano-400" />
+                <div>
+                  <span class="block font-medium">Almacenamiento</span>
+                  <span class="text-[11px] text-azul-marino-400">Deposito y gestion de carga</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="/rastreo" class="nav-link">Rastreo</a>
         <a href="#nosotros" class="nav-link">Nosotros</a>
-        <a href="#contacto" class="nav-link">Contacto</a>
+        <a href="/contacto" class="nav-link">Contacto</a>
       </div>
 
       <!-- Actions -->
       <div class="hidden lg:flex items-center gap-4">
-        <button class="p-2.5 text-azul-marino-300 hover:text-verde-global-00 hover:bg-azul-marino-900/80 rounded-lg transition-all duration-200">
+        <button id="search-btn" class="p-2.5 text-azul-marino-300 hover:text-verde-global-400 hover:bg-azul-marino-900/80 rounded-lg transition-all duration-200">
           <Icon name="tabler:search" class="w-5 h-5" />
         </button>
 
@@ -99,16 +148,46 @@ import { Icon } from 'astro-icon/components';
       </button>
     </div>
 
-    <nav class="flex flex-col p-6 gap-2">
+    <nav class="flex flex-col p-6 gap-2 overflow-y-auto">
       <a href="/" class="mobile-nav-link">
         <Icon name="tabler:home" class="w-5 h-5" />
         <span>Inicio</span>
       </a>
-      <a href="#servicios" class="mobile-nav-link">
-        <Icon name="tabler:packages" class="w-5 h-5" />
-        <span>Servicios</span>
-      </a>
-      <a href="#rastreo" class="mobile-nav-link">
+
+      <!-- Mobile Servicios Accordion -->
+      <div class="mobile-accordion">
+        <button id="mobile-servicios-btn" class="mobile-nav-link w-full justify-between">
+          <div class="flex items-center gap-4">
+            <Icon name="tabler:packages" class="w-5 h-5" />
+            <span>Servicios</span>
+          </div>
+          <Icon name="tabler:chevron-down" class="w-5 h-5 transition-transform duration-200" id="mobile-servicios-chevron" />
+        </button>
+        <div id="mobile-servicios-menu" class="hidden pl-9 mt-1 flex flex-col gap-1">
+          <a href="/servicios" class="mobile-sub-link">
+            <Icon name="tabler:list" class="w-4 h-4 text-verde-global-400" />
+            <span>Todos los Servicios</span>
+          </a>
+          <a href="/servicios/maritimo" class="mobile-sub-link">
+            <Icon name="tabler:ship" class="w-4 h-4 text-azul-oceano-400" />
+            <span>Transporte Maritimo</span>
+          </a>
+          <a href="/servicios/aereo" class="mobile-sub-link">
+            <Icon name="tabler:plane" class="w-4 h-4 text-azul-oceano-400" />
+            <span>Transporte Aereo</span>
+          </a>
+          <a href="/servicios/terrestre" class="mobile-sub-link">
+            <Icon name="tabler:truck" class="w-4 h-4 text-azul-oceano-400" />
+            <span>Transporte Terrestre</span>
+          </a>
+          <a href="/servicios/almacenamiento" class="mobile-sub-link">
+            <Icon name="tabler:building-warehouse" class="w-4 h-4 text-azul-oceano-400" />
+            <span>Almacenamiento</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/rastreo" class="mobile-nav-link">
         <Icon name="tabler:map-pin" class="w-5 h-5" />
         <span>Rastreo</span>
       </a>
@@ -116,7 +195,7 @@ import { Icon } from 'astro-icon/components';
         <Icon name="tabler:users" class="w-5 h-5" />
         <span>Nosotros</span>
       </a>
-      <a href="#contacto" class="mobile-nav-link">
+      <a href="/contacto" class="mobile-nav-link">
         <Icon name="tabler:mail" class="w-5 h-5" />
         <span>Contacto</span>
       </a>
@@ -134,6 +213,51 @@ import { Icon } from 'astro-icon/components';
           <span>+34 555 540 069</span>
         </a>
       </div>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div id="search-overlay" class="fixed inset-0 bg-azul-marino-950/95 backdrop-blur-xl z-[70] opacity-0 invisible transition-all duration-300 flex items-start justify-center pt-24">
+    <div class="w-full max-w-2xl mx-4">
+      <div class="bg-azul-marino-900/80 border border-azul-marino-700/50 rounded-2xl shadow-2xl shadow-azul-marino-950/50 p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-white font-semibold text-lg">Buscar en el sitio</h3>
+          <button id="close-search-btn" class="p-2 text-azul-marino-300 hover:text-white hover:bg-azul-marino-800/50 rounded-lg transition-colors">
+            <Icon name="tabler:x" class="w-5 h-5" />
+          </button>
+        </div>
+
+        <form id="search-form" action="/buscar" method="GET" class="space-y-4">
+          <div class="relative">
+            <Icon name="tabler:search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-azul-marino-400" />
+            <input
+              type="text"
+              name="q"
+              id="search-input"
+              placeholder="Buscar servicios, rastreo, informacion..."
+              autocomplete="off"
+              class="w-full bg-azul-marino-800/60 border border-azul-marino-600/50 text-white placeholder-azul-marino-400 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/50 transition-all duration-200"
+            />
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="text-azul-marino-400 text-sm">Busquedas populares:</span>
+            <a href="/servicios/maritimo" class="search-tag">Transporte Maritimo</a>
+            <a href="/rastreo" class="search-tag">Rastrear Envio</a>
+            <a href="/servicios/aereo" class="search-tag">Envio Aereo</a>
+            <a href="/contacto" class="search-tag">Cotizacion</a>
+          </div>
+
+          <button type="submit" class="w-full flex items-center justify-center gap-2 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-3.5 px-6 rounded-xl transition-colors">
+            <Icon name="tabler:search" class="w-5 h-5" />
+            <span>Buscar</span>
+          </button>
+        </form>
+      </div>
+
+      <p class="text-center text-azul-marino-500 text-sm mt-4">
+        Presiona <kbd class="px-2 py-1 bg-azul-marino-800 rounded text-azul-marino-300 text-xs">ESC</kbd> para cerrar
+      </p>
     </div>
   </div>
 </header>
@@ -174,12 +298,52 @@ import { Icon } from 'astro-icon/components';
     color: white;
     background-color: rgba(11, 42, 60, 0.5);
   }
+
+  .mobile-sub-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-sm;
+    color: var(--color-azul-marino-300);
+  }
+
+  .mobile-sub-link:hover {
+    color: white;
+    background-color: rgba(11, 42, 60, 0.5);
+  }
+
+  .dropdown-item {
+    @apply flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-all duration-200;
+    color: var(--color-azul-marino-200);
+  }
+
+  .dropdown-item:hover {
+    color: white;
+    background-color: rgba(11, 42, 60, 0.6);
+  }
+
+  .search-tag {
+    @apply px-3 py-1.5 text-xs rounded-lg transition-all duration-200;
+    background-color: rgba(11, 42, 60, 0.6);
+    color: var(--color-azul-marino-300);
+  }
+
+  .search-tag:hover {
+    background-color: var(--color-verde-global-500);
+    color: var(--color-azul-marino-950);
+  }
 </style>
 
 <script>
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const closeMenuBtn = document.getElementById('close-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  const header = document.getElementById('main-header');
+  const topBar = document.getElementById('top-bar');
+  const searchBtn = document.getElementById('search-btn');
+  const closeSearchBtn = document.getElementById('close-search-btn');
+  const searchOverlay = document.getElementById('search-overlay');
+  const searchInput = document.getElementById('search-input');
+  const mobileServiciosBtn = document.getElementById('mobile-servicios-btn');
+  const mobileServiciosMenu = document.getElementById('mobile-servicios-menu');
+  const mobileServiciosChevron = document.getElementById('mobile-servicios-chevron');
 
   if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener('click', () => {
@@ -197,6 +361,88 @@ import { Icon } from 'astro-icon/components';
         mobileMenu.classList.add('translate-x-full');
         document.body.style.overflow = '';
       });
+    });
+  }
+
+  if (mobileServiciosBtn && mobileServiciosMenu && mobileServiciosChevron) {
+    mobileServiciosBtn.addEventListener('click', () => {
+      const isOpen = !mobileServiciosMenu.classList.contains('hidden');
+
+      if (isOpen) {
+        mobileServiciosMenu.classList.add('hidden');
+        mobileServiciosChevron.classList.remove('rotate-180');
+      } else {
+        mobileServiciosMenu.classList.remove('hidden');
+        mobileServiciosChevron.classList.add('rotate-180');
+      }
+    });
+  }
+
+  function openSearch() {
+    if (searchOverlay && searchInput) {
+      searchOverlay.classList.remove('opacity-0', 'invisible');
+      searchOverlay.classList.add('opacity-100', 'visible');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => searchInput.focus(), 100);
+    }
+  }
+
+  function closeSearch() {
+    if (searchOverlay) {
+      searchOverlay.classList.add('opacity-0', 'invisible');
+      searchOverlay.classList.remove('opacity-100', 'visible');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (searchBtn) {
+    searchBtn.addEventListener('click', openSearch);
+  }
+
+  if (closeSearchBtn) {
+    closeSearchBtn.addEventListener('click', closeSearch);
+  }
+
+  if (searchOverlay) {
+    searchOverlay.addEventListener('click', (e) => {
+      if (e.target === searchOverlay) {
+        closeSearch();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeSearch();
+      if (mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+        mobileMenu.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      }
+    }
+
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      openSearch();
+    }
+  });
+
+  if (header && topBar) {
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll > 100) {
+        topBar.style.maxHeight = '0';
+        topBar.style.paddingTop = '0';
+        topBar.style.paddingBottom = '0';
+        topBar.style.borderBottomWidth = '0';
+        header.classList.add('shadow-lg', 'shadow-azul-marino-950/50');
+      } else {
+        topBar.style.maxHeight = '50px';
+        topBar.style.paddingTop = '';
+        topBar.style.paddingBottom = '';
+        topBar.style.borderBottomWidth = '';
+        header.classList.remove('shadow-lg', 'shadow-azul-marino-950/50');
+      }
     });
   }
 </script>

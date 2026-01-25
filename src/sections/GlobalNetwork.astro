@@ -1,0 +1,181 @@
+---
+import { Icon } from "astro-icon/components";
+
+const stats = [
+  { value: "40+", label: "Paises", icon: "tabler:world" },
+  { value: "120+", label: "Puertos", icon: "tabler:anchor" },
+  { value: "85+", label: "Aeropuertos", icon: "tabler:plane-arrival" },
+  { value: "24/7", label: "Monitoreo", icon: "tabler:radar-2" },
+];
+
+const features = [
+  {
+    title: "Rutas Optimizadas",
+    description: "Algoritmos inteligentes que seleccionan la mejor ruta segun tiempo, costo y condiciones climaticas.",
+    icon: "tabler:route",
+  },
+  {
+    title: "Hubs Estrategicos",
+    description: "Centros de distribucion en Madrid, Rotterdam, Miami y Shanghai para conexiones rapidas.",
+    icon: "tabler:building-warehouse",
+  },
+  {
+    title: "Tracking Global",
+    description: "Visibilidad completa de tu carga con actualizaciones en tiempo real via GPS y satelite.",
+    icon: "tabler:gps",
+  },
+];
+---
+
+<section id="cobertura" class="relative py-24 md:py-32 bg-gray-50 overflow-hidden">
+  <!-- Decorative Elements -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-verde-global-500/5 rounded-full blur-[100px]"></div>
+  <div class="absolute bottom-0 left-0 w-80 h-80 bg-azul-oceano-500/5 rounded-full blur-[80px]"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 md:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12 md:mb-16">
+      <div class="inline-flex items-center gap-2 bg-azul-marino-100 rounded-full px-4 py-2 mb-6">
+        <Icon name="tabler:world" class="w-4 h-4 text-azul-marino-600" />
+        <span class="text-azul-marino-700 text-xs tracking-wide font-medium">Cobertura Mundial</span>
+      </div>
+
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-azul-marino-950 mb-6">
+        Tu carga, <span class="text-verde-global-500">sin fronteras</span>
+      </h2>
+
+      <p class="text-azul-marino-600 text-lg max-w-2xl mx-auto leading-relaxed">
+        Una red logistica que conecta continentes. Desde el origen hasta el destino, tu mercancia viaja por las rutas mas eficientes del planeta.
+      </p>
+    </div>
+
+    <!-- Main Image Container -->
+    <div class="relative mb-16 network-image">
+      <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-black/30">
+        <!-- Image -->
+        <img
+          src="/images/mapa-barco.png"
+          alt="Red global de rutas maritimas con barco de contenedores"
+          class="w-full h-auto object-cover"
+        />
+
+        <!-- Gradient Overlays -->
+        <div class="absolute inset-0 bg-gradient-to-t from-azul-marino-950 via-transparent to-azul-marino-950/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-azul-marino-950/50 via-transparent to-azul-marino-950/50"></div>
+
+        <!-- Stats Overlay -->
+        <div class="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {stats.map((stat, index) => (
+              <div
+                class="stat-card bg-azul-marino-950/80 backdrop-blur-md border border-azul-oceano-600/20 rounded-xl p-4 md:p-6 text-center hover:border-verde-global-500/40 transition-all duration-300"
+                style={`--delay: ${index * 100}ms`}
+              >
+                <Icon name={stat.icon} class="w-6 h-6 text-verde-global-400 mx-auto mb-2" />
+                <div class="text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</div>
+                <div class="text-azul-marino-400 text-xs uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Floating Badge -->
+        <div class="absolute top-6 right-6 md:top-10 md:right-10">
+          <div class="bg-verde-global-500 text-azul-marino-950 font-bold text-xs md:text-sm px-4 py-2 rounded-full shadow-lg shadow-verde-global-500/30 flex items-center gap-2">
+            <span class="w-2 h-2 bg-azul-marino-950 rounded-full animate-pulse"></span>
+            Red Activa 24/7
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+      {features.map((feature, index) => (
+        <div
+          class="feature-card group relative bg-white border border-gray-100 rounded-2xl p-6 md:p-8 shadow-lg shadow-azul-marino-950/5 hover:shadow-xl hover:border-verde-global-500/30 transition-all duration-300"
+          style={`--delay: ${index * 150}ms`}
+        >
+          <!-- Icon -->
+          <div class="w-14 h-14 bg-azul-marino-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-verde-global-500/10 transition-all duration-300">
+            <Icon name={feature.icon} class="w-7 h-7 text-azul-marino-600 group-hover:text-verde-global-600 transition-colors" />
+          </div>
+
+          <!-- Content -->
+          <h3 class="text-xl font-bold text-azul-marino-950 mb-3 group-hover:text-verde-global-600 transition-colors">
+            {feature.title}
+          </h3>
+
+          <p class="text-azul-marino-500 text-sm leading-relaxed">
+            {feature.description}
+          </p>
+
+          <!-- Decorative Corner -->
+          <div class="absolute top-0 right-0 w-20 h-20 overflow-hidden rounded-tr-2xl">
+            <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-verde-global-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-12 md:mt-16">
+      <a
+        href="#cotizar"
+        class="inline-flex items-center gap-2 text-verde-global-600 hover:text-verde-global-500 font-medium transition-colors group"
+      >
+        <span>Ver todas nuestras rutas</span>
+        <Icon name="tabler:arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from(".network-image", {
+        scrollTrigger: {
+          trigger: "#cobertura",
+          start: "top 70%",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+      });
+
+      const statCards = document.querySelectorAll(".stat-card");
+      statCards.forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.5,
+          delay: index * 0.1,
+          ease: "power2.out",
+        });
+      });
+
+      const featureCards = document.querySelectorAll(".feature-card");
+      featureCards.forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          delay: index * 0.15,
+          ease: "power2.out",
+        });
+      });
+    }
+  });
+</script>

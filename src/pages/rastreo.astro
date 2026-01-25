@@ -1,0 +1,648 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@sections/Header.astro";
+import Footer from "@sections/Footer.astro";
+import PageCTA from "@components/PageCTA.astro";
+import { Icon } from "astro-icon/components";
+
+const trackingData = {
+  "RR-MAR-2024-78542": {
+    type: "maritimo",
+    typeLabel: "Transporte Maritimo",
+    typeIcon: "tabler:ship",
+    status: "in_transit",
+    statusLabel: "En Transito",
+    statusColor: "bg-azul-oceano-500",
+    progress: 65,
+    origin: {
+      city: "Shanghai",
+      country: "China",
+      port: "Puerto de Shanghai",
+      date: "2024-01-10",
+    },
+    destination: {
+      city: "Valencia",
+      country: "Espana",
+      port: "Puerto de Valencia",
+      estimatedDate: "2024-02-15",
+    },
+    details: {
+      container: "MSKU7234567",
+      containerType: "40' Refrigerado",
+      weight: "18,500 kg",
+      volume: "67.5 m3",
+      vessel: "MSC AURORA",
+      voyage: "AE241W",
+    },
+    timeline: [
+      { date: "2024-01-10", time: "08:30", location: "Shanghai, China", event: "Carga recibida en puerto de origen", status: "completed", icon: "tabler:package" },
+      { date: "2024-01-10", time: "14:00", location: "Shanghai, China", event: "Inspeccion aduanera completada", status: "completed", icon: "tabler:clipboard-check" },
+      { date: "2024-01-11", time: "06:00", location: "Shanghai, China", event: "Contenedor cargado en buque MSC AURORA", status: "completed", icon: "tabler:crane" },
+      { date: "2024-01-11", time: "18:00", location: "Shanghai, China", event: "Zarpe del puerto de origen", status: "completed", icon: "tabler:ship" },
+      { date: "2024-01-18", time: "10:00", location: "Singapur", event: "Transito por Puerto de Singapur", status: "completed", icon: "tabler:map-pin" },
+      { date: "2024-01-25", time: "15:30", location: "Oceano Indico", event: "En navegacion - Posicion actual", status: "current", icon: "tabler:ship" },
+      { date: "2024-02-05", time: "--:--", location: "Canal de Suez, Egipto", event: "Transito programado", status: "pending", icon: "tabler:route" },
+      { date: "2024-02-12", time: "--:--", location: "Mar Mediterraneo", event: "Aproximacion a destino", status: "pending", icon: "tabler:ship" },
+      { date: "2024-02-15", time: "--:--", location: "Valencia, Espana", event: "Llegada estimada a puerto destino", status: "pending", icon: "tabler:anchor" },
+    ],
+  },
+  "RR-AER-2024-12983": {
+    type: "aereo",
+    typeLabel: "Transporte Aereo",
+    typeIcon: "tabler:plane",
+    status: "delivered",
+    statusLabel: "Entregado",
+    statusColor: "bg-verde-global-500",
+    progress: 100,
+    origin: {
+      city: "Miami",
+      country: "Estados Unidos",
+      port: "Aeropuerto MIA",
+      date: "2024-01-20",
+    },
+    destination: {
+      city: "Madrid",
+      country: "Espana",
+      port: "Aeropuerto MAD",
+      estimatedDate: "2024-01-22",
+    },
+    details: {
+      awb: "125-45678901",
+      pieces: "12 bultos",
+      weight: "485 kg",
+      volume: "2.8 m3",
+      flight: "IB6124 / IB3456",
+      service: "Express Priority",
+    },
+    timeline: [
+      { date: "2024-01-20", time: "09:00", location: "Miami, USA", event: "Carga recibida en almacen aereo", status: "completed", icon: "tabler:package" },
+      { date: "2024-01-20", time: "12:30", location: "Miami, USA", event: "Documentacion y despacho aduanero", status: "completed", icon: "tabler:file-check" },
+      { date: "2024-01-20", time: "18:00", location: "Miami, USA", event: "Carga embarcada en vuelo IB6124", status: "completed", icon: "tabler:plane-departure" },
+      { date: "2024-01-21", time: "08:45", location: "Madrid, Espana", event: "Llegada a aeropuerto destino", status: "completed", icon: "tabler:plane-arrival" },
+      { date: "2024-01-21", time: "11:00", location: "Madrid, Espana", event: "Despacho aduanero completado", status: "completed", icon: "tabler:clipboard-check" },
+      { date: "2024-01-21", time: "14:30", location: "Madrid, Espana", event: "Carga en reparto local", status: "completed", icon: "tabler:truck-delivery" },
+      { date: "2024-01-22", time: "10:15", location: "Madrid, Espana", event: "Entregado al destinatario", status: "completed", icon: "tabler:circle-check" },
+    ],
+  },
+  "RR-TER-2024-45621": {
+    type: "terrestre",
+    typeLabel: "Transporte Terrestre",
+    typeIcon: "tabler:truck",
+    status: "customs",
+    statusLabel: "En Aduana",
+    statusColor: "bg-amber-500",
+    progress: 45,
+    origin: {
+      city: "Hamburgo",
+      country: "Alemania",
+      port: "Centro Logistico HH",
+      date: "2024-01-22",
+    },
+    destination: {
+      city: "Barcelona",
+      country: "Espana",
+      port: "Centro Distribucion BCN",
+      estimatedDate: "2024-01-26",
+    },
+    details: {
+      plate: "M-4521-KL",
+      trailer: "R-7845-BC",
+      weight: "12,300 kg",
+      pallets: "24 pallets",
+      driver: "Carlos M.",
+      route: "HH-FR-BCN",
+    },
+    timeline: [
+      { date: "2024-01-22", time: "06:00", location: "Hamburgo, Alemania", event: "Carga completada en origen", status: "completed", icon: "tabler:package" },
+      { date: "2024-01-22", time: "07:30", location: "Hamburgo, Alemania", event: "Salida hacia destino", status: "completed", icon: "tabler:truck" },
+      { date: "2024-01-23", time: "14:00", location: "Frankfurt, Alemania", event: "Parada de descanso reglamentaria", status: "completed", icon: "tabler:coffee" },
+      { date: "2024-01-24", time: "09:00", location: "Frontera FR-ES", event: "Control aduanero en curso", status: "current", icon: "tabler:building-customs" },
+      { date: "2024-01-25", time: "--:--", location: "Zaragoza, Espana", event: "Transito programado", status: "pending", icon: "tabler:map-pin" },
+      { date: "2024-01-26", time: "--:--", location: "Barcelona, Espana", event: "Entrega estimada", status: "pending", icon: "tabler:home" },
+    ],
+  },
+  "RR-MAR-2024-33109": {
+    type: "maritimo",
+    typeLabel: "Transporte Maritimo",
+    typeIcon: "tabler:ship",
+    status: "loading",
+    statusLabel: "En Carga",
+    statusColor: "bg-purple-500",
+    progress: 15,
+    origin: {
+      city: "Santos",
+      country: "Brasil",
+      port: "Puerto de Santos",
+      date: "2024-01-28",
+    },
+    destination: {
+      city: "Rotterdam",
+      country: "Paises Bajos",
+      port: "Puerto de Rotterdam",
+      estimatedDate: "2024-02-25",
+    },
+    details: {
+      container: "TCLU9876543",
+      containerType: "20' Dry Standard",
+      weight: "8,200 kg",
+      volume: "28.3 m3",
+      vessel: "EVERGREEN EVER ACE",
+      voyage: "SA024E",
+    },
+    timeline: [
+      { date: "2024-01-26", time: "10:00", location: "Sao Paulo, Brasil", event: "Recogida en origen", status: "completed", icon: "tabler:truck" },
+      { date: "2024-01-27", time: "08:00", location: "Santos, Brasil", event: "Llegada a terminal portuaria", status: "completed", icon: "tabler:building" },
+      { date: "2024-01-28", time: "11:30", location: "Santos, Brasil", event: "En proceso de carga al buque", status: "current", icon: "tabler:crane" },
+      { date: "2024-01-28", time: "20:00", location: "Santos, Brasil", event: "Zarpe programado", status: "pending", icon: "tabler:ship" },
+      { date: "2024-02-10", time: "--:--", location: "Atlantico Sur", event: "Navegacion transatlantica", status: "pending", icon: "tabler:ship" },
+      { date: "2024-02-25", time: "--:--", location: "Rotterdam, Paises Bajos", event: "Llegada estimada", status: "pending", icon: "tabler:anchor" },
+    ],
+  },
+};
+
+const statusConfig = {
+  loading: { label: "En Carga", color: "text-purple-500", bg: "bg-purple-500/10" },
+  in_transit: { label: "En Transito", color: "text-azul-oceano-500", bg: "bg-azul-oceano-500/10" },
+  customs: { label: "En Aduana", color: "text-amber-500", bg: "bg-amber-500/10" },
+  delivered: { label: "Entregado", color: "text-verde-global-500", bg: "bg-verde-global-500/10" },
+  delayed: { label: "Retrasado", color: "text-red-500", bg: "bg-red-500/10" },
+};
+
+const exampleTrackings = Object.keys(trackingData);
+---
+
+<Layout>
+  <Header />
+
+  <!-- Hero -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-azul-marino-950 overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <div class="absolute top-1/4 left-0 w-96 h-96 bg-azul-oceano-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-verde-global-500/10 rounded-full blur-[100px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6">
+          <Icon name="tabler:map-pin" class="w-4 h-4 text-verde-global-400" />
+          <span class="text-azul-marino-100 text-xs tracking-wide">Seguimiento en tiempo real</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          Rastrea tu <span class="text-verde-global-500">envio</span>
+        </h1>
+
+        <p class="text-azul-marino-200 text-lg max-w-2xl mx-auto leading-relaxed">
+          Introduce tu numero de seguimiento para conocer el estado actual de tu carga en tiempo real.
+        </p>
+      </div>
+
+      <!-- Search Form -->
+      <div class="max-w-2xl mx-auto">
+        <form id="tracking-form" class="relative">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-1">
+              <Icon name="tabler:search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-azul-marino-400" />
+              <input
+                type="text"
+                id="tracking-input"
+                name="tracking"
+                placeholder="Ej: RR-MAR-2024-78542"
+                class="w-full bg-azul-marino-800/60 border border-azul-marino-600/50 text-white placeholder-azul-marino-400 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/50 transition-all duration-200"
+              />
+            </div>
+            <button
+              type="submit"
+              class="bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-4 px-8 rounded-xl transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
+            >
+              <Icon name="tabler:search" class="w-5 h-5" />
+              <span>Rastrear</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="mt-6 text-center">
+          <p class="text-azul-marino-400 text-sm mb-3">Prueba con estos codigos de ejemplo:</p>
+          <div class="flex flex-wrap justify-center gap-2">
+            {exampleTrackings.map((code) => (
+              <button
+                class="example-tracking px-3 py-1.5 bg-azul-marino-800/50 hover:bg-azul-marino-700/50 border border-azul-marino-600/30 rounded-lg text-azul-marino-200 text-xs font-mono transition-colors"
+                data-tracking={code}
+              >
+                {code}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section id="results-section" class="py-16 md:py-24 bg-gray-50 hidden">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <!-- Tracking Card -->
+      <div id="tracking-result" class="bg-white border border-gray-100 rounded-3xl shadow-xl shadow-azul-marino-950/5 overflow-hidden">
+        <!-- Header -->
+        <div id="result-header" class="bg-azul-marino-950 p-6 md:p-8">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div id="type-icon-container" class="w-14 h-14 bg-azul-marino-800 rounded-xl flex items-center justify-center">
+                <Icon name="tabler:ship" id="type-icon" class="w-7 h-7 text-verde-global-400" />
+              </div>
+              <div>
+                <p class="text-azul-marino-400 text-sm" id="result-type">Transporte Maritimo</p>
+                <p class="text-white font-bold text-xl font-mono" id="result-tracking">RR-MAR-2024-78542</p>
+              </div>
+            </div>
+            <div id="status-badge" class="inline-flex items-center gap-2 bg-azul-oceano-500/20 text-azul-oceano-400 px-4 py-2 rounded-full">
+              <span class="w-2 h-2 rounded-full bg-azul-oceano-400 animate-pulse"></span>
+              <span class="font-medium" id="result-status">En Transito</span>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="mt-6">
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-azul-marino-400">Progreso del envio</span>
+              <span class="text-white font-medium" id="progress-percent">65%</span>
+            </div>
+            <div class="h-2 bg-azul-marino-800 rounded-full overflow-hidden">
+              <div id="progress-bar" class="h-full bg-verde-global-500 rounded-full transition-all duration-500" style="width: 65%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Route Info -->
+        <div class="p-6 md:p-8 border-b border-gray-100">
+          <div class="grid md:grid-cols-3 gap-6 items-center">
+            <!-- Origin -->
+            <div class="text-center md:text-left">
+              <p class="text-azul-marino-400 text-sm mb-1">Origen</p>
+              <p class="text-azul-marino-950 font-bold text-lg" id="origin-city">Shanghai, China</p>
+              <p class="text-azul-marino-500 text-sm" id="origin-port">Puerto de Shanghai</p>
+              <p class="text-azul-marino-400 text-xs mt-1" id="origin-date">Salida: 10 Ene 2024</p>
+            </div>
+
+            <!-- Route Visual -->
+            <div class="flex items-center justify-center gap-2">
+              <div class="h-px flex-1 bg-azul-marino-200 hidden md:block"></div>
+              <div class="w-10 h-10 bg-verde-global-500/10 rounded-full flex items-center justify-center">
+                <Icon name="tabler:arrow-right" class="w-5 h-5 text-verde-global-600" />
+              </div>
+              <div class="h-px flex-1 bg-azul-marino-200 hidden md:block"></div>
+            </div>
+
+            <!-- Destination -->
+            <div class="text-center md:text-right">
+              <p class="text-azul-marino-400 text-sm mb-1">Destino</p>
+              <p class="text-azul-marino-950 font-bold text-lg" id="dest-city">Valencia, Espana</p>
+              <p class="text-azul-marino-500 text-sm" id="dest-port">Puerto de Valencia</p>
+              <p class="text-verde-global-600 text-xs mt-1 font-medium" id="dest-date">Llegada est.: 15 Feb 2024</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="p-6 md:p-8 bg-gray-50/50">
+          <h3 class="text-azul-marino-950 font-bold mb-4">Detalles del Envio</h3>
+          <div id="details-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Details will be populated by JS -->
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="p-6 md:p-8">
+          <h3 class="text-azul-marino-950 font-bold mb-6">Historial de Seguimiento</h3>
+          <div id="timeline" class="space-y-0">
+            <!-- Timeline items will be populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <button
+          id="print-btn"
+          class="inline-flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-azul-marino-300 text-azul-marino-700 font-medium py-3 px-6 rounded-xl transition-colors"
+        >
+          <Icon name="tabler:printer" class="w-5 h-5" />
+          <span>Imprimir</span>
+        </button>
+        <button
+          id="share-btn"
+          class="inline-flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-azul-marino-300 text-azul-marino-700 font-medium py-3 px-6 rounded-xl transition-colors"
+        >
+          <Icon name="tabler:share" class="w-5 h-5" />
+          <span>Compartir</span>
+        </button>
+        <a
+          href="/contacto"
+          class="inline-flex items-center justify-center gap-2 bg-azul-marino-950 hover:bg-azul-marino-800 text-white font-medium py-3 px-6 rounded-xl transition-colors"
+        >
+          <Icon name="tabler:message-circle" class="w-5 h-5" />
+          <span>Contactar Soporte</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Not Found Section -->
+  <section id="not-found-section" class="py-16 md:py-24 bg-gray-50 hidden">
+    <div class="max-w-xl mx-auto px-4 md:px-8 text-center">
+      <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <Icon name="tabler:package-off" class="w-10 h-10 text-red-500" />
+      </div>
+      <h2 class="text-2xl font-bold text-azul-marino-950 mb-4">Envio no encontrado</h2>
+      <p class="text-azul-marino-500 mb-8">
+        No hemos encontrado ningun envio con el codigo de seguimiento proporcionado.
+        Verifica que el codigo sea correcto o contacta con nuestro equipo de soporte.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button
+          id="try-again-btn"
+          class="inline-flex items-center justify-center gap-2 bg-azul-marino-950 hover:bg-azul-marino-800 text-white font-medium py-3 px-6 rounded-xl transition-colors"
+        >
+          <Icon name="tabler:refresh" class="w-5 h-5" />
+          <span>Intentar de nuevo</span>
+        </button>
+        <a
+          href="/contacto"
+          class="inline-flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-azul-marino-300 text-azul-marino-700 font-medium py-3 px-6 rounded-xl transition-colors"
+        >
+          <Icon name="tabler:headset" class="w-5 h-5" />
+          <span>Contactar Soporte</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Section -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Como funciona el rastreo?
+        </h2>
+        <p class="text-azul-marino-500 max-w-2xl mx-auto">
+          Nuestro sistema de seguimiento te mantiene informado en cada etapa del viaje de tu carga.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center p-6">
+          <div class="w-16 h-16 bg-azul-oceano-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:qrcode" class="w-8 h-8 text-azul-oceano-600" />
+          </div>
+          <h3 class="text-azul-marino-950 font-bold text-lg mb-2">1. Codigo Unico</h3>
+          <p class="text-azul-marino-500 text-sm">
+            Al confirmar tu envio, recibes un codigo de seguimiento unico que identifica tu carga.
+          </p>
+        </div>
+
+        <div class="text-center p-6">
+          <div class="w-16 h-16 bg-verde-global-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:broadcast" class="w-8 h-8 text-verde-global-600" />
+          </div>
+          <h3 class="text-azul-marino-950 font-bold text-lg mb-2">2. Actualizaciones</h3>
+          <p class="text-azul-marino-500 text-sm">
+            Registramos cada movimiento: carga, transitos, aduanas y entrega final.
+          </p>
+        </div>
+
+        <div class="text-center p-6">
+          <div class="w-16 h-16 bg-azul-marino-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:bell-ringing" class="w-8 h-8 text-azul-marino-600" />
+          </div>
+          <h3 class="text-azul-marino-950 font-bold text-lg mb-2">3. Notificaciones</h3>
+          <p class="text-azul-marino-500 text-sm">
+            Recibe alertas por email o SMS en eventos importantes de tu envio.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Necesitas ayuda con tu envio?"
+    description="Nuestro equipo de soporte esta disponible 24/7 para resolver cualquier duda."
+    primaryText="Contactar Soporte"
+    primaryHref="/contacto"
+    secondaryText="Llamar Ahora"
+    secondaryHref="tel:+34555540069"
+  />
+
+  <Footer />
+</Layout>
+
+<script define:vars={{ trackingData, statusConfig }}>
+  const form = document.getElementById('tracking-form');
+  const input = document.getElementById('tracking-input');
+  const resultsSection = document.getElementById('results-section');
+  const notFoundSection = document.getElementById('not-found-section');
+  const exampleButtons = document.querySelectorAll('.example-tracking');
+  const tryAgainBtn = document.getElementById('try-again-btn');
+
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+  }
+
+  function getStatusBadgeClasses(status) {
+    const configs = {
+      loading: 'bg-purple-500/20 text-purple-400',
+      in_transit: 'bg-azul-oceano-500/20 text-azul-oceano-400',
+      customs: 'bg-amber-500/20 text-amber-400',
+      delivered: 'bg-verde-global-500/20 text-verde-global-400',
+      delayed: 'bg-red-500/20 text-red-400',
+    };
+    return configs[status] || configs.in_transit;
+  }
+
+  function getProgressBarColor(status) {
+    const colors = {
+      loading: 'bg-purple-500',
+      in_transit: 'bg-azul-oceano-500',
+      customs: 'bg-amber-500',
+      delivered: 'bg-verde-global-500',
+      delayed: 'bg-red-500',
+    };
+    return colors[status] || 'bg-verde-global-500';
+  }
+
+  function renderDetails(details, type) {
+    const detailsGrid = document.getElementById('details-grid');
+    const labels = {
+      container: 'Contenedor',
+      containerType: 'Tipo',
+      weight: 'Peso',
+      volume: 'Volumen',
+      vessel: 'Buque',
+      voyage: 'Viaje',
+      awb: 'AWB',
+      pieces: 'Bultos',
+      flight: 'Vuelo',
+      service: 'Servicio',
+      plate: 'Matricula',
+      trailer: 'Remolque',
+      pallets: 'Pallets',
+      driver: 'Conductor',
+      route: 'Ruta',
+    };
+
+    detailsGrid.innerHTML = Object.entries(details).map(([key, value]) => `
+      <div class="bg-white border border-gray-100 rounded-xl p-4">
+        <p class="text-azul-marino-400 text-xs mb-1">${labels[key] || key}</p>
+        <p class="text-azul-marino-950 font-medium">${value}</p>
+      </div>
+    `).join('');
+  }
+
+  function renderTimeline(timeline) {
+    const timelineContainer = document.getElementById('timeline');
+
+    timelineContainer.innerHTML = timeline.map((item, index) => {
+      const isLast = index === timeline.length - 1;
+      const statusClasses = {
+        completed: 'bg-verde-global-500 text-white',
+        current: 'bg-azul-oceano-500 text-white ring-4 ring-azul-oceano-500/20',
+        pending: 'bg-gray-200 text-gray-400',
+      };
+      const textClasses = {
+        completed: 'text-azul-marino-950',
+        current: 'text-azul-marino-950 font-semibold',
+        pending: 'text-azul-marino-400',
+      };
+
+      return `
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center ${statusClasses[item.status]}">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                ${item.status === 'completed' ? '<path d="M5 12l5 5L20 7"/>' : '<circle cx="12" cy="12" r="3"/>'}
+              </svg>
+            </div>
+            ${!isLast ? `<div class="w-0.5 h-full min-h-[60px] ${item.status === 'pending' ? 'bg-gray-200' : 'bg-verde-global-500'}"></div>` : ''}
+          </div>
+          <div class="pb-8">
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span class="text-azul-marino-400 text-sm">${item.date}</span>
+              <span class="text-azul-marino-300">|</span>
+              <span class="text-azul-marino-400 text-sm">${item.time}</span>
+            </div>
+            <p class="${textClasses[item.status]}">${item.event}</p>
+            <p class="text-azul-marino-500 text-sm">${item.location}</p>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function showResults(data, trackingCode) {
+    notFoundSection.classList.add('hidden');
+    resultsSection.classList.remove('hidden');
+
+    document.getElementById('result-type').textContent = data.typeLabel;
+    document.getElementById('result-tracking').textContent = trackingCode;
+    document.getElementById('result-status').textContent = data.statusLabel;
+    document.getElementById('progress-percent').textContent = `${data.progress}%`;
+    document.getElementById('progress-bar').style.width = `${data.progress}%`;
+    document.getElementById('progress-bar').className = `h-full ${getProgressBarColor(data.status)} rounded-full transition-all duration-500`;
+
+    const statusBadge = document.getElementById('status-badge');
+    statusBadge.className = `inline-flex items-center gap-2 ${getStatusBadgeClasses(data.status)} px-4 py-2 rounded-full`;
+
+    document.getElementById('origin-city').textContent = `${data.origin.city}, ${data.origin.country}`;
+    document.getElementById('origin-port').textContent = data.origin.port;
+    document.getElementById('origin-date').textContent = `Salida: ${formatDate(data.origin.date)}`;
+
+    document.getElementById('dest-city').textContent = `${data.destination.city}, ${data.destination.country}`;
+    document.getElementById('dest-port').textContent = data.destination.port;
+    document.getElementById('dest-date').textContent = `Llegada est.: ${formatDate(data.destination.estimatedDate)}`;
+
+    renderDetails(data.details, data.type);
+    renderTimeline(data.timeline);
+
+    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function showNotFound() {
+    resultsSection.classList.add('hidden');
+    notFoundSection.classList.remove('hidden');
+    notFoundSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function search(trackingCode) {
+    const code = trackingCode.trim().toUpperCase();
+    if (!code) return;
+
+    const data = trackingData[code];
+    if (data) {
+      showResults(data, code);
+    } else {
+      showNotFound();
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    search(input.value);
+  });
+
+  exampleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const code = btn.dataset.tracking;
+      input.value = code;
+      search(code);
+    });
+  });
+
+  tryAgainBtn.addEventListener('click', () => {
+    notFoundSection.classList.add('hidden');
+    input.focus();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.getElementById('print-btn').addEventListener('click', () => {
+    window.print();
+  });
+
+  document.getElementById('share-btn').addEventListener('click', async () => {
+    const url = window.location.href;
+    const tracking = input.value;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `Rastreo de envio ${tracking}`,
+          text: `Sigue el estado de tu envio ${tracking} en Rootts & Routes`,
+          url: url + '?tracking=' + tracking,
+        });
+      } catch (err) {
+        console.log('Share cancelled');
+      }
+    } else {
+      navigator.clipboard.writeText(url + '?tracking=' + tracking);
+      alert('Enlace copiado al portapapeles');
+    }
+  });
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const trackingParam = urlParams.get('tracking');
+  if (trackingParam) {
+    input.value = trackingParam;
+    search(trackingParam);
+  }
+</script>
+
+<style>
+  @media print {
+    header, footer, #not-found-section, .example-tracking, button, a[href="/contacto"] {
+      display: none !important;
+    }
+
+    section:first-of-type {
+      padding-top: 1rem !important;
+    }
+  }
+</style>

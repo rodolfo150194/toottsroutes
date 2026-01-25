@@ -1,0 +1,145 @@
+---
+import { Icon } from "astro-icon/components";
+
+const features = [
+    {
+        title: "Licencias y Certificaciones",
+        description:
+            "Operamos bajo normativas internacionales con certificaciones ISO y licencias OEA para garantizar la seguridad de tu carga.",
+        icon: "tabler:certificate",
+    },
+    {
+        title: "Nuestros Objetivos",
+        description:
+            "Comprometidos con la excelencia operativa, la sostenibilidad y la satisfacción total del cliente en cada kilómetro.",
+        icon: "tabler:target-arrow",
+    },
+];
+---
+
+<section class="relative py-10 md:py-15 bg-gray-50 overflow-hidden" id="about">
+    <div class="container mx-auto px-4 md:px-8">
+        <div class="grid lg:grid-cols-2 gap-5 lg:gap-5 items-center">
+            <!-- Left Column: Content -->
+            <div class="relative z-10 order-2 lg:order-1">
+                <!-- Header -->
+                <div class="inline-flex items-center gap-2 mb-6">
+                    <Icon
+                        name="tabler:package"
+                        class="w-5 h-5 text-verde-global-500"
+                    />
+                    <span
+                        class="text-verde-global-500 font-bold text-sm tracking-widest uppercase"
+                        >Sobre Nosotros</span
+                    >
+                </div>
+
+                <p class="text-azul-marino-600 text-lg leading-relaxed mb-10">
+                    En Roots y Routes Foods S.L.U, transformamos la complejidad
+                    logistica en oportunidades de crecimiento. Con una
+                    infraestructura solida y tecnologia de punta, movemos tu
+                    carga con precision y seguridad.
+                </p>
+
+                <!-- Feature Cards -->
+                <div class="space-y-6 mb-10">
+                    {
+                        features.map((feature) => (
+                            <div class="flex items-start gap-5 p-6 bg-white shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                                <div class="shrink-0 w-14 h-14 bg-azul-marino-50 rounded-xl flex items-center justify-center text-azul-marino-500">
+                                    <Icon name={feature.icon} class="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-azul-marino-950 mb-2">
+                                        {feature.title}
+                                    </h3>
+                                    <p class="text-azul-marino-500 text-sm leading-relaxed">
+                                        {feature.description}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <!-- CTA Button -->
+                <a
+                    href="#contacto"
+                    class="inline-flex items-center gap-2 bg-azul-marino-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-azul-marino-600 transition-colors shadow-lg shadow-azul-marino-500/25"
+                >
+                    <span>Mas Sobre Nosotros</span>
+                    <Icon name="tabler:arrow-right" class="w-5 h-5" />
+                </a>
+            </div>
+
+            <!-- Right Column: Dual Images -->
+            <div
+                class="relative z-10 order-1 lg:order-2 flex justify-center lg:justify-end gap-4 md:gap-6"
+            >
+                <div class="absolute -bottom-10 -left-10 opacity-50 lg:block">
+                    <img
+                        src="/images/circle2.png"
+                        alt="shape-circle2"
+                        class="w-3/4 object-cover"
+                    />
+                </div>
+                
+                <!-- Image 1 (Left, Higher) -->
+                <div class="w-1/2 max-w-[280px] about-img-top">
+                    <img
+                        src="/images/contenedores-avion-paquetes.jpg"
+                        alt="Operaciones Logisticas"
+                        class="w-full h-[350px] md:h-[550px] object-cover rounded-[2rem] shadow-2xl"
+                    />
+                </div>
+
+                <!-- Image 2 (Right, Lower) -->
+                <div
+                    class="w-1/2 max-w-[280px] mt-12 md:mt-20 about-img-bottom"
+                >
+                    <img
+                        src="/images/almacen.jpg"
+                        alt="Personal Experto"
+                        class="w-full h-[350px] md:h-[550px] object-cover rounded-[2rem] shadow-2xl"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        if (
+            typeof gsap !== "undefined" &&
+            typeof ScrollTrigger !== "undefined"
+        ) {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Animate Top Image (Down)
+            gsap.from(".about-img-top", {
+                scrollTrigger: {
+                    trigger: "#about",
+                    start: "top 75%",
+                },
+                y: -50,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out",
+            });
+
+            // Animate Bottom Image (Up)
+            gsap.from(".about-img-bottom", {
+                scrollTrigger: {
+                    trigger: "#about",
+                    start: "top 75%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out",
+                delay: 0.2, // Stagger slightly
+            });
+        }
+    });
+</script>

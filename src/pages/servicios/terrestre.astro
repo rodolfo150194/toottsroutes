@@ -1,0 +1,191 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@sections/Header.astro";
+import Footer from "@sections/Footer.astro";
+import PageCTA from "@components/PageCTA.astro";
+import { Icon } from "astro-icon/components";
+
+const features = [
+  {
+    icon: "tabler:home",
+    title: "Puerta a Puerta",
+    description: "Recogemos en origen y entregamos directamente en el destino final.",
+  },
+  {
+    icon: "tabler:truck-delivery",
+    title: "Flota Especializada",
+    description: "Vehiculos refrigerados, isotermos y de carga seca para cada necesidad.",
+  },
+  {
+    icon: "tabler:map-route",
+    title: "Cobertura Nacional",
+    description: "Distribucion en toda la Peninsula Iberica y conexiones con Europa.",
+  },
+  {
+    icon: "tabler:clock-check",
+    title: "Entregas Programadas",
+    description: "Horarios flexibles adaptados a las necesidades de tu negocio.",
+  },
+  {
+    icon: "tabler:temperature-snow",
+    title: "Cadena de Frio",
+    description: "Control de temperatura continuo desde la recogida hasta la entrega.",
+  },
+  {
+    icon: "tabler:device-mobile",
+    title: "Notificaciones",
+    description: "Alertas en tiempo real sobre el estado de tu envio via SMS o app.",
+  },
+];
+
+const coverage = [
+  { region: "Peninsula Iberica", time: "24-48h", description: "Espana y Portugal completos" },
+  { region: "Francia", time: "48-72h", description: "Todas las regiones" },
+  { region: "Benelux", time: "48-72h", description: "Belgica, Holanda, Luxemburgo" },
+  { region: "Alemania", time: "72-96h", description: "Principales ciudades" },
+  { region: "Italia", time: "72-96h", description: "Norte y centro" },
+  { region: "Reino Unido", time: "72-96h", description: "Via ferry o tunel" },
+];
+
+const stats = [
+  { value: "24h", label: "Entrega local" },
+  { value: "150+", label: "Vehiculos" },
+  { value: "100%", label: "Cobertura nacional" },
+  { value: "GPS", label: "Tracking total" },
+];
+---
+
+<Layout>
+  <Header />
+
+  <!-- Hero -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-azul-marino-950 overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-verde-global-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-azul-oceano-500/15 rounded-full blur-[100px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6">
+            <Icon name="tabler:truck" class="w-4 h-4 text-verde-global-400" />
+            <span class="text-azul-marino-100 text-xs tracking-wide">Transporte Terrestre</span>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Distribucion <span class="text-verde-global-500">puerta a puerta</span>
+          </h1>
+
+          <p class="text-azul-marino-200 text-lg mb-8 leading-relaxed max-w-xl">
+            Transporte terrestre en toda la Peninsula y Europa. Flota propia con vehiculos refrigerados para mantener la cadena de frio de tus alimentos.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="/contacto" class="inline-flex items-center gap-2 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-4 px-6 rounded-xl transition-colors">
+              <span>Solicitar Recogida</span>
+              <Icon name="tabler:arrow-right" class="w-5 h-5" />
+            </a>
+            <a href="tel:+34555540069" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium py-4 px-6 rounded-xl transition-colors">
+              <Icon name="tabler:phone" class="w-5 h-5" />
+              <span>Llamar</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <img
+            src="/images/envio-paquetes.jpg"
+            alt="Transporte terrestre de mercancias"
+            class="rounded-2xl shadow-2xl shadow-black/30"
+          />
+          <div class="absolute -bottom-6 -left-6 bg-azul-marino-900/90 backdrop-blur-sm border border-azul-oceano-600/30 rounded-xl p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-verde-global-500/20 rounded-lg flex items-center justify-center">
+                <Icon name="tabler:truck" class="w-6 h-6 text-verde-global-400" />
+              </div>
+              <div>
+                <div class="text-white font-bold">Flota 150+ vehiculos</div>
+                <div class="text-azul-marino-400 text-sm">refrigerados y secos</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="relative py-12 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-1">{stat.value}</div>
+            <div class="text-azul-marino-500 text-sm">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="relative py-20 md:py-28 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Servicio completo de distribucion
+        </h2>
+        <p class="text-azul-marino-600 max-w-2xl mx-auto">
+          Logistica terrestre adaptada a las necesidades del sector alimentario.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature) => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-verde-global-500/30 transition-all duration-300 group">
+            <div class="w-14 h-14 bg-azul-marino-50 group-hover:bg-verde-global-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
+              <Icon name={feature.icon} class="w-7 h-7 text-azul-marino-600 group-hover:text-verde-global-600 transition-colors" />
+            </div>
+            <h3 class="text-azul-marino-950 font-bold text-lg mb-2">{feature.title}</h3>
+            <p class="text-azul-marino-500 text-sm leading-relaxed">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage -->
+  <section class="relative py-20 md:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Zonas de cobertura
+        </h2>
+        <p class="text-azul-marino-600 max-w-2xl mx-auto">
+          Tiempos de transito estimados desde Espana.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {coverage.map((zone) => (
+          <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:bg-white hover:shadow-lg transition-all duration-300">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-azul-marino-950 font-bold text-lg">{zone.region}</h3>
+              <span class="bg-verde-global-500/10 text-verde-global-600 text-sm font-bold px-3 py-1 rounded-full">{zone.time}</span>
+            </div>
+            <p class="text-azul-marino-500 text-sm">{zone.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Necesitas distribucion local?"
+    description="Organizamos la recogida y entrega de tu mercancia en toda Europa."
+    primaryText="Programar Recogida"
+    primaryHref="/contacto"
+  />
+
+  <Footer />
+</Layout>

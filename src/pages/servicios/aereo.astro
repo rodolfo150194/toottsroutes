@@ -1,0 +1,206 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@sections/Header.astro";
+import Footer from "@sections/Footer.astro";
+import PageCTA from "@components/PageCTA.astro";
+import { Icon } from "astro-icon/components";
+
+const features = [
+  {
+    icon: "tabler:clock-bolt",
+    title: "Entrega Express 48h",
+    description: "Envios urgentes con entrega garantizada en 24-48 horas a destinos principales.",
+  },
+  {
+    icon: "tabler:temperature-snow",
+    title: "Carga Perecedera",
+    description: "Contenedores con temperatura controlada para alimentos frescos y congelados.",
+  },
+  {
+    icon: "tabler:package",
+    title: "Sin Minimo de Peso",
+    description: "Desde 1kg hasta cargas completas. Precio por peso volumetrico o real.",
+  },
+  {
+    icon: "tabler:plane-arrival",
+    title: "85+ Aeropuertos",
+    description: "Red global con conexiones a los principales hubs aereos del mundo.",
+  },
+  {
+    icon: "tabler:file-check",
+    title: "Despacho Aduanero",
+    description: "Gestion integral de documentacion y tramites de importacion/exportacion.",
+  },
+  {
+    icon: "tabler:gps",
+    title: "Tracking Completo",
+    description: "Seguimiento en tiempo real desde la recogida hasta la entrega final.",
+  },
+];
+
+const pricing = [
+  { weight: "1-5 kg", europe: "15-25 EUR/kg", america: "18-30 EUR/kg", asia: "20-35 EUR/kg" },
+  { weight: "5-20 kg", europe: "10-18 EUR/kg", america: "14-24 EUR/kg", asia: "16-28 EUR/kg" },
+  { weight: "20-100 kg", europe: "7-12 EUR/kg", america: "10-18 EUR/kg", asia: "12-22 EUR/kg" },
+  { weight: "+100 kg", europe: "Consultar", america: "Consultar", asia: "Consultar" },
+];
+
+const stats = [
+  { value: "48h", label: "Entrega express" },
+  { value: "85+", label: "Aeropuertos" },
+  { value: "1kg", label: "Minimo envio" },
+  { value: "24/7", label: "Tracking" },
+];
+---
+
+<Layout>
+  <Header />
+
+  <!-- Hero -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-azul-marino-950 overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-azul-oceano-500/15 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-verde-global-500/10 rounded-full blur-[100px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6">
+            <Icon name="tabler:plane" class="w-4 h-4 text-azul-oceano-400" />
+            <span class="text-azul-marino-100 text-xs tracking-wide">Transporte Aereo</span>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Velocidad sin <span class="text-azul-oceano-400">limites</span>
+          </h1>
+
+          <p class="text-azul-marino-200 text-lg mb-8 leading-relaxed max-w-xl">
+            Paqueteria aerea express para envios urgentes. Entrega en 24-48h a Europa y 48-72h a destinos intercontinentales con tracking en tiempo real.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="/contacto" class="inline-flex items-center gap-2 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-4 px-6 rounded-xl transition-colors">
+              <span>Cotizar Envio</span>
+              <Icon name="tabler:arrow-right" class="w-5 h-5" />
+            </a>
+            <a href="tel:+34555540069" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium py-4 px-6 rounded-xl transition-colors">
+              <Icon name="tabler:phone" class="w-5 h-5" />
+              <span>Urgente? Llama</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <img
+            src="/images/carga.jpg"
+            alt="Transporte aereo de carga"
+            class="rounded-2xl shadow-2xl shadow-black/30"
+          />
+          <div class="absolute -bottom-6 -left-6 bg-azul-marino-900/90 backdrop-blur-sm border border-azul-oceano-600/30 rounded-xl p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-azul-oceano-500/20 rounded-lg flex items-center justify-center">
+                <Icon name="tabler:plane" class="w-6 h-6 text-azul-oceano-400" />
+              </div>
+              <div>
+                <div class="text-white font-bold">Entrega en 48h</div>
+                <div class="text-azul-marino-400 text-sm">a destinos principales</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="relative py-12 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-1">{stat.value}</div>
+            <div class="text-azul-marino-500 text-sm">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="relative py-20 md:py-28 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Ventajas del transporte aereo
+        </h2>
+        <p class="text-azul-marino-600 max-w-2xl mx-auto">
+          La solucion mas rapida para envios urgentes y productos de alto valor.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature) => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-azul-oceano-500/30 transition-all duration-300 group">
+            <div class="w-14 h-14 bg-azul-marino-50 group-hover:bg-azul-oceano-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
+              <Icon name={feature.icon} class="w-7 h-7 text-azul-marino-600 group-hover:text-azul-oceano-600 transition-colors" />
+            </div>
+            <h3 class="text-azul-marino-950 font-bold text-lg mb-2">{feature.title}</h3>
+            <p class="text-azul-marino-500 text-sm leading-relaxed">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Table -->
+  <section class="relative py-20 md:py-28 bg-white">
+    <div class="max-w-5xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Tarifas orientativas
+        </h2>
+        <p class="text-azul-marino-600 max-w-2xl mx-auto">
+          Precios aproximados por kg. La tarifa final depende del destino exacto y caracteristicas del envio.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-azul-marino-950 text-white">
+              <th class="px-6 py-4 text-left rounded-tl-xl">Peso</th>
+              <th class="px-6 py-4 text-center">Europa</th>
+              <th class="px-6 py-4 text-center">Americas</th>
+              <th class="px-6 py-4 text-center rounded-tr-xl">Asia</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pricing.map((row, index) => (
+              <tr class={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                <td class="px-6 py-4 font-bold text-azul-marino-950">{row.weight}</td>
+                <td class="px-6 py-4 text-center text-azul-marino-600">{row.europe}</td>
+                <td class="px-6 py-4 text-center text-azul-marino-600">{row.america}</td>
+                <td class="px-6 py-4 text-center text-azul-marino-600">{row.asia}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-azul-marino-400 text-sm text-center mt-6">
+        * Los precios pueden variar segun origen, destino y condiciones especiales de la carga.
+      </p>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Envio urgente?"
+    description="Cotiza tu envio aereo y recibe respuesta inmediata."
+    primaryText="Cotizar Ahora"
+    primaryHref="/contacto"
+    secondaryText="Llamar Urgente"
+    secondaryHref="tel:+34555540069"
+  />
+
+  <Footer />
+</Layout>

@@ -1,0 +1,197 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@sections/Header.astro";
+import Footer from "@sections/Footer.astro";
+import PageCTA from "@components/PageCTA.astro";
+import { Icon } from "astro-icon/components";
+
+const features = [
+  {
+    icon: "tabler:container",
+    title: "Contenedores FCL y LCL",
+    description: "Carga completa o consolidada segun tus necesidades. Contenedores de 20' y 40' disponibles.",
+  },
+  {
+    icon: "tabler:temperature-snow",
+    title: "Contenedores Refrigerados",
+    description: "Reefers con control de temperatura desde -25C hasta +25C para productos perecederos.",
+  },
+  {
+    icon: "tabler:gps",
+    title: "Tracking en Tiempo Real",
+    description: "Monitoreo GPS 24/7 con actualizaciones de ubicacion, temperatura y ETA.",
+  },
+  {
+    icon: "tabler:file-certificate",
+    title: "Gestion Aduanera",
+    description: "Tramitacion completa de documentos de importacion y exportacion.",
+  },
+  {
+    icon: "tabler:shield-check",
+    title: "Seguro de Carga",
+    description: "Cobertura all-risk incluida con opcion de seguro adicional.",
+  },
+  {
+    icon: "tabler:clock-24",
+    title: "Soporte 24/7",
+    description: "Equipo dedicado disponible en todo momento para resolver incidencias.",
+  },
+];
+
+const routes = [
+  { origin: "Espana", destinations: ["USA", "Mexico", "Colombia", "Peru", "Chile"], time: "15-25 dias" },
+  { origin: "Espana", destinations: ["China", "Japon", "Corea del Sur", "Singapur"], time: "25-35 dias" },
+  { origin: "Espana", destinations: ["Alemania", "Francia", "Italia", "Paises Bajos"], time: "3-7 dias" },
+];
+
+const stats = [
+  { value: "2.5K+", label: "Contenedores/mes" },
+  { value: "120+", label: "Puertos" },
+  { value: "99%", label: "Entregas a tiempo" },
+  { value: "15+", label: "Anos experiencia" },
+];
+---
+
+<Layout>
+  <Header />
+
+  <!-- Hero -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-azul-marino-950 overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-verde-global-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-azul-oceano-500/15 rounded-full blur-[100px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6">
+            <Icon name="tabler:ship" class="w-4 h-4 text-verde-global-400" />
+            <span class="text-azul-marino-100 text-xs tracking-wide">Transporte Maritimo</span>
+          </div>
+
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Conectamos <span class="text-verde-global-500">continentes</span> por mar
+          </h1>
+
+          <p class="text-azul-marino-200 text-lg mb-8 leading-relaxed max-w-xl">
+            Transporte maritimo de contenedores con cobertura global. Especialistas en carga refrigerada para alimentos con monitoreo de temperatura 24/7.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="/contacto" class="inline-flex items-center gap-2 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-4 px-6 rounded-xl transition-colors">
+              <span>Solicitar Cotizacion</span>
+              <Icon name="tabler:arrow-right" class="w-5 h-5" />
+            </a>
+            <a href="tel:+34555540069" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium py-4 px-6 rounded-xl transition-colors">
+              <Icon name="tabler:phone" class="w-5 h-5" />
+              <span>Llamar</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <img
+            src="/images/barco.jpg"
+            alt="Transporte maritimo de contenedores"
+            class="rounded-2xl shadow-2xl shadow-black/30"
+          />
+          <div class="absolute -bottom-6 -left-6 bg-azul-marino-900/90 backdrop-blur-sm border border-azul-oceano-600/30 rounded-xl p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-verde-global-500/20 rounded-lg flex items-center justify-center">
+                <Icon name="tabler:ship" class="w-6 h-6 text-verde-global-400" />
+              </div>
+              <div>
+                <div class="text-white font-bold">2.5K+ Contenedores</div>
+                <div class="text-azul-marino-400 text-sm">movidos cada mes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="relative py-12 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-1">{stat.value}</div>
+            <div class="text-azul-marino-500 text-sm">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="relative py-20 md:py-28 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Que incluye nuestro servicio
+        </h2>
+        <p class="text-azul-marino-600 max-w-2xl mx-auto">
+          Soluciones completas de transporte maritimo adaptadas a tus necesidades.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature) => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-verde-global-500/30 transition-all duration-300 group">
+            <div class="w-14 h-14 bg-azul-marino-50 group-hover:bg-verde-global-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
+              <Icon name={feature.icon} class="w-7 h-7 text-azul-marino-600 group-hover:text-verde-global-600 transition-colors" />
+            </div>
+            <h3 class="text-azul-marino-950 font-bold text-lg mb-2">{feature.title}</h3>
+            <p class="text-azul-marino-500 text-sm leading-relaxed">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Routes -->
+  <section class="relative py-20 md:py-28 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+          Principales rutas maritimas
+        </h2>
+        <p class="text-azul-marino-600 max-w-2xl mx-auto">
+          Conexiones directas desde Espana a los principales mercados globales.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {routes.map((route) => (
+          <div class="bg-azul-marino-950 rounded-2xl p-6 text-white">
+            <div class="flex items-center gap-2 mb-4">
+              <Icon name="tabler:map-pin" class="w-5 h-5 text-verde-global-400" />
+              <span class="font-bold">{route.origin}</span>
+              <Icon name="tabler:arrow-right" class="w-4 h-4 text-azul-marino-400" />
+            </div>
+            <div class="space-y-2 mb-4">
+              {route.destinations.map((dest) => (
+                <span class="inline-block bg-azul-marino-800 text-azul-marino-200 text-sm px-3 py-1 rounded-full mr-2 mb-2">{dest}</span>
+              ))}
+            </div>
+            <div class="flex items-center gap-2 pt-4 border-t border-azul-marino-800">
+              <Icon name="tabler:clock" class="w-4 h-4 text-verde-global-400" />
+              <span class="text-azul-marino-300 text-sm">Tiempo estimado: {route.time}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Necesitas enviar por mar?"
+    description="Cotiza tu envio maritimo y recibe respuesta en menos de 2 horas."
+    primaryText="Solicitar Cotizacion"
+    primaryHref="/contacto"
+  />
+
+  <Footer />
+</Layout>

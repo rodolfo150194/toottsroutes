@@ -1,0 +1,56 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title?: string;
+  description?: string;
+  primaryText?: string;
+  primaryHref?: string;
+  secondaryText?: string;
+  secondaryHref?: string;
+}
+
+const {
+  title = "Listo para empezar?",
+  description = "Solicita tu cotizacion personalizada y recibe respuesta en menos de 2 horas.",
+  primaryText = "Solicitar Cotizacion",
+  primaryHref = "/contacto",
+  secondaryText = "Llamar Ahora",
+  secondaryHref = "tel:+34555540069",
+} = Astro.props;
+---
+
+<section class="relative py-20 md:py-28 bg-azul-marino-950 overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 opacity-[0.02]" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 1px); background-size: 40px 40px;"></div>
+  <div class="absolute top-0 left-1/4 w-[400px] h-[400px] bg-verde-global-500/10 rounded-full blur-[120px]"></div>
+  <div class="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-azul-oceano-500/15 rounded-full blur-[100px]"></div>
+
+  <div class="relative max-w-4xl mx-auto px-4 md:px-8 text-center">
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+      {title}
+    </h2>
+
+    <p class="text-azul-marino-200 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+      {description}
+    </p>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a
+        href={primaryHref}
+        class="group inline-flex items-center justify-center gap-3 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-xl shadow-verde-global-500/25 hover:shadow-verde-global-400/40"
+      >
+        <span>{primaryText}</span>
+        <Icon name="tabler:arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+      </a>
+
+      <a
+        href={secondaryHref}
+        class="group inline-flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/40 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300"
+      >
+        <Icon name="tabler:phone" class="w-5 h-5 text-verde-global-400" />
+        <span>{secondaryText}</span>
+      </a>
+    </div>
+  </div>
+</section>

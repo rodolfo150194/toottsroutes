@@ -1,0 +1,70 @@
+---
+import { Icon } from "astro-icon/components";
+
+const faqs = [
+  {
+    question: "Cuanto tarda un envio maritimo?",
+    answer: "Europa: 3-7 dias, Americas: 15-25 dias, Asia: 20-35 dias.",
+  },
+  {
+    question: "Garantizan la cadena de frio?",
+    answer: "Si, monitoreo 24/7 con sensores IoT y registro de temperatura.",
+  },
+  {
+    question: "Gestionan la documentacion?",
+    answer: "Completa: certificados, permisos y tramites aduaneros.",
+  },
+  {
+    question: "Puedo rastrear mi envio?",
+    answer: "Si, tracking GPS en tiempo real desde web o app.",
+  },
+  {
+    question: "Hay minimo de peso aereo?",
+    answer: "No, desde 1kg hasta cargas completas.",
+  },
+  {
+    question: "Incluyen seguro?",
+    answer: "Si, basico incluido. Opcion all-risk disponible.",
+  },
+];
+---
+
+<section id="faq" class="relative py-16 md:py-20 bg-gray-50 overflow-hidden">
+  <div class="relative max-w-7xl mx-auto px-4 md:px-8">
+    <div class="grid lg:grid-cols-3 gap-8 lg:gap-12 items-start">
+      <!-- Left: Header -->
+      <div class="lg:sticky lg:top-32">
+        <div class="inline-flex items-center gap-2 bg-azul-marino-100 rounded-full px-4 py-2 mb-4">
+          <Icon name="tabler:help-circle" class="w-4 h-4 text-azul-marino-600" />
+          <span class="text-azul-marino-700 text-xs tracking-wide font-medium">FAQ</span>
+        </div>
+
+        <h2 class="text-2xl md:text-3xl font-bold text-azul-marino-950 mb-4">
+          Preguntas <span class="text-verde-global-500">frecuentes</span>
+        </h2>
+
+        <p class="text-azul-marino-600 text-sm leading-relaxed mb-6">
+          Respuestas rapidas sobre nuestros servicios.
+        </p>
+
+        <a
+          href="/contacto"
+          class="inline-flex items-center gap-2 text-verde-global-600 hover:text-verde-global-500 font-medium text-sm transition-colors"
+        >
+          <span>Mas preguntas? Contactanos</span>
+          <Icon name="tabler:arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
+
+      <!-- Right: FAQ Grid -->
+      <div class="lg:col-span-2 grid sm:grid-cols-2 gap-4">
+        {faqs.map((faq) => (
+          <div class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md hover:border-verde-global-500/30 transition-all duration-300">
+            <h3 class="text-azul-marino-950 font-bold text-sm mb-2">{faq.question}</h3>
+            <p class="text-azul-marino-500 text-sm leading-relaxed">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

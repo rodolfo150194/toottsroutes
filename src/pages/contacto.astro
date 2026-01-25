@@ -1,0 +1,255 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@sections/Header.astro";
+import Footer from "@sections/Footer.astro";
+import PageCTA from "@components/PageCTA.astro";
+import { Icon } from "astro-icon/components";
+
+const contactInfo = [
+  {
+    icon: "tabler:phone",
+    title: "Telefono",
+    value: "+34 555 540 069",
+    href: "tel:+34555540069",
+    description: "Lun - Vie: 8:00 - 20:00",
+  },
+  {
+    icon: "tabler:mail",
+    title: "Email",
+    value: "info@roottsroutes.com",
+    href: "mailto:info@roottsroutes.com",
+    description: "Respuesta en 24h",
+  },
+  {
+    icon: "tabler:map-pin",
+    title: "Oficina Central",
+    value: "Madrid, Espana",
+    href: "#mapa",
+    description: "Calle Logistica 123, 28001",
+  },
+  {
+    icon: "tabler:clock",
+    title: "Horario",
+    value: "24/7 Emergencias",
+    href: "tel:+34555540069",
+    description: "Soporte continuo",
+  },
+];
+---
+
+<Layout>
+  <Header />
+
+  <!-- Hero -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-azul-marino-950 overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <div class="absolute top-1/4 right-0 w-96 h-96 bg-verde-global-500/10 rounded-full blur-[120px]"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 md:px-8 text-center">
+      <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6">
+        <Icon name="tabler:message-circle" class="w-4 h-4 text-verde-global-400" />
+        <span class="text-azul-marino-100 text-xs tracking-wide">Estamos aqui para ayudarte</span>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        Contacta con <span class="text-verde-global-500">nosotros</span>
+      </h1>
+
+      <p class="text-azul-marino-200 text-lg max-w-2xl mx-auto leading-relaxed">
+        Nuestro equipo de expertos esta listo para resolver tus dudas y ofrecerte la mejor solucion logistica.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Info Cards -->
+  <section class="relative py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 -mt-24">
+        {contactInfo.map((info) => (
+          <a
+            href={info.href}
+            class="group bg-white border border-gray-100 rounded-2xl p-6 shadow-xl shadow-azul-marino-950/5 hover:shadow-2xl hover:border-verde-global-500/30 transition-all duration-300"
+          >
+            <div class="w-14 h-14 bg-azul-marino-50 group-hover:bg-verde-global-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
+              <Icon name={info.icon} class="w-7 h-7 text-azul-marino-600 group-hover:text-verde-global-600 transition-colors" />
+            </div>
+            <h3 class="text-azul-marino-400 text-sm mb-1">{info.title}</h3>
+            <p class="text-azul-marino-950 font-bold text-lg mb-2 group-hover:text-verde-global-600 transition-colors">{info.value}</p>
+            <p class="text-azul-marino-500 text-sm">{info.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="relative py-20 md:py-28 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <!-- Form -->
+        <div class="bg-white border border-gray-100 rounded-3xl p-8 md:p-10 shadow-xl shadow-azul-marino-950/5">
+          <h2 class="text-2xl md:text-3xl font-bold text-azul-marino-950 mb-2">
+            Enviar mensaje
+          </h2>
+          <p class="text-azul-marino-500 mb-8">
+            Completa el formulario y te responderemos en menos de 24 horas.
+          </p>
+
+          <form class="space-y-6">
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label for="nombre" class="block text-azul-marino-700 text-sm font-medium mb-2">Nombre</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  required
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  placeholder="Tu nombre"
+                />
+              </div>
+              <div>
+                <label for="empresa" class="block text-azul-marino-700 text-sm font-medium mb-2">Empresa</label>
+                <input
+                  type="text"
+                  id="empresa"
+                  name="empresa"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  placeholder="Nombre de empresa"
+                />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label for="email" class="block text-azul-marino-700 text-sm font-medium mb-2">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  placeholder="tu@email.com"
+                />
+              </div>
+              <div>
+                <label for="telefono" class="block text-azul-marino-700 text-sm font-medium mb-2">Telefono</label>
+                <input
+                  type="tel"
+                  id="telefono"
+                  name="telefono"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  placeholder="+34 600 000 000"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="servicio" class="block text-azul-marino-700 text-sm font-medium mb-2">Servicio de interes</label>
+              <select
+                id="servicio"
+                name="servicio"
+                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+              >
+                <option value="">Seleccionar servicio</option>
+                <option value="maritimo">Transporte Maritimo</option>
+                <option value="aereo">Transporte Aereo</option>
+                <option value="terrestre">Transporte Terrestre</option>
+                <option value="almacenamiento">Almacenamiento</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="mensaje" class="block text-azul-marino-700 text-sm font-medium mb-2">Mensaje</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="4"
+                required
+                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all resize-none"
+                placeholder="Describe tu consulta..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-4 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
+            >
+              <span>Enviar Mensaje</span>
+              <Icon name="tabler:send" class="w-5 h-5" />
+            </button>
+          </form>
+        </div>
+
+        <!-- Info -->
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold text-azul-marino-950 mb-6">
+            Por que elegirnos?
+          </h2>
+
+          <div class="space-y-6 mb-10">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Icon name="tabler:clock-check" class="w-6 h-6 text-verde-global-600" />
+              </div>
+              <div>
+                <h3 class="text-azul-marino-950 font-bold mb-1">Respuesta Rapida</h3>
+                <p class="text-azul-marino-500 text-sm leading-relaxed">Cotizaciones en menos de 2 horas y soporte 24/7 para emergencias.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Icon name="tabler:shield-check" class="w-6 h-6 text-verde-global-600" />
+              </div>
+              <div>
+                <h3 class="text-azul-marino-950 font-bold mb-1">Carga Asegurada</h3>
+                <p class="text-azul-marino-500 text-sm leading-relaxed">Seguro all-risk incluido en todos nuestros servicios de transporte.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Icon name="tabler:world" class="w-6 h-6 text-verde-global-600" />
+              </div>
+              <div>
+                <h3 class="text-azul-marino-950 font-bold mb-1">Cobertura Global</h3>
+                <p class="text-azul-marino-500 text-sm leading-relaxed">Presencia en mas de 40 paises con hubs estrategicos en 4 continentes.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Icon name="tabler:temperature-snow" class="w-6 h-6 text-verde-global-600" />
+              </div>
+              <div>
+                <h3 class="text-azul-marino-950 font-bold mb-1">Cadena de Frio</h3>
+                <p class="text-azul-marino-500 text-sm leading-relaxed">Especializados en alimentos con control de temperatura certificado.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map placeholder -->
+          <div id="mapa" class="bg-azul-marino-100 rounded-2xl h-64 flex items-center justify-center">
+            <div class="text-center">
+              <Icon name="tabler:map-pin" class="w-12 h-12 text-azul-marino-400 mx-auto mb-2" />
+              <p class="text-azul-marino-500 text-sm">Madrid, Espana</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <PageCTA
+    title="Necesitas una cotizacion urgente?"
+    description="Llamanos directamente y te atendemos al momento."
+    primaryText="Llamar Ahora"
+    primaryHref="tel:+34555540069"
+    secondaryText="WhatsApp"
+    secondaryHref="https://wa.me/34555540069"
+  />
+
+  <Footer />
+</Layout>
