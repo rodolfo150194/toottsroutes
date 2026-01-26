@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import FloatingChat from "@components/FloatingChat.astro";
 ---
 <!doctype html>
 <html lang="en">
@@ -14,6 +15,7 @@ import "@/styles/global.css";
 <div id="background-mask " class="min-h-screen w-full bg-gray-50">
     <slot/>
 </div>
+<FloatingChat />
 </body>
 </html>
 

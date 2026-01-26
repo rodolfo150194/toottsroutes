@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import ShapeDividerTop from "@components/ShapeDividerTop.astro";
 
 const currentYear = new Date().getFullYear();
 
@@ -34,7 +35,12 @@ const socials = [
 ];
 ---
 
-<footer class="relative bg-azul-marino-950 pt-20 pb-8 overflow-hidden">
+<footer class="relative bg-azul-marino-950 pt-32 pb-8 overflow-hidden">
+  <ShapeDividerTop
+    fillColor="#f9fafb"
+    borderColor="#6FB63F"
+  />
+
   <!-- Background Elements -->
   <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
 
