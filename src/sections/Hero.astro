@@ -6,9 +6,9 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
 
 <section
   id="hero"
-  class="relative w-full h-[100svh] z-20 flex flex-col"
+  class="relative w-full min-h-[100svh] z-20 flex flex-col"
 >
-  <!-- Background with Shape Divider -->
+  <!-- Background with Shape Divider - Desktop -->
   <ShapeDividerBottom
     fillColor="transparent"
     borderColor="bg-verde-global-500"
@@ -17,7 +17,7 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
     notchPeak={300}
     notchOffset={5}
     borderSize={6}
-    className="z-[1]"
+    className="z-[1] hidden md:block"
   >
     <div
       id="hero-bg"
@@ -49,19 +49,47 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
     </div>
   </ShapeDividerBottom>
 
-  <!-- Decorative Elements -->
+  <!-- Background with Shape Divider - Mobile -->
+  <ShapeDividerBottom
+    fillColor="transparent"
+    borderColor="bg-verde-global-500"
+    notchHeight={30}
+    notchStart={80}
+    notchPeak={100}
+    notchOffset={3}
+    borderSize={4}
+    className="z-[1] md:hidden"
+  >
+    <div
+      id="hero-bg-mobile"
+      class="absolute inset-0"
+    >
+      <img
+        src="/images/contenedores-avion-paquetes.jpg"
+        alt="Contenedores maritimos internacionales"
+        class="w-full h-full object-cover"
+      />
+      <!-- Stronger gradient for mobile readability -->
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-azul-marino-950/90 via-azul-marino-950/70 to-azul-marino-950/95"
+      >
+      </div>
+    </div>
+  </ShapeDividerBottom>
+
+  <!-- Decorative Elements - Hidden on mobile -->
   <div
-    class="absolute top-1/4 right-[10%] w-64 h-64 bg-verde-global-500/10 rounded-full blur-[100px] z-0"
+    class="hidden md:block absolute top-1/4 right-[10%] w-64 h-64 bg-verde-global-500/10 rounded-full blur-[100px] z-0"
   >
   </div>
   <div
-    class="absolute bottom-1/4 left-[5%] w-48 h-48 bg-azul-oceano-500/15 rounded-full blur-[80px] z-0"
+    class="hidden md:block absolute bottom-1/4 left-[5%] w-48 h-48 bg-azul-oceano-500/15 rounded-full blur-[80px] z-0"
   >
   </div>
 
-  <!-- Shipping routes - left side, converging flow -->
+  <!-- Shipping routes - Hidden on mobile -->
   <div
-    class="absolute inset-y-0 left-0 w-[50%] z-[1] pointer-events-none overflow-hidden"
+    class="hidden md:block absolute inset-y-0 left-0 w-[50%] z-[1] pointer-events-none overflow-hidden"
   >
     <svg
       class="w-full h-full"
@@ -159,25 +187,25 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
 
   <!-- Content Container -->
   <div
-    class="relative z-20 max-w-7xl mx-auto px-4 md:px-8 pt-24 md:pt-32 flex-1 flex items-center"
+    class="relative z-20 max-w-7xl mx-auto px-4 md:px-8 pt-20 md:pt-32 flex-1 flex items-center"
   >
-    <div class="grid lg:grid-cols-5 gap-12 lg:gap-8 items-center w-full">
+    <div class="grid lg:grid-cols-5 gap-8 lg:gap-8 items-center w-full">
       <!-- Left Content -->
       <div class="lg:col-span-3 text-white">
         <!-- Badge -->
         <div
-          class="inline-flex items-center gap-2 bg-azul-marino-800/95 backdrop-blur-sm border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6"
+          class="inline-flex items-center gap-2 bg-azul-marino-800/95 backdrop-blur-sm border border-azul-oceano-600/30 rounded-full px-3 md:px-4 py-1.5 md:py-2 mb-4 md:mb-6"
         >
           <div class="w-2 h-2 bg-verde-global-500 rounded-full animate-pulse">
           </div>
-          <span class="text-azul-marino-100 text-xs tracking-wide"
+          <span class="text-azul-marino-100 text-[10px] md:text-xs tracking-wide"
             >Operando en 40+ paises</span
           >
         </div>
 
         <!-- Heading -->
         <div
-          class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tighter mb-6"
+          class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tighter mb-4 md:mb-6"
         >
           <SplitText
             text="Raices que nos unen"
@@ -188,7 +216,7 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
             stagger={40}
           />
           <span
-            class="text-verde-global-500 block text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+            class="text-verde-global-500 block text-xl sm:text-2xl md:text-4xl lg:text-5xl mt-1"
           >
             <SplitText
               text="rutas que nos"
@@ -199,7 +227,7 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
               stagger={35}
             />
             <span
-              class="inline-flex items-baseline relative ml-3 px-4 py-1"
+              class="inline-flex items-baseline relative ml-1 md:ml-3 px-2 md:px-4 py-0.5 md:py-1"
               data-rotating-container
               data-words='["conectan", "expanden", "acercan"]'
             >
@@ -226,7 +254,7 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
 
         <!-- Description -->
         <p
-          class="text-azul-marino-200 text-base md:text-lg max-w-xl leading-relaxed mb-8"
+          class="text-azul-marino-200 text-sm md:text-lg max-w-xl leading-relaxed mb-6 md:mb-8"
         >
           Logistica internacional especializada en alimentos. Contenedores
           maritimos, paqueteria aerea y transporte local con rastreo en tiempo
@@ -234,72 +262,72 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
         </p>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-wrap gap-4 mb-12">
+        <div class="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-12">
           <a
             href="#cotizar"
-            class="group relative inline-flex items-center gap-3 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-4 px-7 rounded-xl transition-all duration-300 shadow-xl shadow-verde-global-500/25 hover:shadow-verde-global-400/40 hover:-translate-y-0.5"
+            class="group relative inline-flex items-center gap-2 md:gap-3 bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-3 md:py-4 px-5 md:px-7 rounded-xl transition-all duration-300 shadow-xl shadow-verde-global-500/25 hover:shadow-verde-global-400/40 hover:-translate-y-0.5 text-sm md:text-base"
           >
             <span>Cotizar Envio</span>
             <Icon
               name="tabler:arrow-right"
-              class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+              class="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform"
             />
           </a>
 
           <a
             href="#rastreo"
-            class="group inline-flex items-center gap-3 bg-azul-marino-800/95 hover:bg-azul-marino-800 backdrop-blur-sm border border-azul-oceano-600/30 hover:border-azul-oceano-500/50 text-white font-medium py-4 px-7 rounded-xl transition-all duration-300"
+            class="group inline-flex items-center gap-2 md:gap-3 bg-azul-marino-800/95 hover:bg-azul-marino-800 backdrop-blur-sm border border-azul-oceano-600/30 hover:border-azul-oceano-500/50 text-white font-medium py-3 md:py-4 px-5 md:px-7 rounded-xl transition-all duration-300 text-sm md:text-base"
           >
             <Icon
               name="tabler:map-pin-search"
-              class="w-5 h-5 text-verde-global-400"
+              class="w-4 h-4 md:w-5 md:h-5 text-verde-global-400"
             />
-            <span>Rastrear Paquete</span>
+            <span>Rastrear</span>
           </a>
         </div>
 
         <!-- Stats Row -->
-        <div class="flex flex-wrap gap-x-8 gap-y-4">
-          <div class="flex items-center gap-3">
+        <div class="flex flex-wrap gap-x-4 md:gap-x-8 gap-y-3 md:gap-y-4">
+          <div class="flex items-center gap-2 md:gap-3">
             <div
-              class="w-12 h-12 bg-azul-marino-800/95 backdrop-blur-sm border border-azul-oceano-600/20 rounded-xl flex items-center justify-center"
+              class="w-10 h-10 md:w-12 md:h-12 bg-azul-marino-800/95 backdrop-blur-sm border border-azul-oceano-600/20 rounded-lg md:rounded-xl flex items-center justify-center"
             >
-              <Icon name="tabler:ship" class="w-6 h-6 text-verde-global-400" />
+              <Icon name="tabler:ship" class="w-5 h-5 md:w-6 md:h-6 text-verde-global-400" />
             </div>
             <div>
-              <div class="text-white font-bold text-xl">2.5K+</div>
-              <div class="text-azul-marino-400 text-xs tracking-wide">
+              <div class="text-white font-bold text-base md:text-xl">2.5K+</div>
+              <div class="text-azul-marino-400 text-[10px] md:text-xs tracking-wide">
                 Contenedores/mes
               </div>
             </div>
           </div>
 
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 md:gap-3">
             <div
-              class="w-12 h-12 bg-azul-marino-800/95 backdrop-blur-sm border border-azul-oceano-600/20 rounded-xl flex items-center justify-center"
+              class="w-10 h-10 md:w-12 md:h-12 bg-azul-marino-800/95 backdrop-blur-sm border border-azul-oceano-600/20 rounded-lg md:rounded-xl flex items-center justify-center"
             >
-              <Icon name="tabler:plane" class="w-6 h-6 text-azul-oceano-400" />
+              <Icon name="tabler:plane" class="w-5 h-5 md:w-6 md:h-6 text-azul-oceano-400" />
             </div>
             <div>
-              <div class="text-white font-bold text-xl">48h</div>
-              <div class="text-azul-marino-400 text-xs tracking-wide">
+              <div class="text-white font-bold text-base md:text-xl">48h</div>
+              <div class="text-azul-marino-400 text-[10px] md:text-xs tracking-wide">
                 Entrega express
               </div>
             </div>
           </div>
 
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 md:gap-3">
             <div
-              class="w-12 h-12 bg-azul-marino-800/95 backdrop-blur-sm border border-azul-oceano-600/20 rounded-xl flex items-center justify-center"
+              class="w-10 h-10 md:w-12 md:h-12 bg-azul-marino-800/95 backdrop-blur-sm border border-azul-oceano-600/20 rounded-lg md:rounded-xl flex items-center justify-center"
             >
               <Icon
                 name="tabler:thermometer"
-                class="w-6 h-6 text-verde-claro-400"
+                class="w-5 h-5 md:w-6 md:h-6 text-verde-claro-400"
               />
             </div>
             <div>
-              <div class="text-white font-bold text-xl">-25C</div>
-              <div class="text-azul-marino-400 text-xs tracking-wide">
+              <div class="text-white font-bold text-base md:text-xl">-25C</div>
+              <div class="text-azul-marino-400 text-[10px] md:text-xs tracking-wide">
                 Cadena de frio
               </div>
             </div>
@@ -307,8 +335,8 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
         </div>
       </div>
 
-      <!-- Right: Tracking Widget -->
-      <div class="lg:col-span-2">
+      <!-- Right: Tracking Widget - Hidden on mobile, simplified on tablet -->
+      <div class="hidden lg:block lg:col-span-2">
         <div
           class="bg-azul-marino-900/80 backdrop-blur-xl border border-azul-oceano-600/20 rounded-2xl p-6 md:p-8 shadow-2xl shadow-azul-marino-950/50"
         >
@@ -388,13 +416,13 @@ import ShapeDividerBottom from "@components/ShapeDividerBottom.astro";
   </div>
 
   <!-- Scroll Indicator -->
-  <div class="relative z-30 pb-16 flex justify-center">
+  <div class="relative z-30 pb-8 md:pb-16 flex justify-center">
     <a
       href="#servicios"
       class="pointer-events-auto cursor-pointer flex flex-col items-center gap-1 group no-underline"
     >
       <span
-        class="text-[8px] md:text-xs font-bold uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        class="text-[8px] md:text-xs font-bold uppercase tracking-widest text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block"
         >Descubrir mas</span
       >
       <Icon

@@ -70,223 +70,222 @@ const contactInfo = [
   <Header />
 
   <!-- Hero -->
-  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-azul-marino-950 overflow-hidden">
+  <section class="relative pt-24 pb-16 md:pt-40 md:pb-28 bg-azul-marino-950 overflow-hidden">
     <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(111,182,63,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(111,182,63,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
-    <div class="absolute top-1/4 right-0 w-96 h-96 bg-verde-global-500/10 rounded-full blur-[120px]"></div>
+    <div class="hidden md:block absolute top-1/4 right-0 w-96 h-96 bg-verde-global-500/10 rounded-full blur-[120px]"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 md:px-8 text-center">
-      <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-full px-4 py-2 mb-6">
+      <div class="inline-flex items-center gap-2 bg-azul-marino-800/80 border border-azul-oceano-600/30 rounded-full px-3 md:px-4 py-1.5 md:py-2 mb-4 md:mb-6">
         <Icon name="tabler:message-circle" class="w-4 h-4 text-verde-global-400" />
-        <span class="text-azul-marino-100 text-xs tracking-wide">Estamos aqui para ayudarte</span>
+        <span class="text-azul-marino-100 text-[10px] md:text-xs tracking-wide">Estamos aqui para ayudarte</span>
       </div>
 
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+      <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6">
         Contacta con <span class="text-verde-global-500">nosotros</span>
       </h1>
 
-      <p class="text-azul-marino-200 text-lg max-w-2xl mx-auto leading-relaxed">
+      <p class="text-azul-marino-200 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
         Con sedes en Madrid y Panama, estamos preparados para gestionar tus envios hacia Cuba y todo el Caribe.
       </p>
     </div>
   </section>
 
   <!-- Contact Info Cards -->
-  <section class="relative py-16 bg-gray-50">
+  <section class="relative py-8 md:py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 -mt-24">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 -mt-12 md:-mt-24">
         {contactInfo.map((info) => (
           <a
             href={info.href}
-            class="group bg-white border border-gray-100 rounded-2xl p-6 shadow-xl shadow-azul-marino-950/5 hover:shadow-2xl hover:border-verde-global-500/30 transition-all duration-300"
+            class="group bg-white border border-gray-100 rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg md:shadow-xl shadow-azul-marino-950/5 hover:shadow-2xl hover:border-verde-global-500/30 transition-all duration-300"
           >
-            <div class="w-14 h-14 bg-azul-marino-50 group-hover:bg-verde-global-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
-              <Icon name={info.icon} class="w-7 h-7 text-azul-marino-600 group-hover:text-verde-global-600 transition-colors" />
+            <div class="w-10 h-10 md:w-14 md:h-14 bg-azul-marino-50 group-hover:bg-verde-global-500/10 rounded-lg md:rounded-xl flex items-center justify-center mb-3 md:mb-4 transition-colors">
+              <Icon name={info.icon} class="w-5 h-5 md:w-7 md:h-7 text-azul-marino-600 group-hover:text-verde-global-600 transition-colors" />
             </div>
-            <h3 class="text-azul-marino-400 text-sm mb-1">{info.title}</h3>
-            <p class="text-azul-marino-950 font-bold text-lg mb-2 group-hover:text-verde-global-600 transition-colors">{info.value}</p>
-            <p class="text-azul-marino-500 text-sm">{info.description}</p>
+            <h3 class="text-azul-marino-400 text-[10px] md:text-sm mb-0.5 md:mb-1">{info.title}</h3>
+            <p class="text-azul-marino-950 font-bold text-xs md:text-lg mb-1 md:mb-2 group-hover:text-verde-global-600 transition-colors leading-tight">{info.value}</p>
+            <p class="text-azul-marino-500 text-[10px] md:text-sm hidden sm:block">{info.description}</p>
           </a>
         ))}
       </div>
     </div>
   </section>
  <!-- Contact Form -->
-  <section class="relative py-16haz md:py-20 bg-gray-50">
+  <section class="relative py-10 md:py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
-      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
         <!-- Form -->
-        <div class="bg-white border border-gray-100 rounded-3xl p-8 md:p-10 shadow-xl shadow-azul-marino-950/5">
-          <h2 class="text-2xl md:text-3xl font-bold text-azul-marino-950 mb-2">
+        <div class="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-5 md:p-10 shadow-xl shadow-azul-marino-950/5">
+          <h2 class="text-xl md:text-3xl font-bold text-azul-marino-950 mb-1 md:mb-2">
             Enviar mensaje
           </h2>
-          <p class="text-azul-marino-500 mb-8">
+          <p class="text-azul-marino-500 text-sm md:text-base mb-5 md:mb-8">
             Completa el formulario y te responderemos en menos de 24 horas.
           </p>
 
-          <form class="space-y-6">
-            <div class="grid sm:grid-cols-2 gap-6">
+          <form class="space-y-4 md:space-y-6">
+            <div class="grid sm:grid-cols-2 gap-4 md:gap-6">
               <div>
-                <label for="nombre" class="block text-azul-marino-700 text-sm font-medium mb-2">Nombre</label>
+                <label for="nombre" class="block text-azul-marino-700 text-xs md:text-sm font-medium mb-1.5 md:mb-2">Nombre</label>
                 <input
                   type="text"
                   id="nombre"
                   name="nombre"
                   required
-                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
                   placeholder="Tu nombre"
                 />
               </div>
               <div>
-                <label for="empresa" class="block text-azul-marino-700 text-sm font-medium mb-2">Empresa</label>
+                <label for="empresa" class="block text-azul-marino-700 text-xs md:text-sm font-medium mb-1.5 md:mb-2">Empresa</label>
                 <input
                   type="text"
                   id="empresa"
                   name="empresa"
-                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
                   placeholder="Nombre de empresa"
                 />
               </div>
             </div>
 
-            <div class="grid sm:grid-cols-2 gap-6">
+            <div class="grid sm:grid-cols-2 gap-4 md:gap-6">
               <div>
-                <label for="email" class="block text-azul-marino-700 text-sm font-medium mb-2">Email</label>
+                <label for="email" class="block text-azul-marino-700 text-xs md:text-sm font-medium mb-1.5 md:mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
-                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
                   placeholder="tu@email.com"
                 />
               </div>
               <div>
-                <label for="telefono" class="block text-azul-marino-700 text-sm font-medium mb-2">Telefono</label>
+                <label for="telefono" class="block text-azul-marino-700 text-xs md:text-sm font-medium mb-1.5 md:mb-2">Telefono</label>
                 <input
                   type="tel"
                   id="telefono"
                   name="telefono"
-                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
                   placeholder="+34 600 000 000"
                 />
               </div>
             </div>
 
-            <div class="grid sm:grid-cols-2 gap-6">
+            <div class="grid sm:grid-cols-2 gap-4 md:gap-6">
               <div>
-                <label for="oficina" class="block text-azul-marino-700 text-sm font-medium mb-2">Oficina de contacto</label>
+                <label for="oficina" class="block text-azul-marino-700 text-xs md:text-sm font-medium mb-1.5 md:mb-2">Oficina</label>
                 <select
                   id="oficina"
                   name="oficina"
-                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-azul-marino-950 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
                 >
-                  <option value="">Seleccionar oficina</option>
-                  <option value="madrid">Madrid - Espana</option>
-                  <option value="panama">Panama - Hub Caribe</option>
+                  <option value="">Seleccionar</option>
+                  <option value="madrid">Madrid</option>
+                  <option value="panama">Panama</option>
                 </select>
               </div>
               <div>
-                <label for="servicio" class="block text-azul-marino-700 text-sm font-medium mb-2">Servicio de interes</label>
+                <label for="servicio" class="block text-azul-marino-700 text-xs md:text-sm font-medium mb-1.5 md:mb-2">Servicio</label>
                 <select
                   id="servicio"
                   name="servicio"
-                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-azul-marino-950 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all"
                 >
-                  <option value="">Seleccionar servicio</option>
-                  <option value="paqueteria-cuba">Paqueteria a Cuba</option>
-                  <option value="maritimo">Transporte Maritimo</option>
-                  <option value="aereo">Transporte Aereo</option>
-                  <option value="terrestre">Transporte Terrestre</option>
-                  <option value="almacenamiento">Almacenamiento</option>
+                  <option value="">Seleccionar</option>
+                  <option value="paqueteria-cuba">Paqueteria Cuba</option>
+                  <option value="maritimo">Maritimo</option>
+                  <option value="aereo">Aereo</option>
+                  <option value="terrestre">Terrestre</option>
                   <option value="otro">Otro</option>
                 </select>
               </div>
             </div>
 
             <div>
-              <label for="mensaje" class="block text-azul-marino-700 text-sm font-medium mb-2">Mensaje</label>
+              <label for="mensaje" class="block text-azul-marino-700 text-xs md:text-sm font-medium mb-1.5 md:mb-2">Mensaje</label>
               <textarea
                 id="mensaje"
                 name="mensaje"
-                rows="4"
+                rows="3"
                 required
-                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all resize-none"
+                class="w-full bg-gray-50 border border-gray-200 rounded-lg md:rounded-xl px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base text-azul-marino-950 placeholder-azul-marino-400 focus:outline-none focus:border-verde-global-500 focus:ring-1 focus:ring-verde-global-500/25 transition-all resize-none"
                 placeholder="Describe tu consulta..."
               ></textarea>
             </div>
 
             <button
               type="submit"
-              class="w-full bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-4 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
+              class="w-full bg-verde-global-500 hover:bg-verde-global-400 text-azul-marino-950 font-bold py-3 md:py-4 px-6 rounded-xl transition-colors flex items-center justify-center gap-2 text-sm md:text-base"
             >
               <span>Enviar Mensaje</span>
-              <Icon name="tabler:send" class="w-5 h-5" />
+              <Icon name="tabler:send" class="w-4 h-4 md:w-5 md:h-5" />
             </button>
           </form>
         </div>
 
         <!-- Info -->
         <div>
-          <h2 class="text-2xl md:text-3xl font-bold text-azul-marino-950 mb-6">
+          <h2 class="text-xl md:text-3xl font-bold text-azul-marino-950 mb-4 md:mb-6">
             Por que elegirnos?
           </h2>
 
-          <div class="space-y-6 mb-10">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Icon name="tabler:clock-check" class="w-6 h-6 text-verde-global-600" />
+          <div class="grid grid-cols-2 sm:grid-cols-1 gap-4 md:gap-6 mb-6 md:mb-10">
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 text-center sm:text-left">
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-verde-global-500/10 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Icon name="tabler:clock-check" class="w-5 h-5 md:w-6 md:h-6 text-verde-global-600" />
               </div>
               <div>
-                <h3 class="text-azul-marino-950 font-bold mb-1">Respuesta Rapida</h3>
-                <p class="text-azul-marino-500 text-sm leading-relaxed">Cotizaciones en menos de 2 horas y soporte 24/7 para emergencias.</p>
+                <h3 class="text-azul-marino-950 font-bold text-sm md:text-base mb-0.5 md:mb-1">Respuesta Rapida</h3>
+                <p class="text-azul-marino-500 text-xs md:text-sm leading-relaxed hidden sm:block">Cotizaciones en menos de 2 horas y soporte 24/7.</p>
               </div>
             </div>
 
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Icon name="tabler:shield-check" class="w-6 h-6 text-verde-global-600" />
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 text-center sm:text-left">
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-verde-global-500/10 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Icon name="tabler:shield-check" class="w-5 h-5 md:w-6 md:h-6 text-verde-global-600" />
               </div>
               <div>
-                <h3 class="text-azul-marino-950 font-bold mb-1">Carga Asegurada</h3>
-                <p class="text-azul-marino-500 text-sm leading-relaxed">Seguro all-risk incluido en todos nuestros servicios de transporte.</p>
+                <h3 class="text-azul-marino-950 font-bold text-sm md:text-base mb-0.5 md:mb-1">Carga Asegurada</h3>
+                <p class="text-azul-marino-500 text-xs md:text-sm leading-relaxed hidden sm:block">Seguro all-risk incluido en todos los servicios.</p>
               </div>
             </div>
 
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Icon name="tabler:plane-departure" class="w-6 h-6 text-verde-global-600" />
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 text-center sm:text-left">
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-verde-global-500/10 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Icon name="tabler:plane-departure" class="w-5 h-5 md:w-6 md:h-6 text-verde-global-600" />
               </div>
               <div>
-                <h3 class="text-azul-marino-950 font-bold mb-1">Especialistas en Cuba</h3>
-                <p class="text-azul-marino-500 text-sm leading-relaxed">Anos de experiencia en envios a Cuba desde Panama con entrega garantizada.</p>
+                <h3 class="text-azul-marino-950 font-bold text-sm md:text-base mb-0.5 md:mb-1">Expertos en Cuba</h3>
+                <p class="text-azul-marino-500 text-xs md:text-sm leading-relaxed hidden sm:block">Anos de experiencia en envios a Cuba desde Panama.</p>
               </div>
             </div>
 
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-verde-global-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Icon name="tabler:certificate" class="w-6 h-6 text-verde-global-600" />
+            <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 text-center sm:text-left">
+              <div class="w-10 h-10 md:w-12 md:h-12 bg-verde-global-500/10 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0">
+                <Icon name="tabler:certificate" class="w-5 h-5 md:w-6 md:h-6 text-verde-global-600" />
               </div>
               <div>
-                <h3 class="text-azul-marino-950 font-bold mb-1">Gestion Aduanera</h3>
-                <p class="text-azul-marino-500 text-sm leading-relaxed">Nos encargamos de toda la documentacion y tramites aduaneros.</p>
+                <h3 class="text-azul-marino-950 font-bold text-sm md:text-base mb-0.5 md:mb-1">Gestion Aduanera</h3>
+                <p class="text-azul-marino-500 text-xs md:text-sm leading-relaxed hidden sm:block">Documentacion y tramites aduaneros incluidos.</p>
               </div>
             </div>
           </div>
 
           <!-- Quick Contact -->
-          <div class="bg-azul-marino-950 rounded-2xl p-6">
-            <h3 class="text-white font-bold mb-4">Contacto directo</h3>
-            <div class="space-y-3">
-              <a href="tel:+34555540069" class="flex items-center gap-3 text-azul-marino-200 hover:text-verde-global-400 transition-colors">
-                <Icon name="tabler:phone" class="w-5 h-5" />
+          <div class="bg-azul-marino-950 rounded-xl md:rounded-2xl p-4 md:p-6">
+            <h3 class="text-white font-bold text-sm md:text-base mb-3 md:mb-4">Contacto directo</h3>
+            <div class="space-y-2 md:space-y-3">
+              <a href="tel:+34555540069" class="flex items-center gap-2 md:gap-3 text-azul-marino-200 hover:text-verde-global-400 transition-colors text-sm">
+                <Icon name="tabler:phone" class="w-4 h-4 md:w-5 md:h-5" />
                 <span>Madrid: +34 555 540 069</span>
               </a>
-              <a href="tel:+5078305500" class="flex items-center gap-3 text-azul-marino-200 hover:text-verde-global-400 transition-colors">
-                <Icon name="tabler:phone" class="w-5 h-5" />
+              <a href="tel:+5078305500" class="flex items-center gap-2 md:gap-3 text-azul-marino-200 hover:text-verde-global-400 transition-colors text-sm">
+                <Icon name="tabler:phone" class="w-4 h-4 md:w-5 md:h-5" />
                 <span>Panama: +507 830 5500</span>
               </a>
-              <a href="https://wa.me/5078305500" target="_blank" rel="noopener" class="flex items-center gap-3 text-azul-marino-200 hover:text-verde-global-400 transition-colors">
-                <Icon name="tabler:brand-whatsapp" class="w-5 h-5" />
+              <a href="https://wa.me/5078305500" target="_blank" rel="noopener" class="flex items-center gap-2 md:gap-3 text-azul-marino-200 hover:text-verde-global-400 transition-colors text-sm">
+                <Icon name="tabler:brand-whatsapp" class="w-4 h-4 md:w-5 md:h-5" />
                 <span>WhatsApp Panama</span>
               </a>
             </div>
@@ -296,24 +295,24 @@ const contactInfo = [
     </div>
   </section>
   <!-- Offices Section -->
-  <section id="oficinas" class="relative py-16 md:py-20 bg-gray-50">
+  <section id="oficinas" class="relative py-12 md:py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-azul-marino-950 mb-4">
+      <div class="text-center mb-8 md:mb-12">
+        <h2 class="text-2xl md:text-4xl font-bold text-azul-marino-950 mb-2 md:mb-4">
           Nuestras Oficinas
         </h2>
-        <p class="text-azul-marino-500 max-w-2xl mx-auto">
+        <p class="text-azul-marino-500 text-sm md:text-base max-w-2xl mx-auto">
           Dos ubicaciones estrategicas para conectar Europa con el Caribe
         </p>
       </div>
 
-      <div class="grid lg:grid-cols-2 gap-8">
+      <div class="grid md:grid-cols-2 gap-4 md:gap-8">
         {offices.map((office) => (
-          <div class="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-xl shadow-azul-marino-950/5">
+          <div class="bg-white border border-gray-100 rounded-2xl md:rounded-3xl overflow-hidden shadow-lg md:shadow-xl shadow-azul-marino-950/5">
             <!-- Map -->
             <div
               id={`map-${office.id}`}
-              class="h-64 bg-azul-marino-100"
+              class="h-40 md:h-64 bg-azul-marino-100"
               data-lat={office.coordinates.lat}
               data-lng={office.coordinates.lng}
               data-name={office.name}
@@ -321,42 +320,42 @@ const contactInfo = [
             </div>
 
             <!-- Info -->
-            <div class="p-6 md:p-8">
-              <div class="flex items-start justify-between mb-4">
+            <div class="p-4 md:p-8">
+              <div class="flex items-start justify-between mb-3 md:mb-4">
                 <div>
-                  <div class="flex items-center gap-2 mb-1">
-                    <span class="text-2xl">{office.flag === "ES" ? "🇪🇸" : "🇵🇦"}</span>
-                    <h3 class="text-azul-marino-950 font-bold text-xl">{office.name}</h3>
+                  <div class="flex items-center gap-2 mb-0.5 md:mb-1">
+                    <span class="text-xl md:text-2xl">{office.flag === "ES" ? "ES" : "PA"}</span>
+                    <h3 class="text-azul-marino-950 font-bold text-base md:text-xl">{office.name}</h3>
                   </div>
-                  <p class="text-verde-global-600 text-sm font-medium">{office.description}</p>
+                  <p class="text-verde-global-600 text-xs md:text-sm font-medium">{office.description}</p>
                 </div>
               </div>
 
-              <div class="space-y-3 mb-6">
-                <div class="flex items-start gap-3">
-                  <Icon name="tabler:map-pin" class="w-5 h-5 text-azul-marino-400 mt-0.5 flex-shrink-0" />
+              <div class="space-y-2 md:space-y-3 mb-4 md:mb-6 text-sm">
+                <div class="flex items-start gap-2 md:gap-3">
+                  <Icon name="tabler:map-pin" class="w-4 h-4 md:w-5 md:h-5 text-azul-marino-400 mt-0.5 flex-shrink-0" />
                   <div>
                     <p class="text-azul-marino-950">{office.address}</p>
-                    <p class="text-azul-marino-500 text-sm">{office.city}</p>
+                    <p class="text-azul-marino-500 text-xs md:text-sm">{office.city}</p>
                   </div>
                 </div>
 
-                <div class="flex items-center gap-3">
-                  <Icon name="tabler:phone" class="w-5 h-5 text-azul-marino-400 flex-shrink-0" />
+                <div class="flex items-center gap-2 md:gap-3">
+                  <Icon name="tabler:phone" class="w-4 h-4 md:w-5 md:h-5 text-azul-marino-400 flex-shrink-0" />
                   <a href={`tel:${office.phone.replace(/\s/g, '')}`} class="text-azul-marino-950 hover:text-verde-global-600 transition-colors">
                     {office.phone}
                   </a>
                 </div>
 
-                <div class="flex items-center gap-3">
-                  <Icon name="tabler:mail" class="w-5 h-5 text-azul-marino-400 flex-shrink-0" />
-                  <a href={`mailto:${office.email}`} class="text-azul-marino-950 hover:text-verde-global-600 transition-colors">
+                <div class="flex items-center gap-2 md:gap-3">
+                  <Icon name="tabler:mail" class="w-4 h-4 md:w-5 md:h-5 text-azul-marino-400 flex-shrink-0" />
+                  <a href={`mailto:${office.email}`} class="text-azul-marino-950 hover:text-verde-global-600 transition-colors text-xs md:text-sm">
                     {office.email}
                   </a>
                 </div>
 
-                <div class="flex items-center gap-3">
-                  <Icon name="tabler:clock" class="w-5 h-5 text-azul-marino-400 flex-shrink-0" />
+                <div class="flex items-center gap-2 md:gap-3">
+                  <Icon name="tabler:clock" class="w-4 h-4 md:w-5 md:h-5 text-azul-marino-400 flex-shrink-0" />
                   <p class="text-azul-marino-500">{office.hours}</p>
                 </div>
               </div>
@@ -365,10 +364,10 @@ const contactInfo = [
                 href={`https://www.google.com/maps?q=${office.coordinates.lat},${office.coordinates.lng}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 text-verde-global-600 hover:text-verde-global-500 font-medium text-sm transition-colors"
+                class="inline-flex items-center gap-2 text-verde-global-600 hover:text-verde-global-500 font-medium text-xs md:text-sm transition-colors"
               >
                 <span>Ver en Google Maps</span>
-                <Icon name="tabler:external-link" class="w-4 h-4" />
+                <Icon name="tabler:external-link" class="w-3 h-3 md:w-4 md:h-4" />
               </a>
             </div>
           </div>
@@ -378,63 +377,62 @@ const contactInfo = [
   </section>
 
   <!-- Route Info -->
-  <section class="py-16 md:py-20 bg-azul-marino-950">
+  <section class="py-12 md:py-20 bg-azul-marino-950">
     <div class="max-w-7xl mx-auto px-4 md:px-8">
-      <div class="bg-azul-marino-900/50 border border-azul-marino-800 rounded-3xl p-8 md:p-12">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div class="bg-azul-marino-900/50 border border-azul-marino-800 rounded-2xl md:rounded-3xl p-5 md:p-12">
+        <div class="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
           <div>
-            <div class="inline-flex items-center gap-2 bg-verde-global-500/10 border border-verde-global-500/20 rounded-full px-4 py-2 mb-4">
-              <Icon name="tabler:route" class="w-4 h-4 text-verde-global-400" />
-              <span class="text-verde-global-400 text-xs font-medium">Ruta Especializada</span>
+            <div class="inline-flex items-center gap-2 bg-verde-global-500/10 border border-verde-global-500/20 rounded-full px-3 md:px-4 py-1.5 md:py-2 mb-3 md:mb-4">
+              <Icon name="tabler:route" class="w-3 h-3 md:w-4 md:h-4 text-verde-global-400" />
+              <span class="text-verde-global-400 text-[10px] md:text-xs font-medium">Ruta Especializada</span>
             </div>
-            <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">
+            <h3 class="text-xl md:text-3xl font-bold text-white mb-3 md:mb-4">
               Panama - Cuba
             </h3>
-            <p class="text-azul-marino-200 leading-relaxed mb-6">
-              Nuestra sede en Panama esta estrategicamente ubicada para gestionar todos los envios hacia Cuba.
-              Ofrecemos servicios de paqueteria, consolidacion de carga y envios comerciales con los mejores tiempos de transito.
+            <p class="text-azul-marino-200 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
+              Nuestra sede en Panama gestiona todos los envios hacia Cuba con paqueteria, consolidacion y envios comerciales.
             </p>
-            <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-azul-marino-200">
-                <Icon name="tabler:circle-check" class="w-5 h-5 text-verde-global-400 flex-shrink-0" />
-                <span>Envios de paqueteria desde 1 kg</span>
+            <ul class="space-y-2 md:space-y-3 text-sm">
+              <li class="flex items-center gap-2 md:gap-3 text-azul-marino-200">
+                <Icon name="tabler:circle-check" class="w-4 h-4 md:w-5 md:h-5 text-verde-global-400 flex-shrink-0" />
+                <span>Paqueteria desde 1 kg</span>
               </li>
-              <li class="flex items-center gap-3 text-azul-marino-200">
-                <Icon name="tabler:circle-check" class="w-5 h-5 text-verde-global-400 flex-shrink-0" />
-                <span>Consolidacion de carga familiar</span>
+              <li class="flex items-center gap-2 md:gap-3 text-azul-marino-200">
+                <Icon name="tabler:circle-check" class="w-4 h-4 md:w-5 md:h-5 text-verde-global-400 flex-shrink-0" />
+                <span>Consolidacion de carga</span>
               </li>
-              <li class="flex items-center gap-3 text-azul-marino-200">
-                <Icon name="tabler:circle-check" class="w-5 h-5 text-verde-global-400 flex-shrink-0" />
+              <li class="flex items-center gap-2 md:gap-3 text-azul-marino-200">
+                <Icon name="tabler:circle-check" class="w-4 h-4 md:w-5 md:h-5 text-verde-global-400 flex-shrink-0" />
                 <span>Gestion aduanera incluida</span>
               </li>
-              <li class="flex items-center gap-3 text-azul-marino-200">
-                <Icon name="tabler:circle-check" class="w-5 h-5 text-verde-global-400 flex-shrink-0" />
-                <span>Entrega puerta a puerta en Cuba</span>
+              <li class="flex items-center gap-2 md:gap-3 text-azul-marino-200">
+                <Icon name="tabler:circle-check" class="w-4 h-4 md:w-5 md:h-5 text-verde-global-400 flex-shrink-0" />
+                <span>Entrega puerta a puerta</span>
               </li>
             </ul>
           </div>
           <div class="flex items-center justify-center">
             <div class="relative">
-              <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2 md:gap-4">
                 <div class="text-center">
-                  <div class="w-20 h-20 bg-azul-marino-800 rounded-2xl flex items-center justify-center mb-2">
-                    <span class="text-4xl">🇵🇦</span>
+                  <div class="w-14 h-14 md:w-20 md:h-20 bg-azul-marino-800 rounded-xl md:rounded-2xl flex items-center justify-center mb-1 md:mb-2">
+                    <span class="text-2xl md:text-4xl">PA</span>
                   </div>
-                  <p class="text-white font-bold">Panama</p>
+                  <p class="text-white font-bold text-xs md:text-base">Panama</p>
                 </div>
-                <div class="flex items-center gap-2">
-                  <div class="w-16 h-0.5 bg-verde-global-500"></div>
-                  <Icon name="tabler:plane" class="w-8 h-8 text-verde-global-400" />
-                  <div class="w-16 h-0.5 bg-verde-global-500"></div>
+                <div class="flex items-center gap-1 md:gap-2">
+                  <div class="w-6 md:w-16 h-0.5 bg-verde-global-500"></div>
+                  <Icon name="tabler:plane" class="w-5 h-5 md:w-8 md:h-8 text-verde-global-400" />
+                  <div class="w-6 md:w-16 h-0.5 bg-verde-global-500"></div>
                 </div>
                 <div class="text-center">
-                  <div class="w-20 h-20 bg-azul-marino-800 rounded-2xl flex items-center justify-center mb-2">
-                    <span class="text-4xl">🇨🇺</span>
+                  <div class="w-14 h-14 md:w-20 md:h-20 bg-azul-marino-800 rounded-xl md:rounded-2xl flex items-center justify-center mb-1 md:mb-2">
+                    <span class="text-2xl md:text-4xl">CU</span>
                   </div>
-                  <p class="text-white font-bold">Cuba</p>
+                  <p class="text-white font-bold text-xs md:text-base">Cuba</p>
                 </div>
               </div>
-              <p class="text-center text-azul-marino-400 text-sm mt-4">Tiempo de transito: 5-7 dias</p>
+              <p class="text-center text-azul-marino-400 text-xs md:text-sm mt-3 md:mt-4">Transito: 5-7 dias</p>
             </div>
           </div>
         </div>
