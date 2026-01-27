@@ -6,6 +6,7 @@ interface Props {
   agentRole?: string;
   welcomeMessage?: string;
   placeholder?: string;
+  webhookUrl?: string;
 }
 
 const {
@@ -13,10 +14,11 @@ const {
   agentRole = "Asesora de Envios",
   welcomeMessage = "Hola! Soy Sofia, tu asesora de envios. Como puedo ayudarte hoy?",
   placeholder = "Escribe tu mensaje...",
+  webhookUrl = "",
 } = Astro.props;
 ---
 
-<div id="floating-chat" class="fixed bottom-6 right-6 z-50 font-sans">
+<div id="floating-chat" class="fixed bottom-6 right-6 z-50 font-sans" data-webhook={webhookUrl}>
   <button
     id="chat-toggle"
     aria-label="Abrir chat de atencion al cliente"
@@ -32,7 +34,7 @@ const {
       id="chat-icon-close"
       class="w-7 h-7 text-white absolute opacity-0 scale-50 transition-all duration-300"
     />
-    <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse" id="chat-notification"></span>
+    <span class="absolute -top-1 -right-1 min-w-5 h-5 bg-red-500 rounded-full border-2 border-white text-white text-[10px] font-bold flex items-center justify-center px-1 animate-pulse" id="chat-notification"></span>
   </button>
 
   <div
@@ -109,6 +111,7 @@ const {
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
+    const floatingChat = document.getElementById('floating-chat');
     const chatToggle = document.getElementById('chat-toggle');
     const chatWindow = document.getElementById('chat-window');
     const chatMinimize = document.getElementById('chat-minimize');
@@ -119,7 +122,138 @@ const {
     const chatIconClose = document.getElementById('chat-icon-close');
     const chatNotification = document.getElementById('chat-notification');
 
+    const webhookUrl = floatingChat.dataset.webhook || '';
+    const STORAGE_KEY = 'rootts_chat_history';
+    const SESSION_KEY = 'rootts_chat_session';
+    const STORAGE_EXPIRY = 24 * 60 * 60 * 1000; // 24 horas
+
     let isOpen = false;
+    let isLoading = false;
+    let conversationHistory = [];
+    let unreadCount = 0;
+    let sessionId = getOrCreateSessionId();
+
+    function generateSessionId() {
+      return 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11);
+    }
+
+    function getOrCreateSessionId() {
+      try {
+        const stored = localStorage.getItem(SESSION_KEY);
+        if (stored) {
+          const data = JSON.parse(stored);
+          if (Date.now() - data.timestamp < STORAGE_EXPIRY) {
+            return data.id;
+          }
+        }
+        const newId = generateSessionId();
+        localStorage.setItem(SESSION_KEY, JSON.stringify({ id: newId, timestamp: Date.now() }));
+        return newId;
+      } catch (e) {
+        return generateSessionId();
+      }
+    }
+
+    // Sonido de notificacion usando Web Audio API
+    function playNotificationSound() {
+      try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.3);
+      } catch (e) {
+        // Audio no soportado, ignorar
+      }
+    }
+
+    // Guardar conversacion en localStorage
+    function saveConversation() {
+      try {
+        const data = {
+          history: conversationHistory,
+          messages: chatMessages.innerHTML,
+          timestamp: Date.now()
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {
+        // localStorage no disponible
+      }
+    }
+
+    // Cargar conversacion de localStorage
+    function loadConversation() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (!stored) return false;
+
+        const data = JSON.parse(stored);
+
+        // Verificar si expiro (24 horas)
+        if (Date.now() - data.timestamp > STORAGE_EXPIRY) {
+          localStorage.removeItem(STORAGE_KEY);
+          return false;
+        }
+
+        if (data.history && data.history.length > 0) {
+          conversationHistory = data.history;
+          chatMessages.innerHTML = data.messages;
+          return true;
+        }
+      } catch (e) {
+        // Error al cargar, ignorar
+      }
+      return false;
+    }
+
+    // Limpiar conversacion
+    function clearConversation() {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(SESSION_KEY);
+      conversationHistory = [];
+      sessionId = generateSessionId();
+      localStorage.setItem(SESSION_KEY, JSON.stringify({ id: sessionId, timestamp: Date.now() }));
+    }
+
+    // Mostrar notificacion (badge + sonido)
+    function showNotification() {
+      if (!isOpen) {
+        unreadCount++;
+        chatNotification.classList.remove('hidden');
+        chatNotification.textContent = unreadCount > 9 ? '9+' : unreadCount;
+        playNotificationSound();
+
+        // Vibrar en moviles si esta disponible
+        if (navigator.vibrate) {
+          navigator.vibrate(200);
+        }
+      }
+    }
+
+    // Ocultar notificacion
+    function hideNotification() {
+      unreadCount = 0;
+      chatNotification.classList.add('hidden');
+    }
+
+    // Cargar conversacion al iniciar
+    const hasHistory = loadConversation();
+    if (!hasHistory) {
+      chatNotification.classList.add('hidden');
+    } else {
+      // Si hay historial, ocultar notificacion inicial
+      chatNotification.classList.add('hidden');
+    }
 
     function toggleChat() {
       isOpen = !isOpen;
@@ -129,8 +263,9 @@ const {
         chatWindow.classList.add('opacity-100', 'scale-100');
         chatIconOpen.classList.add('opacity-0', 'scale-50');
         chatIconClose.classList.remove('opacity-0', 'scale-50');
-        chatNotification.classList.add('hidden');
+        hideNotification();
         chatInput.focus();
+        chatMessages.scrollTop = chatMessages.scrollHeight;
       } else {
         chatWindow.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
         chatWindow.classList.remove('opacity-100', 'scale-100');
@@ -143,55 +278,104 @@ const {
     chatMinimize.addEventListener('click', toggleChat);
 
     chatInput.addEventListener('input', () => {
-      chatSend.disabled = chatInput.value.trim() === '';
+      chatSend.disabled = chatInput.value.trim() === '' || isLoading;
     });
 
     chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' && chatInput.value.trim()) {
+      if (e.key === 'Enter' && chatInput.value.trim() && !isLoading) {
         sendMessage();
       }
     });
 
     chatSend.addEventListener('click', sendMessage);
 
-    function sendMessage() {
+    async function sendMessage() {
       const message = chatInput.value.trim();
-      if (!message) return;
+      if (!message || isLoading) return;
 
       addMessage(message, 'user');
+      conversationHistory.push({ role: 'user', content: message });
+      saveConversation();
       chatInput.value = '';
       chatSend.disabled = true;
+      isLoading = true;
 
-      setTimeout(() => {
-        addMessage(getAutoResponse(message), 'agent');
-      }, 1000);
+      showTypingIndicator();
+
+      try {
+        const response = await getAIResponse(message);
+        removeTypingIndicator();
+        addMessage(response, 'agent');
+        conversationHistory.push({ role: 'assistant', content: response });
+        saveConversation();
+        showNotification();
+      } catch (error) {
+        removeTypingIndicator();
+        const errorMsg = 'Lo siento, hubo un error al procesar tu mensaje. Por favor intenta de nuevo o llamanos al +34 555 540 069.';
+        addMessage(errorMsg, 'agent');
+        conversationHistory.push({ role: 'assistant', content: errorMsg });
+        saveConversation();
+        showNotification();
+      }
+
+      isLoading = false;
     }
 
-    function addMessage(text, type) {
-      const time = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
-
-      const messageHTML = type === 'user'
-        ? `<div class="flex gap-3 justify-end chat-message-user">
-            <div class="bg-verde-global-500 rounded-2xl rounded-tr-sm p-3 shadow-sm max-w-[80%]">
-              <p class="text-white text-sm leading-relaxed">${text}</p>
-              <span class="text-verde-global-200 text-xs mt-1 block text-right">${time}</span>
+    function showTypingIndicator() {
+      const typingHTML = `
+        <div id="typing-indicator" class="flex gap-3 chat-message-agent">
+          <div class="w-8 h-8 bg-verde-global-500 rounded-full flex-shrink-0 flex items-center justify-center">
+            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14v-3a8 8 0 1 1 16 0v3M18 19c0 1.657 -2.686 3 -6 3s-6 -1.343 -6 -3M4 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3zM15 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3z"/></svg>
+          </div>
+          <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm">
+            <div class="flex gap-1">
+              <span class="w-2 h-2 bg-azul-marino-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+              <span class="w-2 h-2 bg-azul-marino-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+              <span class="w-2 h-2 bg-azul-marino-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
             </div>
-          </div>`
-        : `<div class="flex gap-3 chat-message-agent">
-            <div class="w-8 h-8 bg-verde-global-500 rounded-full flex-shrink-0 flex items-center justify-center">
-              <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14v-3a8 8 0 1 1 16 0v3M18 19c0 1.657 -2.686 3 -6 3s-6 -1.343 -6 -3M4 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3zM15 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3z"/></svg>
-            </div>
-            <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-[80%]">
-              <p class="text-azul-marino-800 text-sm leading-relaxed">${text}</p>
-              <span class="text-azul-marino-400 text-xs mt-1 block">${time}</span>
-            </div>
-          </div>`;
-
-      chatMessages.insertAdjacentHTML('beforeend', messageHTML);
+          </div>
+        </div>`;
+      chatMessages.insertAdjacentHTML('beforeend', typingHTML);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    function getAutoResponse(message) {
+    function removeTypingIndicator() {
+      const indicator = document.getElementById('typing-indicator');
+      if (indicator) indicator.remove();
+    }
+
+    async function getAIResponse(message) {
+      if (!webhookUrl) {
+        return getFallbackResponse(message);
+      }
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sessionId: sessionId,
+          message: message,
+          history: conversationHistory,
+          metadata: {
+            page: window.location.pathname,
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+          }
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error en la respuesta del servidor');
+      }
+
+      const data = await response.json();
+      console.log('n8n response:', data);
+      return data.output || data.response || data.message || data.text || 'Gracias por tu mensaje.';
+    }
+
+    function getFallbackResponse(message) {
       const lower = message.toLowerCase();
 
       if (lower.includes('precio') || lower.includes('costo') || lower.includes('cotiza')) {
@@ -213,10 +397,43 @@ const {
       return 'Gracias por tu mensaje. Un agente revisara tu consulta y te respondera pronto. Mientras tanto, puedes llamarnos al +34 555 540 069 para atencion inmediata.';
     }
 
+    function addMessage(text, type) {
+      const time = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
+      const messageHTML = type === 'user'
+        ? `<div class="flex gap-3 justify-end chat-message-user">
+            <div class="bg-verde-global-500 rounded-2xl rounded-tr-sm p-3 shadow-sm max-w-[80%]">
+              <p class="text-white text-sm leading-relaxed">${escapeHtml(text)}</p>
+              <span class="text-verde-global-200 text-xs mt-1 block text-right">${time}</span>
+            </div>
+          </div>`
+        : `<div class="flex gap-3 chat-message-agent">
+            <div class="w-8 h-8 bg-verde-global-500 rounded-full flex-shrink-0 flex items-center justify-center">
+              <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14v-3a8 8 0 1 1 16 0v3M18 19c0 1.657 -2.686 3 -6 3s-6 -1.343 -6 -3M4 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3zM15 14a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2v-3z"/></svg>
+            </div>
+            <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-[80%]">
+              <p class="text-azul-marino-800 text-sm leading-relaxed">${escapeHtml(text)}</p>
+              <span class="text-azul-marino-400 text-xs mt-1 block">${time}</span>
+            </div>
+          </div>`;
+
+      chatMessages.insertAdjacentHTML('beforeend', messageHTML);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && isOpen) {
         toggleChat();
       }
     });
+
+    // Exponer funcion para limpiar historial (debug)
+    window.clearChatHistory = clearConversation;
   });
 </script>

@@ -1,6 +1,8 @@
 ---
 import "@/styles/global.css";
 import FloatingChat from "@components/FloatingChat.astro";
+
+const N8N_WEBHOOK_URL = import.meta.env.PUBLIC_N8N_WEBHOOK_URL || "";
 ---
 <!doctype html>
 <html lang="en">
@@ -15,7 +17,7 @@ import FloatingChat from "@components/FloatingChat.astro";
 <div id="background-mask " class="min-h-screen w-full bg-gray-50">
     <slot/>
 </div>
-<FloatingChat />
+<FloatingChat webhookUrl={N8N_WEBHOOK_URL} />
 </body>
 </html>
 
