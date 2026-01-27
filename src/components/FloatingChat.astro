@@ -39,7 +39,7 @@ const {
 
   <div
     id="chat-window"
-    class="absolute bottom-20 right-0 w-[360px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl shadow-azul-marino-950/20 overflow-hidden opacity-0 scale-95 origin-bottom-right pointer-events-none transition-all duration-300"
+    class="absolute bottom-20 right-0 w-[420px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl shadow-azul-marino-950/20 overflow-hidden opacity-0 scale-95 origin-bottom-right pointer-events-none transition-all duration-300"
   >
     <div class="bg-gradient-to-r from-azul-marino-900 to-azul-marino-800 p-4">
       <div class="flex items-center gap-3">
@@ -133,25 +133,13 @@ const {
     let unreadCount = 0;
     let sessionId = getOrCreateSessionId();
 
-    function generateSessionId() {
-      return 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11);
-    }
-
     function getOrCreateSessionId() {
-      try {
-        const stored = localStorage.getItem(SESSION_KEY);
-        if (stored) {
-          const data = JSON.parse(stored);
-          if (Date.now() - data.timestamp < STORAGE_EXPIRY) {
-            return data.id;
-          }
-        }
-        const newId = generateSessionId();
-        localStorage.setItem(SESSION_KEY, JSON.stringify({ id: newId, timestamp: Date.now() }));
-        return newId;
-      } catch (e) {
-        return generateSessionId();
+      let id = localStorage.getItem(SESSION_KEY);
+      if (!id) {
+        id = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem(SESSION_KEY, id);
       }
+      return id;
     }
 
     // Sonido de notificacion usando Web Audio API
@@ -221,8 +209,8 @@ const {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem(SESSION_KEY);
       conversationHistory = [];
-      sessionId = generateSessionId();
-      localStorage.setItem(SESSION_KEY, JSON.stringify({ id: sessionId, timestamp: Date.now() }));
+      sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem(SESSION_KEY, sessionId);
     }
 
     // Mostrar notificacion (badge + sonido)
@@ -310,6 +298,7 @@ const {
         saveConversation();
         showNotification();
       } catch (error) {
+        console.error('Chat error:', error);
         removeTypingIndicator();
         const errorMsg = 'Lo siento, hubo un error al procesar tu mensaje. Por favor intenta de nuevo o llamanos al +34 555 540 069.';
         addMessage(errorMsg, 'agent');
@@ -367,7 +356,8 @@ const {
       });
 
       if (!response.ok) {
-        throw new Error('Error en la respuesta del servidor');
+        console.error('HTTP error:', response.status, response.statusText);
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
       const data = await response.json();
@@ -433,7 +423,9 @@ const {
       }
     });
 
-    // Exponer funcion para limpiar historial (debug)
+    // Exponer funciones para debug
     window.clearChatHistory = clearConversation;
+    window.getChatSessionId = () => { console.log('Session ID:', sessionId); return sessionId; };
+    window.resetChatSession = () => { clearConversation(); console.log('New Session ID:', sessionId); };
   });
 </script>
