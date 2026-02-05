@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "mcp__n8n-workflow-manager__get_node",
+      "mcp__n8n-workflow-manager__search_templates",
+      "mcp__n8n-workflow-manager__get_template",
+      "mcp__n8n-workflow-manager__n8n_get_workflow",
+      "mcp__n8n-workflow-manager__n8n_update_partial_workflow"
+    ]
+  }
+}
